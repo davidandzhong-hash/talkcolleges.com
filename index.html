@@ -1,0 +1,646 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TalkColleges — Real Advice from Real Students</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --navy:  #0f1f38;
+      --cream: #f5f1ea;
+      --gold:  #c8963e;
+      --muted: #6b7a8d;
+      --white: #ffffff;
+      --border: #e2ddd4;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--cream);
+      color: var(--navy);
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to   { opacity: 1; }
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1.1rem 6%;
+      background: rgba(245,241,234,0.93);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .logo {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.35rem;
+      color: var(--navy);
+      text-decoration: none;
+      letter-spacing: -0.01em;
+    }
+
+    .logo span { color: var(--gold); }
+
+    nav ul { list-style: none; display: flex; gap: 2rem; align-items: center; }
+    nav ul a {
+      text-decoration: none;
+      color: var(--navy);
+      font-size: 0.88rem;
+      font-weight: 400;
+      letter-spacing: 0.01em;
+      transition: color 0.2s;
+    }
+    nav ul a:hover { color: var(--gold); }
+
+    .nav-cta {
+      background: var(--navy) !important;
+      color: var(--white) !important;
+      padding: 0.5rem 1.2rem !important;
+      border-radius: 4px;
+      font-weight: 500 !important;
+      transition: background 0.2s !important;
+    }
+    .nav-cta:hover { background: var(--gold) !important; }
+
+    /* ── HERO ── */
+    .hero {
+      min-height: 100vh;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: center;
+      padding: 8rem 6% 5rem;
+      gap: 4rem;
+      position: relative;
+    }
+
+    .hero::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at 70% 50%, rgba(200,150,62,0.06) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .hero-left { max-width: 560px; }
+
+    .hero-tag {
+      display: inline-block;
+      font-size: 0.72rem;
+      font-weight: 500;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--gold);
+      border: 1px solid var(--gold);
+      padding: 0.28rem 0.75rem;
+      border-radius: 2px;
+      margin-bottom: 1.6rem;
+      opacity: 0;
+      animation: fadeUp 0.6s ease forwards 0.1s;
+    }
+
+    .hero h1 {
+      font-family: 'DM Serif Display', serif;
+      font-size: clamp(2.6rem, 4.5vw, 3.8rem);
+      line-height: 1.08;
+      letter-spacing: -0.025em;
+      margin-bottom: 1.4rem;
+      opacity: 0;
+      animation: fadeUp 0.6s ease forwards 0.25s;
+    }
+
+    .hero h1 em { font-style: italic; color: var(--gold); }
+
+    .hero-desc {
+      font-size: 1.05rem;
+      color: var(--muted);
+      font-weight: 300;
+      max-width: 440px;
+      margin-bottom: 2.2rem;
+      opacity: 0;
+      animation: fadeUp 0.6s ease forwards 0.4s;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 0.9rem;
+      flex-wrap: wrap;
+      opacity: 0;
+      animation: fadeUp 0.6s ease forwards 0.55s;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 0.85rem 1.9rem;
+      border-radius: 4px;
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 0.93rem;
+      transition: all 0.2s;
+      cursor: pointer;
+    }
+
+    .btn-gold  { background: var(--gold); color: var(--white); border: 2px solid var(--gold); }
+    .btn-gold:hover  { background: transparent; color: var(--gold); }
+    .btn-outline { background: transparent; color: var(--navy); border: 2px solid var(--navy); }
+    .btn-outline:hover { background: var(--navy); color: var(--white); }
+
+    /* Hero right — advisor cards */
+    .hero-right {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      opacity: 0;
+      animation: fadeIn 0.9s ease forwards 0.7s;
+    }
+
+    .advisor-card {
+      background: var(--white);
+      border-radius: 12px;
+      padding: 1.1rem 1.3rem;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      box-shadow: 0 2px 20px rgba(15,31,56,0.08);
+      border: 1px solid var(--border);
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .advisor-card:hover { transform: translateX(4px); box-shadow: 0 4px 28px rgba(15,31,56,0.13); }
+
+    .avatar {
+      width: 46px; height: 46px;
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.15rem;
+      color: var(--white);
+      flex-shrink: 0;
+    }
+    .av1 { background: var(--navy); }
+    .av2 { background: var(--gold); }
+    .av3 { background: #2a5298; }
+    .av4 { background: #8b1a1a; }
+
+    .advisor-info { flex: 1; }
+    .advisor-name { font-size: 0.87rem; font-weight: 500; color: var(--navy); }
+    .advisor-school { font-size: 0.77rem; color: var(--muted); }
+
+    .badge {
+      font-size: 0.68rem;
+      font-weight: 500;
+      padding: 0.2rem 0.55rem;
+      border-radius: 20px;
+      white-space: nowrap;
+    }
+    .badge-blue { background: #eef2ff; color: #3730a3; }
+    .badge-red  { background: #fff1f1; color: #991b1b; }
+    .badge-green { background: #f0fdf4; color: #166534; }
+    .badge-gold  { background: #fefce8; color: #854d0e; }
+
+    /* ── STATS ── */
+    .stats-bar {
+      background: var(--navy);
+      padding: 2.8rem 6%;
+      display: flex;
+      justify-content: center;
+      gap: 5rem;
+      flex-wrap: wrap;
+    }
+
+    .stat { text-align: center; }
+    .stat-num {
+      font-family: 'DM Serif Display', serif;
+      font-size: 2.2rem;
+      color: var(--gold);
+      display: block;
+      line-height: 1;
+    }
+    .stat-label {
+      font-size: 0.78rem;
+      color: rgba(255,255,255,0.55);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-top: 0.4rem;
+      display: block;
+    }
+
+    /* ── SECTIONS ── */
+    .section { padding: 6rem 6%; }
+    .section-alt { background: var(--white); }
+
+    .section-tag {
+      font-size: 0.7rem;
+      font-weight: 500;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--gold);
+      display: block;
+      margin-bottom: 0.7rem;
+    }
+
+    .section-title {
+      font-family: 'DM Serif Display', serif;
+      font-size: clamp(1.8rem, 3vw, 2.5rem);
+      line-height: 1.15;
+      letter-spacing: -0.02em;
+      margin-bottom: 0.9rem;
+    }
+
+    .section-sub {
+      font-size: 1rem;
+      color: var(--muted);
+      font-weight: 300;
+      max-width: 480px;
+      margin-bottom: 3.5rem;
+    }
+
+    /* ── HOW IT WORKS ── */
+    .steps {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .step {
+      background: var(--cream);
+      border-radius: 10px;
+      padding: 2rem 1.7rem;
+      border: 1px solid var(--border);
+      transition: transform 0.2s, box-shadow 0.2s;
+      position: relative;
+    }
+    .step:hover { transform: translateY(-4px); box-shadow: 0 8px 32px rgba(15,31,56,0.1); }
+
+    .step-num {
+      font-family: 'DM Serif Display', serif;
+      font-size: 2.5rem;
+      color: var(--border);
+      line-height: 1;
+      margin-bottom: 1rem;
+    }
+
+    .step h3 {
+      font-size: 1rem;
+      font-weight: 500;
+      margin-bottom: 0.6rem;
+      color: var(--navy);
+    }
+
+    .step p { font-size: 0.88rem; color: var(--muted); font-weight: 300; }
+
+    /* ── ADVISORS GRID ── */
+    .advisors-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+      gap: 1.3rem;
+    }
+
+    .advisor-full-card {
+      background: var(--cream);
+      border-radius: 12px;
+      padding: 1.8rem;
+      border: 1px solid var(--border);
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .advisor-full-card:hover { transform: translateY(-4px); box-shadow: 0 8px 28px rgba(15,31,56,0.1); }
+
+    .advisor-full-card .avatar { width: 54px; height: 54px; font-size: 1.3rem; margin-bottom: 1rem; }
+
+    .advisor-full-card h3 { font-size: 1rem; font-weight: 500; margin-bottom: 0.2rem; }
+    .advisor-full-card .school-tag { font-size: 0.8rem; color: var(--muted); margin-bottom: 0.9rem; }
+    .advisor-full-card .specialty { font-size: 0.83rem; color: var(--navy); font-weight: 300; border-top: 1px solid var(--border); padding-top: 0.8rem; }
+
+    .advisor-cta {
+      display: inline-block;
+      margin-top: 1rem;
+      font-size: 0.8rem;
+      font-weight: 500;
+      color: var(--gold);
+      text-decoration: none;
+      letter-spacing: 0.02em;
+      transition: color 0.2s;
+    }
+    .advisor-cta:hover { color: var(--navy); }
+
+    /* ── TESTIMONIALS ── */
+    .testimonials {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .testimonial {
+      background: var(--white);
+      border-radius: 12px;
+      padding: 1.8rem;
+      border: 1px solid var(--border);
+      position: relative;
+    }
+
+    .quote-mark {
+      font-family: 'DM Serif Display', serif;
+      font-size: 3rem;
+      color: var(--gold);
+      opacity: 0.3;
+      line-height: 0.5;
+      margin-bottom: 1rem;
+      display: block;
+    }
+
+    .testimonial p { font-size: 0.93rem; color: var(--navy); font-weight: 300; margin-bottom: 1.2rem; line-height: 1.6; }
+
+    .testimonial-author { display: flex; align-items: center; gap: 0.7rem; }
+    .testimonial-author .avatar { width: 36px; height: 36px; font-size: 0.85rem; }
+    .t-name { font-size: 0.83rem; font-weight: 500; }
+    .t-school { font-size: 0.75rem; color: var(--muted); }
+
+    /* ── CTA SECTION ── */
+    .cta-section {
+      background: var(--navy);
+      padding: 6rem 6%;
+      text-align: center;
+    }
+
+    .cta-section .section-tag { color: var(--gold); }
+
+    .cta-section .section-title {
+      color: var(--white);
+      max-width: 520px;
+      margin: 0 auto 1rem;
+    }
+
+    .cta-section p {
+      color: rgba(255,255,255,0.6);
+      font-weight: 300;
+      max-width: 440px;
+      margin: 0 auto 2.5rem;
+    }
+
+    .cta-section .btn-gold { margin: 0 0.4rem; }
+
+    .btn-white { background: transparent; color: var(--white); border: 2px solid rgba(255,255,255,0.4); }
+    .btn-white:hover { background: rgba(255,255,255,0.1); }
+
+    /* ── FOOTER ── */
+    footer {
+      background: #080f1c;
+      color: rgba(255,255,255,0.45);
+      padding: 2.2rem 6%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 1rem;
+      font-size: 0.82rem;
+    }
+
+    footer .logo { color: rgba(255,255,255,0.7); font-size: 1.1rem; }
+    footer .logo span { color: var(--gold); }
+
+    footer a { color: rgba(255,255,255,0.45); text-decoration: none; margin-left: 1.5rem; transition: color 0.2s; }
+    footer a:hover { color: var(--gold); }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 768px) {
+      .hero { grid-template-columns: 1fr; padding: 6rem 5% 3rem; }
+      .hero-right { display: none; }
+      .stats-bar { gap: 2.5rem; }
+      nav ul { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <a href="#" class="logo">Talk<span>Colleges</span></a>
+    <ul>
+      <li><a href="#how-it-works">How it works</a></li>
+      <li><a href="#advisors">Advisors</a></li>
+      <li><a href="#stories">Stories</a></li>
+      <li><a href="#contact" class="nav-cta">Get started</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-left">
+      <span class="hero-tag">College Admissions Advice</span>
+      <h1>Get into your<br/><em>dream school</em><br/>with real advice</h1>
+      <p class="hero-desc">Talk directly with students who got into Harvard, MIT, Stanford, and more. Real stories, real strategies — not generic tips.</p>
+      <div class="hero-actions">
+        <a href="#advisors" class="btn btn-gold">Find an advisor</a>
+        <a href="#how-it-works" class="btn btn-outline">How it works</a>
+      </div>
+    </div>
+
+    <div class="hero-right">
+      <div class="advisor-card">
+        <div class="avatar av1">S</div>
+        <div class="advisor-info">
+          <div class="advisor-name">Sarah K.</div>
+          <div class="advisor-school">Harvard University '24</div>
+        </div>
+        <span class="badge badge-blue">CS</span>
+      </div>
+      <div class="advisor-card">
+        <div class="avatar av3">M</div>
+        <div class="advisor-info">
+          <div class="advisor-name">Marcus L.</div>
+          <div class="advisor-school">MIT '25</div>
+        </div>
+        <span class="badge badge-green">Engineering</span>
+      </div>
+      <div class="advisor-card">
+        <div class="avatar av2">A</div>
+        <div class="advisor-info">
+          <div class="advisor-name">Aisha T.</div>
+          <div class="advisor-school">Stanford University '24</div>
+        </div>
+        <span class="badge badge-gold">Pre-Med</span>
+      </div>
+      <div class="advisor-card">
+        <div class="avatar av4">J</div>
+        <div class="advisor-info">
+          <div class="advisor-name">James R.</div>
+          <div class="advisor-school">Yale University '25</div>
+        </div>
+        <span class="badge badge-red">Law Track</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- STATS -->
+  <div class="stats-bar">
+    <div class="stat">
+      <span class="stat-num">200+</span>
+      <span class="stat-label">Student advisors</span>
+    </div>
+    <div class="stat">
+      <span class="stat-num">50+</span>
+      <span class="stat-label">Top universities</span>
+    </div>
+    <div class="stat">
+      <span class="stat-num">1,400+</span>
+      <span class="stat-label">Students helped</span>
+    </div>
+    <div class="stat">
+      <span class="stat-num">94%</span>
+      <span class="stat-label">Admitted to top choice</span>
+    </div>
+  </div>
+
+  <!-- HOW IT WORKS -->
+  <section class="section" id="how-it-works">
+    <span class="section-tag">The process</span>
+    <h2 class="section-title">Simple, personal, and effective</h2>
+    <p class="section-sub">No corporate consultants. Just real students who've been exactly where you are.</p>
+
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">01</div>
+        <h3>Browse advisors</h3>
+        <p>Filter by school, major, or background. Find someone whose path matches where you want to go.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">02</div>
+        <h3>Book a session</h3>
+        <p>Schedule a 1-on-1 video call at a time that works for you. Sessions run 30 or 60 minutes.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">03</div>
+        <h3>Get real advice</h3>
+        <p>Talk essays, interviews, extracurriculars, and strategy with someone who just went through it.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">04</div>
+        <h3>Apply with confidence</h3>
+        <p>Walk into application season knowing your story, your strengths, and your strategy.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ADVISORS -->
+  <section class="section section-alt" id="advisors">
+    <span class="section-tag">Our advisors</span>
+    <h2 class="section-title">Students who've been there</h2>
+    <p class="section-sub">Every advisor on TalkColleges is a current student or recent graduate from a top university.</p>
+
+    <div class="advisors-grid">
+      <div class="advisor-full-card">
+        <div class="avatar av1">S</div>
+        <h3>Sarah K.</h3>
+        <div class="school-tag">Harvard University · Computer Science '24</div>
+        <div class="specialty">Specializes in CS essays, research experience, and Ivy League strategy.</div>
+        <a href="#contact" class="advisor-cta">Book a session →</a>
+      </div>
+      <div class="advisor-full-card">
+        <div class="avatar av3">M</div>
+        <h3>Marcus L.</h3>
+        <div class="school-tag">MIT · Electrical Engineering '25</div>
+        <div class="specialty">Focuses on STEM applications, extracurricular positioning, and financial aid.</div>
+        <a href="#contact" class="advisor-cta">Book a session →</a>
+      </div>
+      <div class="advisor-full-card">
+        <div class="avatar av2">A</div>
+        <h3>Aisha T.</h3>
+        <div class="school-tag">Stanford University · Biology '24</div>
+        <div class="specialty">Pre-med track, research, and navigating the Stanford application process.</div>
+        <a href="#contact" class="advisor-cta">Book a session →</a>
+      </div>
+      <div class="advisor-full-card">
+        <div class="avatar av4">J</div>
+        <h3>James R.</h3>
+        <div class="school-tag">Yale University · Political Science '25</div>
+        <div class="specialty">Humanities essays, interview prep, and liberal arts college strategy.</div>
+        <a href="#contact" class="advisor-cta">Book a session →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIALS -->
+  <section class="section" id="stories">
+    <span class="section-tag">Student stories</span>
+    <h2 class="section-title">What students are saying</h2>
+    <p class="section-sub">From the students who used TalkColleges to get in.</p>
+
+    <div class="testimonials">
+      <div class="testimonial">
+        <span class="quote-mark">"</span>
+        <p>I talked to Sarah for an hour about my Common App essay and completely rewrote it. I got into Cornell ED. Best decision I made all of senior year.</p>
+        <div class="testimonial-author">
+          <div class="avatar av3" style="width:36px;height:36px;font-size:0.85rem;">R</div>
+          <div>
+            <div class="t-name">Riya M.</div>
+            <div class="t-school">Now at Cornell University</div>
+          </div>
+        </div>
+      </div>
+      <div class="testimonial">
+        <span class="quote-mark">"</span>
+        <p>Marcus helped me figure out how to frame my robotics club experience. I didn't realize how strong my application actually was until he walked me through it.</p>
+        <div class="testimonial-author">
+          <div class="avatar av1" style="width:36px;height:36px;font-size:0.85rem;">D</div>
+          <div>
+            <div class="t-name">Daniel P.</div>
+            <div class="t-school">Now at Georgia Tech</div>
+          </div>
+        </div>
+      </div>
+      <div class="testimonial">
+        <span class="quote-mark">"</span>
+        <p>I was stressed about interviews and Aisha ran me through the whole thing. Felt so much more confident walking in. Got into my top three schools.</p>
+        <div class="testimonial-author">
+          <div class="avatar av2" style="width:36px;height:36px;font-size:0.85rem;">L</div>
+          <div>
+            <div class="t-name">Lena W.</div>
+            <div class="t-school">Now at Duke University</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta-section" id="contact">
+    <span class="section-tag">Ready to start?</span>
+    <h2 class="section-title">Your dream school is closer than you think</h2>
+    <p>Connect with a student advisor today and start building the application that gets you in.</p>
+    <a href="mailto:hello@talkcolleges.com" class="btn btn-gold">Get in touch</a>
+    <a href="#advisors" class="btn btn-white">Browse advisors</a>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <a href="#" class="logo">Talk<span>Colleges</span></a>
+    <div>
+      <a href="#how-it-works">How it works</a>
+      <a href="#advisors">Advisors</a>
+      <a href="#stories">Stories</a>
+      <a href="mailto:hello@talkcolleges.com">Contact</a>
+    </div>
+    <span>© 2025 TalkColleges. All rights reserved.</span>
+  </footer>
+
+</body>
+</html>
