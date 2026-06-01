@@ -548,7 +548,8 @@
     <div class="advisors-grid" id="advisorsGrid">
 
       <div class="advisor-card">
-        <div class="avatar av1">N</div>
+        <!-- Nolan: Blue -->
+        <div class="avatar av3">N</div>
         <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.3rem;">
           <h3 style="margin-bottom: 0;">Nolan</h3>
           <span style="font-size: 0.82rem; font-weight: 500; color: var(--muted);">$120/session</span>
@@ -562,11 +563,12 @@
           <span>Cornell University</span>
           <span>University of Virginia</span>
         </div>
-        <button class="btn-book" onclick="openModal('Nolan', 'Yale University &rsquo;29', 'Computer Science', 'av1', 'https://cal.com/talkcolleges/nolan-yale-29-compsci')">Book a session</button>
+        <button class="btn-book" onclick="openModal('Nolan', 'Yale University &rsquo;29', 'Computer Science', 'av3', 'https://cal.com/talkcolleges/nolan-yale-29-compsci')">Book a session</button>
       </div>
 
       <div class="advisor-card">
-        <div class="avatar av3">R</div>
+        <!-- Ryan: Gold -->
+        <div class="avatar av2">R</div>
         <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.3rem;">
           <h3 style="margin-bottom: 0;">Ryan</h3>
           <span style="font-size: 0.82rem; font-weight: 500; color: var(--muted);">$110/session</span>
@@ -577,11 +579,12 @@
           <span>Blair School of Music</span>
           <span>Applied Mathematics &amp; Music</span>
         </div>
-        <button class="btn-book" onclick="openModal('Ryan', 'Vanderbilt University &rsquo;30', 'Applied Mathematics &amp; Music', 'av3', 'https://cal.com/talkcolleges/ryan-vanderbilt-30-cas-blair-appmath-music')">Book a session</button>
+        <button class="btn-book" onclick="openModal('Ryan', 'Vanderbilt University &rsquo;30', 'Applied Mathematics &amp; Music', 'av2', 'https://cal.com/talkcolleges/ryan-vanderbilt-30-cas-blair-appmath-music')">Book a session</button>
       </div>
 
       <div class="advisor-card">
-        <div class="avatar av2">R</div>
+        <!-- Roman: UChicago Crimson/Maroon -->
+        <div class="avatar" style="background: #800000;">R</div>
         <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.3rem;">
           <h3 style="margin-bottom: 0;">Roman</h3>
           <span style="font-size: 0.82rem; font-weight: 500; color: var(--muted);">$115/session</span>
@@ -591,37 +594,59 @@
           <span>Geophysical Sciences</span>
           <span>Legacy student</span>
         </div>
-        <button class="btn-book" onclick="openModal('Roman', 'University of Chicago &rsquo;30', 'Geophysical Sciences', 'av2', 'https://cal.com/talkcolleges/roman-uchicago-30-geophysical-sciences')">Book a session</button>
+        <button class="btn-book" onclick="openModal('Roman', 'University of Chicago &rsquo;30', 'Geophysical Sciences', 'roman-avatar', 'https://cal.com/talkcolleges/roman-uchicago-30-geophysical-sciences')">Book a session</button>
       </div>
 
-      <div class="advisor-card">
-        <div class="avatar av4">D</div>
-        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.3rem;">
-          <h3 style="margin-bottom: 0;">David</h3>
-          <span style="font-size: 0.82rem; font-weight: 500; color: var(--muted);">$80/session</span>
-        </div>
-        <div class="school-tag">
-          <span>New York University '30</span>
-          <span>College of Arts and Sciences</span>
-          <span>Biology</span>
-        </div>
-        <button class="btn-book" onclick="openModal('David', 'New York University &rsquo;30', 'Biology', 'av4', 'https://cal.com/talkcolleges/david-nyu-30-cas-biology')">Book a session</button>
-      </div>
+<!-- Existing Advisor: David -->
+<div class="advisor-card">
+  <!-- David: Purple (var--navy) -->
+  <div class="avatar av1">D</div>
+  <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.3rem;">
+    <h3 style="margin-bottom: 0;">David</h3>
+    <span style="font-size: 0.82rem; font-weight: 500; color: var(--muted);">$80/session</span>
+  </div>
+  <div class="school-tag">
+    <span>New York University '30</span>
+    <span>College of Arts and Sciences</span>
+    <span>Biology</span>
+  </div>
+  <button class="btn-book" onclick="openModal('David', 'New York University &rsquo;30', 'Biology', 'av1', 'https://cal.com/talkcolleges/david-nyu-30-cas-biology')">Book a session</button>
+</div>
 
-      <!-- Coming Soon card -->
-      <div class="advisor-card text-card" style="background: var(--cream); border: 2px dashed var(--border); display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; min-height: 200px;">
-        <p style="font-size: 1.5rem; margin-bottom: 0.5rem;">🔍</p>
-        <h3 style="font-family: 'DM Serif Display', serif; font-size: 1.1rem; margin-bottom: 0.5rem;">More advisors coming soon</h3>
-        <p style="font-size: 0.82rem; color: var(--muted); font-weight: 300; max-width: 200px; margin-bottom: 0.5rem;">We're continuously finding new advisors. Please check back often!</p>
-        <p style="font-size: 0.75rem; color: var(--muted); font-weight: 300;" id="lastUpdated"></p>
-      </div>
-
-    </div><!-- end advisors grid -->
-
-    <div class="no-results" id="noResults">
-      <h3>No advisors found</h3>
-      <p>Try searching for a different school or major.</p>
+<!-- NEW Advisor: Eric -->
+<div class="advisor-card">
+  <div class="avatar" style="background-color: #8B5A2B; color: #FFF;">E</div>
+  <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.3rem;">
+    <h3 style="margin-bottom: 0;">Eric</h3>
+    <span style="font-size: 0.82rem; font-weight: 500; color: var(--muted);">$/session</span>
+  </div>
+  <div class="school-tag">
+    <span>Brown University '30</span>
+    <span>Computer Science</span>
     </div>
+        <div class="advisor-accepted">
+          <strong>Also Accepted To:</strong>
+          <span>Carnegie Mellon University</span>
+          <span>University of California-Berkeley</span>
+        </div>
+  <!-- Updated to a non-clickable, styled status label -->
+  <div class="btn-soon" style="font-size: 0.78rem;">Advisor in training, Not available yet</div>
+</div>
+
+<!-- Coming Soon card -->
+<div class="advisor-card text-card" style="background: var(--cream); border: 2px dashed var(--border); display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; min-height: 200px;">
+  <p style="font-size: 1.5rem; margin-bottom: 0.5rem;">🔍</p>
+  <h3 style="font-family: 'DM Serif Display', serif; font-size: 1.1rem; margin-bottom: 0.5rem;">More advisors coming soon</h3>
+  <p style="font-size: 0.82rem; color: var(--muted); font-weight: 300; max-width: 200px; margin-bottom: 0.5rem;">We're continuously finding new advisors. Please check back often!</p>
+  <p style="font-size: 0.75rem; color: var(--muted); font-weight: 300;" id="lastUpdated"></p>
+</div>
+
+</div><!-- end advisors grid -->
+
+<div class="no-results" id="noResults">
+  <h3>No advisors found</h3>
+  <p>Try searching for a different school or major.</p>
+</div>
 
   </div><!-- end advisors section -->
 
@@ -710,7 +735,19 @@
       document.getElementById('modalMajor').innerHTML = major;
 
       const avatar = document.getElementById('modalAvatar');
-      avatar.className = 'avatar ' + avatarClass;
+      
+      // Handle custom inline styles vs predefined class styles dynamically on modal open
+      if (avatarClass === 'roman-avatar') {
+        avatar.className = 'avatar';
+        avatar.style.background = '#800000';
+      } else if (avatarClass === 'eric-avatar') {
+        avatar.className = 'avatar';
+        avatar.style.background = '#8B5A2B';
+      } else {
+        avatar.className = 'avatar ' + avatarClass;
+        avatar.style.background = '';
+      }
+      
       avatar.textContent = name.charAt(0);
 
       document.getElementById('studentName').value = '';
