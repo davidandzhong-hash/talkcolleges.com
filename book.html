@@ -2,13 +2,13 @@
 <html lang="en">
 <head>
   <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-3J9BPP208G"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-3J9BPP208G');
-</script>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-3J9BPP208G"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-3J9BPP208G');
+  </script>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Browse Advisors — TalkColleges</title>
@@ -159,14 +159,14 @@
     }
 
     /* ── RESULTS COUNT ── */
-   .results-count-wrap {
-  display: flex;
-  justify-content: center;
-  padding: 0 6%;
-  margin: 1.2rem auto 2rem;
-  max-width: 772px;
-  text-align: center;
-}
+    .results-count-wrap {
+      display: flex;
+      justify-content: center;
+      padding: 0 6%;
+      margin: 1.2rem auto 2rem;
+      max-width: 772px;
+      text-align: center;
+    }
 
     .results-count-inner {
       width: 100%;
@@ -176,13 +176,13 @@
     }
 
     #resultsCount {
-  font-size: 0.85rem;
-  font-weight: 500;
-  color: var(--muted);
-  letter-spacing: 0.01em;
-  text-align: center;
-  display: block;
-}
+      font-size: 0.85rem;
+      font-weight: 500;
+      color: var(--muted);
+      letter-spacing: 0.01em;
+      text-align: center;
+      display: block;
+    }
 
     /* ── ADVISORS GRID ── */
     .advisors-section { padding: 0 6% 6rem; }
@@ -507,7 +507,7 @@
   <!-- NAV -->
   <nav>
     <a href="index.html" class="logo" style="font-size:1.7rem;">
-      <img src="TalkCollegesIconTransparent.png" style="height:68px;vertical-align:middle;margin-right:6px;" />
+      <img src="TalkCollegesIconTransparent.png" style="height:68px;vertical-align:middle;margin-right:6px;" alt="TalkColleges Logo" />
       Talk<span>Colleges</span>
     </a>
     <ul>
@@ -598,18 +598,18 @@
         <div class="avatar av4">D</div>
         <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.3rem;">
           <h3 style="margin-bottom: 0;">Dave</h3>
-          <span style="font-size: 0.82rem; font-weight: 500; color: var(--muted);">$85/session</span>
+          <span style="font-size: 0.82rem; font-weight: 500; color: var(--muted);">$80/session</span>
         </div>
         <div class="school-tag">
           <span>New York University '30</span>
           <span>College of Arts and Sciences</span>
           <span>Biology</span>
         </div>
-        <button class="btn-book" onclick="openModal('David', 'New York University &rsquo;30', 'Biology', 'av4', 'https://cal.com/talkcolleges/david-nyu-30-cas-biology')">Book a session</button>
+        <button class="btn-book" onclick="openModal('Dave', 'New York University &rsquo;30', 'Biology', 'av4', 'https://cal.com/talkcolleges/david-nyu-30-cas-biology')">Book a session</button>
       </div>
 
-      <!-- Coming Soon card — excluded from count via no .school-tag -->
-      <div class="advisor-card" style="background: var(--cream); border: 2px dashed var(--border); display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; min-height: 200px;">
+      <!-- Coming Soon card -->
+      <div class="advisor-card text-card" style="background: var(--cream); border: 2px dashed var(--border); display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; min-height: 200px;">
         <p style="font-size: 1.5rem; margin-bottom: 0.5rem;">🔍</p>
         <h3 style="font-family: 'DM Serif Display', serif; font-size: 1.1rem; margin-bottom: 0.5rem;">More advisors coming soon</h3>
         <p style="font-size: 0.82rem; color: var(--muted); font-weight: 300; max-width: 200px; margin-bottom: 0.5rem;">We're continuously finding new advisors. Please check back often!</p>
@@ -701,10 +701,10 @@
       'Last updated: ' + lastThursday.toLocaleDateString('en-US', options);
 
     // ── MODAL ──
-    let currentCalendlyUrl = '';
+    let currentTargetUrl = '';
 
-    function openModal(name, school, major, avatarClass, calendlyUrl) {
-      currentCalendlyUrl = calendlyUrl;
+    function openModal(name, school, major, avatarClass, targetUrl) {
+      currentTargetUrl = targetUrl;
       document.getElementById('modalName').textContent = name;
       document.getElementById('modalSchool').innerHTML = school;
       document.getElementById('modalMajor').innerHTML = major;
@@ -738,8 +738,8 @@
     }
 
     function goToBooking() {
-      if (currentCalendlyUrl) {
-        window.open(currentCalendlyUrl, '_blank');
+      if (currentTargetUrl) {
+        window.open(currentTargetUrl, '_blank');
         closeModal();
       }
     }
@@ -749,16 +749,18 @@
       const query = document.getElementById('searchInput').value.toLowerCase().trim();
       const cards = document.querySelectorAll('.advisor-card');
       let visible = 0;
+      let totalAdvisors = 0;
 
       cards.forEach(card => {
         const schoolTag = card.querySelector('.school-tag');
 
-        // Coming soon card — no school-tag, always show, never count
+        // Coming soon card tracking
         if (!schoolTag) {
           card.style.display = query ? 'none' : 'flex';
           return;
         }
 
+        totalAdvisors++;
         const schoolTagContent = schoolTag.textContent.toLowerCase();
         const acceptedEl = card.querySelector('.advisor-accepted');
         const acceptedContent = acceptedEl ? acceptedEl.textContent.toLowerCase() : '';
@@ -775,11 +777,18 @@
       const countEl = document.getElementById('resultsCount');
       const noResults = document.getElementById('noResults');
 
-      countEl.textContent = query ? `${visible} advisor${visible !== 1 ? 's' : ''} found` : '';
+      // Update string behavior to reflect real numbers on load or query
+      if (query) {
+        countEl.textContent = `${visible} advisor${visible !== 1 ? 's' : ''} found`;
+      } else {
+        countEl.textContent = `Showing all ${totalAdvisors} advisors`;
+      }
+      
       noResults.style.display = visible === 0 ? 'block' : 'none';
     }
 
     // Run on page load
+    document.addEventListener("DOMContentLoaded", filterAdvisors);
   </script>
 
 </body>
