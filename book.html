@@ -7,7 +7,6 @@
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
-
   gtag('config', 'G-3J9BPP208G');
 </script>
   <meta charset="UTF-8" />
@@ -117,7 +116,7 @@
 
     /* ── SEARCH ── */
     .search-bar {
-      padding: 1rem 6% 2rem;
+      padding: 1rem 6% 0;
       display: flex;
       justify-content: center;
     }
@@ -160,14 +159,30 @@
     }
 
     /* ── RESULTS COUNT ── */
-    .results-count {
-      padding: 0 6% 2rem;
-      font-size: 0.88rem;
-      font-weight: 500;
-      color: var(--navy);
-      text-align: center;
-      min-height: 20px;
+   .results-count-wrap {
+  display: flex;
+  justify-content: center;
+  padding: 0 6%;
+  margin: 1.2rem auto 2rem;
+  max-width: 772px;
+  text-align: center;
+}
+
+    .results-count-inner {
+      width: 100%;
+      max-width: 520px;
+      border-top: 1px solid var(--border);
+      padding-top: 0.75rem;
     }
+
+    #resultsCount {
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--muted);
+  letter-spacing: 0.01em;
+  text-align: center;
+  display: block;
+}
 
     /* ── ADVISORS GRID ── */
     .advisors-section { padding: 0 6% 6rem; }
@@ -226,18 +241,23 @@
     }
 
     .advisor-accepted {
+      display: flex !important;
+      flex-direction: column !important;
+      gap: 0.25rem !important;
       font-size: 0.82rem;
       color: var(--muted);
       margin-bottom: 1.5rem;
       padding-top: 0.8rem;
       border-top: 1px dashed var(--border);
       line-height: 1.5;
+      text-align: left;
     }
-
     .advisor-accepted strong {
       color: var(--navy);
       font-weight: 500;
+      margin-bottom: 0.2rem;
     }
+    .advisor-accepted span { display: block; }
 
     .btn-book {
       display: block;
@@ -258,6 +278,23 @@
     }
     .btn-book:hover { background: var(--gold); }
     .btn-book:active { transform: scale(0.98); }
+
+    /* coming soon button style */
+    .btn-soon {
+      display: block;
+      width: 100%;
+      text-align: center;
+      padding: 0.7rem 1.2rem;
+      background: transparent;
+      color: var(--muted);
+      border-radius: 6px;
+      font-size: 0.88rem;
+      font-weight: 500;
+      border: 1px solid var(--border);
+      font-family: 'DM Sans', sans-serif;
+      margin-top: auto;
+      cursor: default;
+    }
 
     /* ── NO RESULTS ── */
     .no-results {
@@ -332,7 +369,6 @@
       line-height: 1.5;
     }
 
-    /* Legal text */
     .legal-text {
       background: var(--cream);
       border: 1px solid var(--border);
@@ -364,7 +400,6 @@
       gap: 0.4rem;
     }
 
-    /* Name input */
     .name-field { margin-bottom: 1rem; }
 
     .name-field label {
@@ -395,7 +430,6 @@
 
     .name-field input::placeholder { color: var(--muted); }
 
-    /* Checkbox */
     .checkbox-field {
       display: flex;
       align-items: flex-start;
@@ -418,7 +452,6 @@
       cursor: pointer;
     }
 
-    /* Confirm button */
     .btn-confirm {
       display: block;
       width: 100%;
@@ -444,32 +477,6 @@
       text-align: center;
       margin-top: 0.8rem;
     }
-
-    /* ── CTA SECTION ── */
-    .cta-section {
-      background: var(--navy);
-      padding: 5rem 6%;
-      text-align: center;
-    }
-    .cta-section .page-tag { color: var(--gold); }
-    .cta-section h2 {
-      font-family: 'DM Serif Display', serif;
-      font-size: clamp(1.8rem, 3vw, 2.5rem);
-      color: var(--white);
-      letter-spacing: -0.02em;
-      margin: 0.5rem auto 1rem;
-      max-width: 520px;
-    }
-    .cta-section p {
-      color: rgba(255,255,255,0.6);
-      font-weight: 300;
-      max-width: 440px;
-      margin: 0 auto 2.5rem;
-    }
-    .btn-gold { background: var(--gold); color: var(--white); border: 2px solid var(--gold); padding: 0.85rem 1.9rem; border-radius: 4px; text-decoration: none; font-weight: 500; font-size: 0.93rem; transition: all 0.2s; display: inline-block; margin: 0 0.4rem; }
-    .btn-gold:hover { background: transparent; color: var(--gold); }
-    .btn-white { background: transparent; color: var(--white); border: 2px solid rgba(255,255,255,0.4); padding: 0.85rem 1.9rem; border-radius: 4px; text-decoration: none; font-weight: 500; font-size: 0.93rem; transition: all 0.2s; display: inline-block; margin: 0 0.4rem; }
-    .btn-white:hover { background: rgba(255,255,255,0.1); }
 
     /* ── FOOTER ── */
     footer {
@@ -513,13 +520,13 @@
     </ul>
   </nav>
 
-<!-- PAGE HEADER -->
-<div class="page-header">
-  <span class="page-tag">Our Advisors</span>
-  <h1>Find your perfect advisor</h1>
-  <p>Browse current students from top universities who've been exactly where you are.<br>
-  <span style="font-size: 0.9em; color: var(--muted);">All advisors are not athletes or legacy admits unless noted.</span></p>
-</div>
+  <!-- PAGE HEADER -->
+  <div class="page-header">
+    <span class="page-tag">Our Advisors</span>
+    <h1>Find your perfect advisor</h1>
+    <p>Browse current students from top universities who've been exactly where you are.<br>
+    <span style="font-size: 0.9em; color: var(--muted);">All advisors are not athletes or legacy admits unless noted.</span></p>
+  </div>
 
   <!-- SEARCH -->
   <div class="search-bar">
@@ -529,126 +536,100 @@
     </div>
   </div>
 
-  <div class="results-count" id="resultsCount"></div>
+  <!-- RESULTS COUNT -->
+  <div class="results-count-wrap">
+    <div class="results-count-inner">
+      <span id="resultsCount"></span>
+    </div>
+  </div>
 
   <!-- ADVISORS GRID -->
-<div class="advisors-section">
-  <style>
-    .advisor-accepted {
-      display: flex !important;
-      flex-direction: column !important;
-      gap: 0.25rem !important;
-      font-size: 0.82rem;
-      color: var(--muted);
-      margin-bottom: 1.5rem;
-      padding-top: 0.8rem;
-      border-top: 1px dashed var(--border);
-      line-height: 1.5;
-      text-align: left;
-    }
-    .advisor-accepted strong {
-      color: var(--navy);
-      font-weight: 500;
-      margin-bottom: 0.2rem;
-    }
-    .advisor-accepted span {
-      display: block;
-    }
-  </style>
-  <div class="advisors-grid" id="advisorsGrid">
+  <div class="advisors-section">
+    <div class="advisors-grid" id="advisorsGrid">
 
-    <div class="advisor-card">
-      <div class="avatar av1">N</div>
-      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.3rem;">
-  <h3 style="margin-bottom: 0;">Nolan</h3>
-  <span style="font-size: 0.82rem; font-weight: 500; color: var(--muted);">$120/session</span>
-</div>
-      <div class="school-tag">
-        <span>Yale University '29</span>
-        <span>Computer Science</span>
+      <div class="advisor-card">
+        <div class="avatar av1">N</div>
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.3rem;">
+          <h3 style="margin-bottom: 0;">Nolan</h3>
+          <span style="font-size: 0.82rem; font-weight: 500; color: var(--muted);">$120/session</span>
+        </div>
+        <div class="school-tag">
+          <span>Yale University '29</span>
+          <span>Computer Science</span>
+        </div>
+        <div class="advisor-accepted">
+          <strong>Also Accepted To:</strong>
+          <span>Cornell University</span>
+          <span>University of Virginia</span>
+        </div>
+        <button class="btn-book" onclick="openModal('Nolan', 'Yale University &rsquo;29', 'Computer Science', 'av1', 'https://cal.com/talkcolleges/nolan-yale-29-compsci')">Book a session</button>
       </div>
-      <div class="advisor-accepted">
-        <strong>Also Accepted To:</strong>
-        <span>Cornell University</span>
-        <span>University of Virginia</span>
+
+      <div class="advisor-card">
+        <div class="avatar av3">R</div>
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.3rem;">
+          <h3 style="margin-bottom: 0;">Ryan</h3>
+          <span style="font-size: 0.82rem; font-weight: 500; color: var(--muted);">$110/session</span>
+        </div>
+        <div class="school-tag">
+          <span>Vanderbilt University '30</span>
+          <span>College of Arts and Sciences</span>
+          <span>Blair School of Music</span>
+          <span>Applied Mathematics &amp; Music</span>
+        </div>
+        <button class="btn-book" onclick="openModal('Ryan', 'Vanderbilt University &rsquo;30', 'Applied Mathematics &amp; Music', 'av3', 'https://cal.com/talkcolleges/ryan-vanderbilt-30-cas-blair-appmath-music')">Book a session</button>
       </div>
-      <button class="btn-book" onclick="openModal('Nolan', 'Yale University &rsquo;29', 'Computer Science', 'av1', 'https://cal.com/talkcolleges/nolan-yale-29-compsci')">Book a session</button>
+
+      <div class="advisor-card">
+        <div class="avatar av2">R</div>
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.3rem;">
+          <h3 style="margin-bottom: 0;">Roman</h3>
+          <span style="font-size: 0.82rem; font-weight: 500; color: var(--muted);">$115/session</span>
+        </div>
+        <div class="school-tag">
+          <span>University of Chicago '30</span>
+          <span>Geophysical Sciences</span>
+          <span>Legacy student</span>
+        </div>
+        <button class="btn-book" onclick="openModal('Roman', 'University of Chicago &rsquo;30', 'Geophysical Sciences', 'av2', 'https://cal.com/talkcolleges/roman-uchicago-30-geophysical-sciences')">Book a session</button>
+      </div>
+
+      <div class="advisor-card">
+        <div class="avatar av4">D</div>
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.3rem;">
+          <h3 style="margin-bottom: 0;">Dave</h3>
+          <span style="font-size: 0.82rem; font-weight: 500; color: var(--muted);">$85/session</span>
+        </div>
+        <div class="school-tag">
+          <span>New York University '30</span>
+          <span>College of Arts and Sciences</span>
+          <span>Biology</span>
+        </div>
+        <button class="btn-book" onclick="openModal('David', 'New York University &rsquo;30', 'Biology', 'av4', 'https://cal.com/talkcolleges/david-nyu-30-cas-biology')">Book a session</button>
+      </div>
+
+      <!-- Coming Soon card — excluded from count via no .school-tag -->
+      <div class="advisor-card" style="background: var(--cream); border: 2px dashed var(--border); display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; min-height: 200px;">
+        <p style="font-size: 1.5rem; margin-bottom: 0.5rem;">🔍</p>
+        <h3 style="font-family: 'DM Serif Display', serif; font-size: 1.1rem; margin-bottom: 0.5rem;">More advisors coming soon</h3>
+        <p style="font-size: 0.82rem; color: var(--muted); font-weight: 300; max-width: 200px; margin-bottom: 0.5rem;">We're continuously finding new advisors. Please check back often!</p>
+        <p style="font-size: 0.75rem; color: var(--muted); font-weight: 300;" id="lastUpdated"></p>
+      </div>
+
+    </div><!-- end advisors grid -->
+
+    <div class="no-results" id="noResults">
+      <h3>No advisors found</h3>
+      <p>Try searching for a different school or major.</p>
     </div>
 
-    <div class="advisor-card">
-      <div class="avatar av3">R</div>
-      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.3rem;">
-  <h3 style="margin-bottom: 0;">Ryan</h3>
-  <span style="font-size: 0.82rem; font-weight: 500; color: var(--muted);">$110/session</span>
-</div>
-      <div class="school-tag">
-        <span>Vanderbilt University '30</span>
-        <span>College of Arts and Sciences</span>
-        <span>Blair School of Music</span>
-        <span>Applied Mathematics &amp; Music</span>
-      </div>
-      <button class="btn-book" onclick="openModal('Ryan', 'Vanderbilt University &rsquo;30', 'Applied Mathematics &amp; Music', 'av3', 'https://cal.com/talkcolleges/ryan-vanderbilt-30-cas-blair-appmath-music')">Book a session</button>
-    </div>
+  </div><!-- end advisors section -->
 
-    <div class="advisor-card">
-      <div class="avatar av2">R</div>
-      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.3rem;">
-  <h3 style="margin-bottom: 0;">Roman</h3>
-  <span style="font-size: 0.82rem; font-weight: 500; color: var(--muted);">$115/session</span>
-</div>
-      <div class="school-tag">
-        <span>University of Chicago '30</span>
-        <span>Geophysical Sciences</span>
-        <span>Legacy student</span>
-      </div>
-      <button class="btn-book" onclick="openModal('Roman', 'University of Chicago &rsquo;30', 'Geophysical Sciences', 'av2', 'https://cal.com/talkcolleges/roman-uchicago-30-geophysical-sciences')">Book a session</button>
-    </div>
-
-    <div class="advisor-card">
-      <div class="avatar av4">D</div>
-      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.3rem;">
-  <h3 style="margin-bottom: 0;">Dave</h3>
-  <span style="font-size: 0.82rem; font-weight: 500; color: var(--muted);">$85/session</span>
-</div>
-      <div class="school-tag">
-        <span>New York University '30</span>
-        <span>College of Arts and Sciences</span>
-        <span>Biology</span>
-      </div>
-      <button class="btn-book" onclick="openModal('David', 'New York University &rsquo;30', 'Biology', 'av4', 'https://cal.com/talkcolleges/david-nyu-30-cas-biology')">Book a session</button>
-    </div>
-<div class="advisor-card" style="background: var(--cream); border: 2px dashed var(--border); display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; min-height: 200px;">
-  <p style="font-size: 1.5rem; margin-bottom: 0.5rem;">🔍</p>
-  <h3 style="font-family: 'DM Serif Display', serif; font-size: 1.1rem; margin-bottom: 0.5rem;">More advisors coming soon</h3>
-  <p style="font-size: 0.82rem; color: var(--muted); font-weight: 300; max-width: 200px; margin-bottom: 0.5rem;">We're continuously finding new advisors. Please check back often!</p>
-  <p style="font-size: 0.75rem; color: var(--muted); font-weight: 300;" id="lastUpdated"></p>
-</div><!-- end coming soon card -->
-
-</div><!-- end advisors grid -->
-
-<div class="no-results" id="noResults">
-  <h3>No advisors found</h3>
-  <p>Try searching for a different school or major.</p>
-</div>
-
-</div><!-- end advisors section -->
-
-<script>
-  const today = new Date();
-  const day = today.getDay();
-  const diff = day >= 4 ? day - 4 : day + 3;
-  const lastThursday = new Date(today);
-  lastThursday.setDate(today.getDate() - diff);
-  const options = { year: 'numeric', month: 'long', day: 'numeric' };
-  document.getElementById('lastUpdated').textContent =
-    'Last updated: ' + lastThursday.toLocaleDateString('en-US', options);
-</script>
   <!-- MODAL -->
   <div class="modal-overlay" id="modalOverlay" onclick="handleOverlayClick(event)">
     <div class="modal">
       <button class="modal-close" onclick="closeModal()">&#10005;</button>
 
-      <!-- Advisor header -->
       <div class="modal-advisor-header">
         <div class="avatar" id="modalAvatar"></div>
         <div>
@@ -658,40 +639,35 @@
         </div>
       </div>
 
-      <!-- Terms & Conditions -->
       <div class="legal-text">
         <span class="legal-label">Terms &amp; Conditions</span>
         By proceeding to book a session, you acknowledge and agree to the following terms:
         <ol>
           <li>TalkColleges advisors are current university students acting as peer mentors, not licensed educational or professional counselors. Advice given during sessions is based on personal experience and does not guarantee any admission outcomes.</li>
           <li>TalkColleges is not liable for the content of any advice given during sessions.</li>
-          <li>Sessions are refundable until 24 hours before the scheduled start time. A small processing fee will be applied to all refunds</li>
+          <li>Sessions are refundable until 24 hours before the scheduled start time. A small processing fee will be applied to all refunds.</li>
           <li>To safeguard the digital safety and privacy of our advisor community, you strictly agree <strong>not to record, capture, distribute, or log any audio, video, text communications, or advisor profile details in any format</strong>. Unauthorized duplication or distribution is a direct violation of our privacy policy and will result in potential legal action under applicable privacy laws.</li>
           <li>All personal information is handled in accordance with our <a href="privacypolicy.html" target="_blank" style="color: var(--navy); text-decoration: underline;">Privacy Policy</a>.</li>
         </ol>
       </div>
 
-      <!-- Name input -->
       <div class="name-field">
         <label for="studentName">Type your legal name to confirm you have read and agree to the above terms</label>
         <input type="text" id="studentName" placeholder="Your full name..." oninput="checkReady()" />
       </div>
 
-      <!-- Checkbox 1: Terms -->
       <div class="checkbox-field">
         <input type="checkbox" id="agreeCheck" onchange="checkReady()" />
         <label for="agreeCheck">I have read and agree to the Terms &amp; Conditions above. <span style="color: red;">*</span></label>
       </div>
 
-      <!-- Checkbox 2: No Recording -->
       <div class="checkbox-field">
         <input type="checkbox" id="recordCheck" onchange="checkReady()" />
-       <label for="recordCheck">
-  TalkColleges takes the privacy and safety of our student mentors very seriously. By checking this box, I agree to strictly adhere to the <a href="privacypolicy.html#advisor-protection" target="_blank" style="color: var(--navy); text-decoration: underline;">Advisor Privacy Protection rules</a>. I understand that any unauthorized recording or distribution of session details is strictly prohibited. <span style="color: red;">*</span>
-</label>
+        <label for="recordCheck">
+          TalkColleges takes the privacy and safety of our student mentors very seriously. By checking this box, I agree to strictly adhere to the <a href="privacypolicy.html#advisor-protection" target="_blank" style="color: var(--navy); text-decoration: underline;">Advisor Privacy Protection rules</a>. I understand that any unauthorized recording or distribution of session details is strictly prohibited. <span style="color: red;">*</span>
+        </label>
       </div>
 
-      <!-- Confirm button -->
       <button class="btn-confirm" id="confirmBtn" disabled onclick="goToBooking()">
         Confirm &amp; Book Session
       </button>
@@ -707,12 +683,24 @@
       <a href="index.html#why-us">Why Us</a>
       <a href="book.html">Advisors</a>
       <a href="index.html#become-an-advisor">Become an Advisor</a>
-      <a href="privacypolicy.html">Privacy Policy</a> <a href="mailto:support@talkcolleges.com">Contact</a>
+      <a href="privacypolicy.html">Privacy Policy</a>
+      <a href="mailto:support@talkcolleges.com">Contact</a>
     </div>
     <span>© 2026 TalkColleges. All rights reserved.</span>
   </footer>
 
   <script>
+    // Set "last updated" to most recent Thursday
+    const today = new Date();
+    const day = today.getDay();
+    const diff = day >= 4 ? day - 4 : day + 3;
+    const lastThursday = new Date(today);
+    lastThursday.setDate(today.getDate() - diff);
+    const options = { year: 'numeric', month: 'long', day: 'numeric' };
+    document.getElementById('lastUpdated').textContent =
+      'Last updated: ' + lastThursday.toLocaleDateString('en-US', options);
+
+    // ── MODAL ──
     let currentCalendlyUrl = '';
 
     function openModal(name, school, major, avatarClass, calendlyUrl) {
@@ -756,17 +744,27 @@
       }
     }
 
+    // ── SEARCH / FILTER ──
     function filterAdvisors() {
       const query = document.getElementById('searchInput').value.toLowerCase().trim();
       const cards = document.querySelectorAll('.advisor-card');
       let visible = 0;
 
       cards.forEach(card => {
-        const schoolTagContent = card.querySelector('.school-tag').textContent.toLowerCase();
-        const acceptedContent = card.querySelector('.advisor-accepted') ? card.querySelector('.advisor-accepted').textContent.toLowerCase() : '';
+        const schoolTag = card.querySelector('.school-tag');
+
+        // Coming soon card — no school-tag, always show, never count
+        if (!schoolTag) {
+          card.style.display = query ? 'none' : 'flex';
+          return;
+        }
+
+        const schoolTagContent = schoolTag.textContent.toLowerCase();
+        const acceptedEl = card.querySelector('.advisor-accepted');
+        const acceptedContent = acceptedEl ? acceptedEl.textContent.toLowerCase() : '';
         const searchableText = schoolTagContent + ' ' + acceptedContent;
-        
-        if (searchableText.includes(query)) {
+
+        if (!query || searchableText.includes(query)) {
           card.style.display = 'flex';
           visible++;
         } else {
@@ -774,12 +772,14 @@
         }
       });
 
-      const count = document.getElementById('resultsCount');
+      const countEl = document.getElementById('resultsCount');
       const noResults = document.getElementById('noResults');
-      
-      count.textContent = query ? `${visible} advisor${visible !== 1 ? 's' : ''} found` : '';
+
+      countEl.textContent = query ? `${visible} advisor${visible !== 1 ? 's' : ''} found` : '';
       noResults.style.display = visible === 0 ? 'block' : 'none';
     }
+
+    // Run on page load
   </script>
 
 </body>
