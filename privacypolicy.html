@@ -3,8 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>TalkColleges — Real Advice from Real Students</title>
-  <meta name="description" content="Connecting high schoolers with students advisors from their dream college." />
+  <title>Privacy Policy — TalkColleges</title>
   <link rel="icon" type="image/png" href="TCFavicon.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -21,22 +20,11 @@
       --border: #e2d5f0;
     }
 
-    html { scroll-behavior: smooth; }
-
     body {
       font-family: 'DM Sans', sans-serif;
       background: var(--cream);
       color: var(--navy);
       line-height: 1.7;
-    }
-
-    @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(20px); }
-      to   { opacity: 1; transform: translateY(0); }
-    }
-    @keyframes fadeIn {
-      from { opacity: 0; }
-      to   { opacity: 1; }
     }
 
     /* ── NAV ── */
@@ -55,23 +43,19 @@
 
     .logo {
       font-family: 'DM Serif Display', serif;
-      font-size: clamp(1.2rem, 4vw, 1.6rem);
+      font-size: 1.35rem;
       color: var(--navy);
       text-decoration: none;
       letter-spacing: -0.01em;
-      display: flex;
-      align-items: center;
     }
-
     .logo span { color: var(--gold); }
 
-    nav ul { list-style: none; display: flex; gap: 1.5rem; align-items: center; }
+    nav ul { list-style: none; display: flex; gap: 2rem; align-items: center; }
     nav ul a {
       text-decoration: none;
       color: var(--navy);
       font-size: 0.88rem;
       font-weight: 400;
-      letter-spacing: 0.01em;
       transition: color 0.2s;
     }
     nav ul a:hover { color: var(--gold); }
@@ -86,474 +70,66 @@
     }
     .nav-cta:hover { background: var(--gold) !important; }
 
-    .menu-toggle {
-      display: none;
-      font-size: 1.8rem;
-      cursor: pointer;
-      color: var(--navy);
-    }
-    #menu-checkbox { display: none; }
-
-    /* ── HERO ── */
-    .hero {
-      min-height: 100vh;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      align-items: center;
-      padding: 9rem 6% 5rem;
-      gap: 4rem;
-      position: relative;
+    /* ── CONTENT CONTAINER ── */
+    .privacy-container {
+      max-width: 800px;
+      margin: 11rem auto 6rem;
+      padding: 0 1.5rem;
     }
 
-    .hero::after {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: radial-gradient(ellipse at 70% 50%, rgba(200,150,62,0.06) 0%, transparent 70%);
-      pointer-events: none;
-    }
-
-    .hero-left {
-      max-width: 560px;
-      overflow: visible;
-    }
-
-    .hero-tag {
-      display: inline-block;
-      font-size: 0.72rem;
-      font-weight: 500;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      color: var(--gold);
-      border: 1px solid var(--gold);
-      padding: 0.28rem 0.75rem;
-      border-radius: 2px;
-      margin-bottom: 1.6rem;
-      opacity: 0;
-      animation: fadeUp 0.6s ease forwards 0.1s;
-    }
-
-    .hero h1 {
+    h1 {
       font-family: 'DM Serif Display', serif;
-      font-size: clamp(2.2rem, 4.2vw, 3.5rem);
-      line-height: 1.2;
-      letter-spacing: -0.025em;
-      margin-bottom: 1.4rem;
-      opacity: 0;
-      animation: fadeUp 0.6s ease forwards 0.25s;
-      overflow: visible;
-    }
-
-    /* ── ROTATING TEXT ── */
-    .rotating-wrapper {
-      display: inline-flex;
-      position: relative;
-      height: 1.3em;
-      overflow: hidden;
-      vertical-align: bottom;
-      transition: width 0.3s ease;
-    }
-
-    .rotating-inner {
-      display: flex;
-      flex-direction: column;
-      gap: 0;
-    }
-
-    .rotating-item {
-      font-style: italic;
-      color: var(--gold);
-      white-space: nowrap;
-      line-height: 1.3;
-      display: block;
-    }
-
-    .hero-desc {
-      font-size: 1.05rem;
-      color: var(--navy);
-      font-weight: 300;
-      max-width: 440px;
-      margin-bottom: 2.2rem;
-      opacity: 0;
-      animation: fadeUp 0.6s ease forwards 0.4s;
-    }
-
-    .hero-actions {
-      display: flex;
-      gap: 0.9rem;
-      flex-wrap: wrap;
-      opacity: 0;
-      animation: fadeUp 0.6s ease forwards 0.55s;
-    }
-
-    .btn {
-      display: inline-block;
-      padding: 0.85rem 1.9rem;
-      border-radius: 4px;
-      text-decoration: none;
-      font-weight: 500;
-      font-size: 0.93rem;
-      transition: all 0.2s;
-      cursor: pointer;
-    }
-
-    .btn-large {
-      padding: 1.2rem 3rem;
-      font-size: 1.1rem;
-      border-radius: 8px;
-    }
-
-    .btn-gold  { background: var(--gold); color: var(--white); border: 2px solid var(--gold); }
-    .btn-gold:hover  { background: transparent; color: var(--gold); }
-    .btn-outline { background: transparent; color: var(--navy); border: 2px solid var(--navy); }
-    .btn-outline:hover { background: var(--navy); color: var(--white); }
-
-    /* Hero right */
-    .hero-right {
-      display: flex;
-      flex-direction: column;
-      gap: 0;
-      opacity: 0;
-      animation: fadeIn 0.9s ease forwards 0.7s;
-    }
-
-    .avatar {
-      width: 46px; height: 46px;
-      border-radius: 50%;
-      display: flex; align-items: center; justify-content: center;
-      font-family: 'DM Serif Display', serif;
-      font-size: 1.15rem;
-      color: var(--white);
-      flex-shrink: 0;
-    }
-    .av1 { background: var(--navy); }
-    .av2 { background: var(--gold); }
-    .av3 { background: #2a5298; }
-    .av4 { background: #8b1a1a; }
-
-    /* ── CAROUSEL LABEL ── */
-    .carousel-label {
-      text-align: center;
-      font-size: 0.78rem;
-      font-weight: 500;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: var(--muted);
-      padding: 0.65rem 1rem;
-      background: var(--white);
-      border: 1px solid var(--border);
-      border-bottom: none;
-      border-radius: 16px 16px 0 0;
-      transition: opacity 0.2s ease;
-    }
-
-    .carousel-label strong {
-      color: var(--gold);
-      font-weight: 600;
-    }
-
-    /* ── IMAGE CAROUSEL ── */
-    .carousel {
-      position: relative;
-      border-radius: 0 0 16px 16px;
-      overflow: hidden;
-      box-shadow: 0 8px 40px rgba(77,16,122,0.2);
-    }
-
-    .carousel-track { position: relative; }
-
-    .carousel-slide {
-      display: none;
-      position: absolute;
-      top: 0; left: 0; width: 100%;
-    }
-
-    .carousel-slide.active {
-      display: block;
-      position: relative;
-    }
-
-    @keyframes slideInRight {
-      from { opacity: 0; transform: translateX(40px); }
-      to   { opacity: 1; transform: translateX(0); }
-    }
-
-    @keyframes slideInLeft {
-      from { opacity: 0; transform: translateX(-40px); }
-      to   { opacity: 1; transform: translateX(0); }
-    }
-
-    .carousel-slide.slide-right { animation: slideInRight 0.4s ease; }
-    .carousel-slide.slide-left  { animation: slideInLeft  0.4s ease; }
-
-    .carousel-slide img {
-      width: 100%;
-      height: 380px;
-      object-fit: cover;
-      display: block;
-    }
-
-    .carousel-caption {
-      position: absolute;
-      bottom: 0; left: 0; right: 0;
-      background: linear-gradient(transparent, rgba(77,16,122,0.85));
-      color: white;
-      padding: 2rem 1.5rem 1.2rem;
-      font-size: 0.9rem;
-      font-weight: 500;
-    }
-
-    .carousel-btn {
-      position: absolute;
-      top: 50%;
-      transform: translateY(-50%);
-      background: rgba(255,255,255,0.9);
-      border: none;
-      border-radius: 50%;
-      width: 38px; height: 38px;
-      font-size: 1rem;
-      cursor: pointer;
-      color: #4D107A;
-      transition: background 0.2s;
-      z-index: 10;
-    }
-    .carousel-btn:hover { background: white; }
-    .carousel-btn.prev { left: 12px; }
-    .carousel-btn.next { right: 12px; }
-
-    .carousel-indicators {
-      position: absolute;
-      bottom: 14px;
-      left: 50%;
-      transform: translateX(-50%);
-      display: flex;
-      align-items: center;
-      gap: 6px;
-      z-index: 10;
-    }
-
-    .indicator {
-      width: 6px;
-      height: 6px;
-      border-radius: 3px;
-      cursor: pointer;
-      overflow: hidden;
-      background: rgba(255,255,255,0.35);
-    }
-
-    .indicator-fill {
-      height: 100%;
-      width: 0%;
-      background: white;
-      border-radius: 3px;
-    }
-
-    /* ── SECTIONS ── */
-    .section { padding: 4rem 6%; scroll-margin-top: 100px; }
-    .section-alt { background: var(--white); }
-
-    .section-tag {
-      font-size: 0.7rem;
-      font-weight: 500;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      color: var(--gold);
-      display: block;
-      margin-bottom: 0.7rem;
-    }
-
-    .section-title {
-      font-family: 'DM Serif Display', serif;
-      font-size: clamp(1.8rem, 3vw, 2.5rem);
-      line-height: 1.15;
+      font-size: clamp(2.2rem, 5vw, 3rem);
+      line-height: 1.1;
       letter-spacing: -0.02em;
-      margin-bottom: 0.9rem;
+      margin-bottom: 0.5rem;
     }
 
-    .section-sub {
-      font-size: 1rem;
-      color: var(--muted);
-      font-weight: 300;
-      max-width: 480px;
-      margin-bottom: 3.5rem;
-    }
-    .section-sub strong { font-weight: 700; color: var(--navy); }
-
-    /* ── OUR PROCESS ── */
-    .steps {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
-      gap: 1.5rem;
-    }
-
-    .step {
-      background: var(--cream);
-      border-radius: 10px;
-      padding: 2rem 1.7rem;
-      border: 1px solid var(--border);
-      transition: transform 0.2s, box-shadow 0.2s;
-      position: relative;
-    }
-    .step:hover { transform: translateY(-4px); box-shadow: 0 8px 32px rgba(15,31,56,0.1); }
-
-    .step-num {
-      font-family: 'DM Serif Display', serif;
-      font-size: 2.5rem;
-      color: var(--navy);
-      line-height: 1;
-      margin-bottom: 1rem;
-    }
-
-    .step h3 { font-size: 1rem; font-weight: 500; margin-bottom: 0.6rem; color: var(--navy); }
-    .step p  { font-size: 0.88rem; color: var(--navy); font-weight: 300; }
-    .step p strong { font-weight: 700; color: var(--navy); }
-
-    /* ── WHY US COMPARISON TABLE ── */
-    .comparison-wrapper {
-      overflow-x: auto;
-      border-radius: 14px;
-      box-shadow: 0 4px 32px rgba(77,16,122,0.10);
-    }
-
-    .comparison-table {
-      width: 100%;
-      border-collapse: collapse;
-      min-width: 560px;
-      background: var(--white);
-      border-radius: 14px;
-      overflow: hidden;
-    }
-
-    .comparison-table thead tr { background: var(--navy); }
-
-    .comparison-table thead th {
-      padding: 1.1rem 1.4rem;
-      font-family: 'DM Serif Display', serif;
-      font-size: 1rem;
-      font-weight: 400;
-      letter-spacing: -0.01em;
-      color: var(--white);
-      text-align: center;
-    }
-
-    .comparison-table thead th:first-child {
-      text-align: left;
-      color: rgba(255,255,255,0.55);
-      font-family: 'DM Sans', sans-serif;
-      font-size: 0.75rem;
-      font-weight: 500;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      width: 40%;
-    }
-
-    .comparison-table thead th.highlight-col {
-      background: var(--gold);
-      color: var(--white);
-    }
-
-    .comparison-table tbody tr {
-      border-bottom: 1px solid var(--border);
-      transition: background 0.15s;
-    }
-    .comparison-table tbody tr:last-child { border-bottom: none; }
-    .comparison-table tbody tr:hover { background: var(--cream); }
-
-    .comparison-table tbody td {
-      padding: 1rem 1.4rem;
+    .last-updated {
       font-size: 0.88rem;
-      text-align: center;
       color: var(--muted);
+      margin-bottom: 3rem;
     }
 
-    .comparison-table tbody td:first-child {
-      text-align: left;
-      font-weight: 500;
-      color: var(--navy);
-      font-size: 0.9rem;
-      width: 40%;
-    }
-
-    .comparison-table tbody td.highlight-col {
-      background: rgba(209,179,101,0.07);
-    }
-
-    .check { color: #22a06b; font-size: 1.1rem; }
-    .cross { color: #c0392b; font-size: 1.1rem; }
-
-    /* ── ADVISORS GRID ── */
-    .advisors-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-      gap: 1.3rem;
-    }
-
-    .advisor-full-card {
-      background: var(--cream);
-      border-radius: 12px;
-      padding: 1.8rem;
+    .privacy-card {
+      background: var(--white);
+      border-radius: 16px;
+      padding: 2.5rem;
       border: 1px solid var(--border);
-      transition: transform 0.2s, box-shadow 0.2s;
+      box-shadow: 0 4px 20px rgba(77,16,122,0.02);
     }
-    .advisor-full-card:hover { transform: translateY(-4px); box-shadow: 0 8px 28px rgba(15,31,56,0.1); }
 
-    .advisor-full-card .avatar { width: 54px; height: 54px; font-size: 1.3rem; margin-bottom: 1rem; }
-    .advisor-full-card h3 { font-size: 1rem; font-weight: 500; margin-bottom: 0.2rem; }
-    .advisor-full-card .school-tag {
-      display: flex;
-      flex-direction: column;
-      align-items: flex-start;
-      font-size: 0.8rem;
+    /* CHANGED HERE: Added scroll-margin-top to h2 */
+    h2 {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.4rem;
+      margin: 2rem 0 0.8rem;
+      color: var(--navy);
+      scroll-margin-top: 7rem; 
+    }
+    h2:first-of-type { margin-top: 0; }
+
+    p {
+      font-size: 0.95rem;
       color: var(--muted);
-      margin-bottom: 0.9rem;
-      line-height: 1.6;
+      margin-bottom: 1.2rem;
     }
 
-    .advisor-stats {
-      display: flex;
-      flex-direction: column;
-      gap: 0.2rem;
-      font-size: 0.8rem;
+    ul, ol {
+      margin-bottom: 1.5rem;
+      padding-left: 1.5rem;
       color: var(--muted);
-      margin: 0.8rem 0;
+      font-size: 0.95rem;
     }
 
-    /* ── BECOME AN ADVISOR ── */
-    .advisor-header {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      flex-wrap: wrap;
-      gap: 1rem;
-      margin-bottom: 0.9rem;
+    li { margin-bottom: 0.5rem; }
+
+    a {
+      color: var(--navy);
+      text-decoration: underline;
+      transition: color 0.2s;
     }
-
-    /* ── CTA SECTION ── */
-    .cta-section {
-      background: var(--navy);
-      padding: 6rem 6%;
-      text-align: center;
-    }
-
-    .cta-section .section-tag { color: var(--gold); }
-
-    .cta-section .section-title {
-      color: var(--white);
-      max-width: 520px;
-      margin: 0 auto 1rem;
-    }
-
-    .cta-section p {
-      color: rgba(255,255,255,0.6);
-      font-weight: 300;
-      max-width: 440px;
-      margin: 0 auto 2.5rem;
-    }
-
-    .cta-section .btn-gold { margin: 0 0.4rem; }
-
-    .btn-white { background: transparent; color: var(--white); border: 2px solid rgba(255,255,255,0.4); }
-    .btn-white:hover { background: rgba(255,255,255,0.1); }
+    a:hover { color: var(--gold); }
 
     /* ── FOOTER ── */
     footer {
@@ -570,396 +146,82 @@
 
     footer .logo { color: rgba(255,255,255,0.7); font-size: 1.1rem; }
     footer .logo span { color: var(--gold); }
-
     footer a { color: rgba(255,255,255,0.45); text-decoration: none; margin-left: 1.5rem; transition: color 0.2s; }
     footer a:hover { color: var(--gold); }
 
-    /* ── RESPONSIVE ── */
-    @media (max-width: 900px) {
-      .menu-toggle { display: block; }
-      nav ul {
-        display: none;
-        flex-direction: column;
-        position: absolute;
-        top: 100%; left: 0; right: 0;
-        background: #f9f5ff;
-        padding: 2rem;
-        gap: 1.5rem;
-        border-bottom: 1px solid var(--border);
-        box-shadow: 0 10px 30px rgba(77,16,122,0.15);
-      }
-      #menu-checkbox:checked ~ ul { display: flex; }
-      .hero { grid-template-columns: 1fr; padding: 7rem 6% 3rem; gap: 2rem; }
-      .hero-right { max-width: 500px; margin: 0 auto; width: 100%; }
+    @media (max-width: 768px) {
+      nav ul { display: none; }
+      .privacy-card { padding: 1.5rem; }
     }
   </style>
 </head>
 <body>
 
   <nav>
-    <a href="#" class="logo">
-      <img src="TalkCollegesIconTransparent.png" style="height:50px; vertical-align:middle; margin-right:6px;" alt="Icon" />
+    <a href="index.html" class="logo" style="font-size:1.7rem;">
+      <img src="TalkCollegesIconTransparent.png" style="height:68px;vertical-align:middle;margin-right:6px;" />
       Talk<span>Colleges</span>
     </a>
-
-    <input type="checkbox" id="menu-checkbox">
-    <label for="menu-checkbox" class="menu-toggle">&#9776;</label>
-
     <ul>
-      <li><a href="ourprocess.html">Our Process</a></li>
-      <li><a href="#why-us">Why Us</a></li>
+      <li><a href="index.html#our-process">Our Process</a></li>
+      <li><a href="index.html#why-us">Why Us</a></li>
       <li><a href="book.html">Advisors</a></li>
-      <li><a href="#become-an-advisor">Become an Advisor</a></li>
+      <li><a href="index.html#become-an-advisor">Become an Advisor</a></li>
       <li><a href="book.html" class="nav-cta">Get started</a></li>
       <li><a href="https://forms.gle/bgGKJLjvuvqv1REq5" class="nav-cta" target="_blank">Join Us!</a></li>
     </ul>
   </nav>
 
-  <section class="hero">
-    <div class="hero-left">
-      <div class="hero-tag" style="display:block; text-align:left;">
-        If I have seen further [than others], it is by standing on the shoulders of Giants.
-        <div style="text-align:right; margin-top:0.1rem; font-style: italic;">— Sir Isaac Newton</div>
-      </div>
-      <h1>
-        Not every student has<br/>
-        <span class="rotating-wrapper" id="rw">
-          <span class="rotating-inner" id="ri"></span>
-        </span><br/>
-        or a Million Dollars
-      </h1>
-      <p class="hero-desc">And that's why we're here to help!<br/>We connect high schooler with student advisors from their dream school(s), giving you realistic advice tailored to your goals — without spending thousands of dollars on coporate admission consultants.</p><div class="hero-actions">
-        <a href="ourprocess.html" class="btn btn-gold">Our Process</a>
-        <a href="#why-us" class="btn btn-outline">Why Us?</a>
-      </div>
+  <div class="privacy-container">
+    <h1>Privacy Policy</h1>
+    <p class="last-updated">Last updated: May 25, 2026</p>
+
+    <div class="privacy-card">
+      <p>Welcome to TalkColleges ("we," "our," or "us"). We respect your privacy and are committed to protecting any personal information you share with us. This Privacy Policy explains how we handle information across our website.</p>
+
+      <h2>1. Information We Collect</h2>
+      <p>TalkColleges operates as a lean, peer-to-peer mentoring platform. We aim to collect as little personal data as possible. We gather information in the following minimal ways:</p>
+      <ul>
+        <li><strong>Verification and Booking Names:</strong> When you book an advisor session on our site, we ask you to type your full legal name into our confirmation modal to verify your agreement to our terms. This data is handled temporarily on your browser interface to route you to our scheduler.</li>
+        <li><strong>Advisor Application Data:</strong> If you apply to become an advisor via our application links, you are voluntarily submitting information (such as your name, email, college, major, and acceptance history) through <strong>Google Forms</strong>.</li>
+      </ul>
+
+      <h2>2. Third-Party Service Providers</h2>
+      <p>We do not store or process your sensitive scheduling transactions or backend data on our own database servers. Instead, we use highly trusted, compliant third-party tools to handle these systems:</p>
+      <ul>
+        <li><strong>Cal.com:</strong> All appointment bookings, scheduling selections, email collection for sessions, and calendar event distributions are handled directly by Cal.com. By booking a session, you agree to comply with <a href="https://cal.com/privacy" target="_blank">Cal.com's Privacy Policy</a>.</li>
+        <li><strong>Google Forms:</strong> Our advisor onboarding and recruitment questionnaires are processed directly via Google infrastructure. You can review <a href="https://policies.google.com/privacy" target="_blank">Google's Privacy Policy</a> for information on their data security practices.</li>
+      </ul>
+
+      <h2>3. Cookies and Analytics</h2>
+      <p>Our website code does not set custom advertising or tracking cookies directly. However, third-party embedded features (such as scheduling links or external forms) may deploy functional tracking scripts or cookies necessary to make their scheduling widgets and components load safely on your browser.</p>
+
+      <h2 id="advisor-protection">4. Privacy Protection of Advisors</h2>
+      <p>TalkColleges takes the personal safety, privacy, and intellectual properties of our student advisors extremely seriously. Recording, distributing, or scraping any video, audio, text logs, or profile details from sessions or website card profiles without explicit written authorization is strictly prohibited and may result in applicable legal actions.</p>
+
+      <h2>5. Children's Privacy</h2>
+      <p>Our services are intended for high school and college students seeking peer advisory guidelines. We do not knowingly target or harvest personal data from children under the age of 13. If you believe a child under 13 has submitted information to us, please contact us immediately.</p>
+
+      <h2>6. Changes to This Policy</h2>
+      <p>We may modify or refresh this Privacy Policy from time to time to accommodate adjustments to our third-party tools or student services. Any updates will be posted to this page with an amended "Last updated" timeline stamp.</p>
+
+      <h2>7. Contact Us</h2>
+      <p>If you have any questions, concerns, or inquiries regarding this Privacy Policy or your data usage, please reach out to us via email at:</p>
+      <p><strong>Email:</strong> <a href="mailto:support@talkcolleges.com">support@talkcolleges.com</a></p>
     </div>
-
-    <div class="hero-right">
-      <div class="carousel-label" id="carousel-label">We have Advisors from&hellip;</div>
-      <div class="carousel">
-        <div class="carousel-track">
-          <div class="carousel-slide active slide-right">
-            <img src="Harvard.jpg" alt="Harvard" />
-            <div class="carousel-caption"><strong>Harvard University</strong> (Lowell House)</div>
-          </div>
-          <div class="carousel-slide">
-            <img src="Yale.jpg" alt="Yale" />
-            <div class="carousel-caption"><strong>Yale University</strong> (Yale Library)</div>
-          </div>
-          <div class="carousel-slide">
-            <img src="NYU.jpeg" alt="NYU" />
-            <div class="carousel-caption"><strong>New York University</strong> (Washington Square Park)</div>
-          </div>
-          <div class="carousel-slide">
-            <img src="Tufts.png" alt="Tufts" />
-            <div class="carousel-caption"><strong>Tufts University</strong> (Jumbo Statue)</div>
-          </div>
-          <div class="carousel-slide">
-            <img src="BU.jpg" alt="BU" />
-            <div class="carousel-caption"><strong>Boston University</strong> (Duan Family Center-CDS)</div>
-          </div>
-          <div class="carousel-slide">
-            <img src="Tulane.jpg" alt="Tulane" />
-            <div class="carousel-caption"><strong>Tulane University</strong> (Gibson Hall)</div>
-          </div>
-          <div class="carousel-slide">
-            <img src="Villanova.jpg" alt="Villanova" />
-            <div class="carousel-caption"><strong>Villanova University</strong> (St. Thomas Church)</div>
-          </div>
-          <div class="carousel-slide">
-            <img src="Clemson.jpg" alt="Clemson" />
-            <div class="carousel-caption"><strong>Clemson University</strong> (Tillman Hall)</div>
-          </div>
-          <div class="carousel-slide">
-            <div style="width:100%; height:380px; background:var(--cream); display:flex; align-items:center; justify-content:center;">
-              <span style="font-family:'DM Serif Display',serif; font-size:clamp(1.6rem,4vw,2.6rem); color:var(--navy); letter-spacing:-0.02em;">...and many more!</span>
-            </div>
-          </div>
-        </div>
-        <button class="carousel-btn prev" onclick="moveCarousel(-1)">&#8592;</button>
-        <button class="carousel-btn next" onclick="moveCarousel(1)">&#8594;</button>
-        <div class="carousel-indicators" id="indicators"></div>
-      </div>
-    </div>
-  </section>
-  <section class="section section-alt" id="why-us">
-    <span class="section-tag">Why us</span>
-    <h2 class="section-title">The smarter way to get in</h2>
-    <p class="section-sub">See how we compare with corporate admission consultants.</p>
-
-    <div class="comparison-wrapper">
-      <table class="comparison-table">
-        <thead>
-          <tr>
-            <th></th>
-            <th class="highlight-col">TalkColleges</th>
-            <th>Corporate</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>Pricing</td>
-            <td>$60–$125/session</td>
-            <td>$5,000+ packages</td>
-          </tr>
-          <tr>
-            <td>Advisors</td>
-            <td>Recently Admitted / Current Students</td>
-            <td>Former Admissions Officers</td>
-          </tr>
-          <tr>
-            <td>Peer-to-peer advice from real students</td>
-            <td><span class="check">✓</span></td>
-            <td><span class="cross">✗</span></td>
-          </tr>
-          <tr>
-            <td>1-on-1 personalized session</td>
-            <td><span class="check">✓</span></td>
-            <td><span class="check">✓</span></td>
-          </tr>
-          <tr>
-            <td>No long-term commitment required</td>
-            <td><span class="check">✓</span></td>
-            <td><span class="cross">✗</span></td>
-          </tr>
-          <tr>
-            <td>Essay &amp; interview coaching</td>
-            <td><span class="check">✓</span></td>
-            <td><span class="check">✓</span></td>
-          </tr>
-          <tr>
-            <td>Help with Financial Aid (FAFSA/CSS)</td>
-            <td><span class="cross">✗</span></td>
-            <td><span class="check">✓</span></td>
-          </tr>
-          <tr>
-            <td>International Students / Student Visa</td>
-            <td><span class="cross">✗</span></td>
-            <td><span class="check">✓</span></td>
-          </tr>
-          <tr>
-            <td>Ideal for</td>
-            <td>Students seeking firsthand guidance from peers currently enrolled at their target schools, at an affordable price to most.</td>
-            <td>Affluent families who want a dedicated mentor to guide their student throughout their entire college application process.</td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-  </section>
-
-  <section class="section" id="advisors">
-    <span class="section-tag">Our advisors</span>
-    <h2 class="section-title">Students who've been there</h2>
-    <p class="section-sub">Every advisor on TalkColleges is a <strong>current student</strong> from a top university.</p>
-    <a href="book.html" class="btn btn-gold" style="margin-bottom: 2.5rem; display: inline-block;">Browse our full advisors list</a>
-
-    <div class="advisors-grid">
-      <div class="advisor-full-card">
-        <div class="avatar av1">N</div>
-        <h3>Nolan</h3>
-        <div class="school-tag">
-          <span><strong>Yale University '29</strong></span>
-          <span>Computer Science</span>
-          <span>Not a student athlete</span>
-	  <span>Not a legacy student</span>
-        </div>
-        <div class="advisor-stats">
-          <span style="font-size:0.78rem; font-weight:500; color:var(--navy); margin-bottom:0.3rem;">Also admitted to:</span>
-          <span>— Cornell University</span>
-          <span>— University of Virginia</span>
-        </div>
-      </div>
-
-      <div class="advisor-full-card">
-        <div class="avatar av3">R</div>
-        <h3>Ryan</h3>
-        <div class="school-tag">
-          <span><strong>Vanderbilt University '30</strong></span>
-          <span>College of Arts and Science</span>
-          <span>Blair School of Music</span>
-          <span>Applied Mathematics &amp; Music</span>
-          <span>Not a student athlete</span>
-	  <span>Not a legacy student</span>
-        </div>
-      </div>
-
-      <div class="advisor-full-card">
-        <div class="avatar av2">R</div>
-        <h3>Roman</h3>
-        <div class="school-tag">
-          <span><strong>University of Chicago '30</strong></span>
-          <span>Geophysical Sciences</span>
-          <span>Not a Student Athlete</span>
-          <span>Legacy Student</span>
-        </div>
-      </div>
-
-      <div class="advisor-full-card">
-        <div class="avatar av4">D</div>
-        <h3>David</h3>
-        <div class="school-tag">
-          <span><strong>New York University '30</strong></span>
-          <span>College of Arts and Sciences</span>
-          <span>Biology</span>
-          <span>Not a Student Athlete</span>
-          <span>Not a legacy Student</span>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="section section-alt" id="become-an-advisor">
-    <span class="section-tag">Join our team</span>
-    <div class="advisor-header">
-      <h2 class="section-title" style="margin-bottom:0;">Become an advisor!</h2>
-      <a href="https://forms.gle/bgGKJLjvuvqv1REq5" class="btn btn-gold btn-large" target="_blank">Apply to be an advisor</a>
-    </div>
-    <p class="section-sub">Are you a current student at a top university? Share your experience and help the next generation get in — while earning on your own schedule. All Advisors will receive <strong>70% of tuition!</strong></p>
-  </section>
-
-  <section class="cta-section" id="contact">
-    <span class="section-tag">Ready to start?</span>
-    <h2 class="section-title">Your dream school is closer than you think</h2>
-    <p>Connect with a student advisor today and start building the application that gets you in.</p>
-    <a href="mailto:support@talkcolleges.com" class="btn btn-gold">Contact Us!<a>
-    <a href="book.html" class="btn btn-white">Browse advisors</a>
-  </section>
+  </div>
 
   <footer>
-    <a href="#" class="logo">Talk<span>Colleges</span></a>
+    <a href="index.html" class="logo">Talk<span>Colleges</span></a>
     <div>
-      <a href="ourprocess.html">Our Process</a>
-      <a href="#why-us">Why Us</a>
+      <a href="index.html#our-process">Our Process</a>
+      <a href="index.html#why-us">Why Us</a>
       <a href="book.html">Advisors</a>
-      <a href="#become-an-advisor">Become an Advisor</a>
-      <a href="privacypolicy.html">Privacy Policy</a>
+      <a href="index.html#become-an-advisor">Become an Advisor</a>
       <a href="mailto:support@talkcolleges.com">Contact</a>
     </div>
     <span>© 2026 TalkColleges. All rights reserved.</span>
   </footer>
-
-  <script>
-    /* ── IMAGE CAROUSEL (manual only — no autoscroll) ── */
-    const slides = document.querySelectorAll('.carousel-slide');
-    const indicatorContainer = document.getElementById('indicators');
-    const carouselLabel = document.getElementById('carousel-label');
-
-    const prestigeSet = new Set([0, 1]);
-    const hideLabel = new Set([8]);
-
-    let current = 0;
-
-    slides.forEach((_, i) => {
-      const ind = document.createElement('div');
-      ind.className = 'indicator';
-      ind.innerHTML = '<div class="indicator-fill"></div>';
-      ind.addEventListener('click', () => goToSlide(i, i > current ? 1 : -1));
-      indicatorContainer.appendChild(ind);
-    });
-
-    function getIndicators() { return document.querySelectorAll('.indicator'); }
-
-    function updateIndicators(index) {
-      getIndicators().forEach((ind, i) => {
-        ind.querySelector('.indicator-fill').style.cssText =
-          i === index ? 'width:100%; background:white;' : 'width:0%; background:white;';
-      });
-    }
-
-    function updateLabel(index) {
-      carouselLabel.style.opacity = '0';
-      setTimeout(() => {
-        if (hideLabel.has(index)) {
-          carouselLabel.style.visibility = 'hidden';
-        } else {
-          carouselLabel.style.visibility = 'visible';
-          carouselLabel.innerHTML = prestigeSet.has(index)
-            ? 'We have Advisors from&hellip;'
-            : 'but also from&hellip;';
-        }
-        carouselLabel.style.opacity = '1';
-      }, 200);
-    }
-
-    function goToSlide(n, dir) {
-      if (slides.length === 0) return;
-      slides[current].classList.remove('active', 'slide-right', 'slide-left');
-      current = (n + slides.length) % slides.length;
-      slides[current].classList.add('active', dir >= 0 ? 'slide-right' : 'slide-left');
-      updateIndicators(current);
-      updateLabel(current);
-    }
-
-    function moveCarousel(dir) { goToSlide(current + dir, dir); }
-
-    updateIndicators(0);
-    updateLabel(0);
-
-    /* ── ROTATING HEADLINE (WITH FAST REWIND EFFECT) ── */
-    const phrases = [
-      "A perfect GPA",
-      "A 1600 SAT",
-      "Won international awards\u200e ",
-      "Leadership positions",
-      "Published research papers",
-      "Started a Non-Profit",
-      "Created a Start-up",
-      "Built an App",
-      "Wrote a book",
-      "Interned at NASA",
-      "Cured cancer",
-    ];
-
-    const inner = document.getElementById('ri');
-    const wrapper = document.getElementById('rw');
-
-    phrases.forEach(p => {
-      const span = document.createElement('span');
-      span.className = 'rotating-item';
-      span.textContent = p;
-      inner.appendChild(span);
-    });
-
-    let rotCurrent = 0;
-    const normalTransition = 'transform 0.52s cubic-bezier(0.4, 0, 0.2, 1)';
-    const rewindTransition = 'transform 0.35s cubic-bezier(0.76, 0, 0.24, 1)';
-
-    function getLineHeight() {
-      const firstItem = inner.querySelector('.rotating-item');
-      return firstItem ? firstItem.getBoundingClientRect().height : 0;
-    }
-
-    function setWrapperWidth() {
-      const items = inner.querySelectorAll('.rotating-item');
-      let max = 0;
-      items.forEach(item => {
-        const w = item.getBoundingClientRect().width;
-        if (w > max) max = w;
-      });
-      wrapper.style.width = (max + 10) + 'px';
-    }
-
-    function rotateNext() {
-      const lineHeight = getLineHeight();
-      if (rotCurrent < phrases.length - 1) {
-        rotCurrent++;
-        inner.style.transition = normalTransition;
-        inner.style.transform = `translateY(-${rotCurrent * lineHeight}px)`;
-      } else {
-        rotCurrent = 0;
-        inner.style.transition = rewindTransition;
-        inner.style.transform = 'translateY(0px)';
-      }
-    }
-
-    window.addEventListener('load', () => {
-      setWrapperWidth();
-      inner.style.transition = normalTransition;
-      setInterval(rotateNext, 2800);
-    });
-
-    window.addEventListener('resize', setWrapperWidth);
-  </script>
 
 </body>
 </html>
