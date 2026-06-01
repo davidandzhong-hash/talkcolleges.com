@@ -621,14 +621,28 @@
   <p style="font-size: 1.5rem; margin-bottom: 0.5rem;">🔍</p>
   <h3 style="font-family: 'DM Serif Display', serif; font-size: 1.1rem; margin-bottom: 0.5rem;">More advisors coming soon</h3>
   <p style="font-size: 0.82rem; color: var(--muted); font-weight: 300; max-width: 200px; margin-bottom: 0.5rem;">We're continuously finding new advisors. Please check back often!</p>
-  <p style="font-size: 0.75rem; color: var(--muted); font-weight: 300;">Last updated: May 31, 2026</p>
+  <p style="font-size: 0.75rem; color: var(--muted); font-weight: 300;" id="lastUpdated"></p>
+</div><!-- end coming soon card -->
+
+</div><!-- end advisors grid -->
+
+<div class="no-results" id="noResults">
+  <h3>No advisors found</h3>
+  <p>Try searching for a different school or major.</p>
 </div>
-     </div>
-  <div class="no-results" id="noResults">
-    <h3>No advisors found</h3>
-    <p>Try searching for a different school or major.</p>
-  </div>
-</div>
+
+</div><!-- end advisors section -->
+
+<script>
+  const today = new Date();
+  const day = today.getDay();
+  const diff = day >= 4 ? day - 4 : day + 3;
+  const lastThursday = new Date(today);
+  lastThursday.setDate(today.getDate() - diff);
+  const options = { year: 'numeric', month: 'long', day: 'numeric' };
+  document.getElementById('lastUpdated').textContent =
+    'Last updated: ' + lastThursday.toLocaleDateString('en-US', options);
+</script>
   <!-- MODAL -->
   <div class="modal-overlay" id="modalOverlay" onclick="handleOverlayClick(event)">
     <div class="modal">
