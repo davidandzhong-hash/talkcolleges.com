@@ -150,7 +150,6 @@
       position: relative;
     }
 
-    /* Vertical line connecting steps */
     .step-block .step-spine::after {
       content: '';
       position: absolute;
@@ -205,7 +204,7 @@
       max-width: 600px;
     }
 
-    /* ── INFO CARDS within each step ── */
+    /* ── INFO CARDS ── */
     .info-grid {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
@@ -290,6 +289,40 @@
       margin-top: 0.1rem;
     }
 
+    /* ── TIMELINE TABLE ── */
+    .timeline-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 1.4rem;
+      font-size: 0.88rem;
+    }
+
+    .timeline-table th {
+      text-align: left;
+      font-weight: 500;
+      color: var(--navy);
+      padding: 0.6rem 1rem;
+      border-bottom: 2px solid var(--gold);
+    }
+
+    .timeline-table td {
+      padding: 0.9rem 1rem;
+      border-bottom: 1px solid var(--border);
+      color: var(--muted);
+      font-weight: 300;
+      line-height: 1.6;
+      vertical-align: top;
+    }
+
+    .timeline-table tr:last-child td { border-bottom: none; }
+
+    .timeline-table td:first-child {
+      font-weight: 500;
+      color: var(--navy);
+      white-space: nowrap;
+      width: 130px;
+    }
+
     /* ── DIVIDER ── */
     .step-divider {
       border: none;
@@ -309,95 +342,6 @@
       padding: 0.2rem 0.75rem;
       margin-right: 0.4rem;
       margin-bottom: 0.4rem;
-    }
-
-    /* ── SECTION BREAK (alt bg) ── */
-    .alt-section {
-      background: var(--white);
-      border-top: 1px solid var(--border);
-      border-bottom: 1px solid var(--border);
-      padding: 4rem 6%;
-      margin: 0 0 0 0;
-    }
-
-    .alt-inner {
-      max-width: 900px;
-      margin: 0 auto;
-    }
-
-    .alt-section .section-tag {
-      font-size: 0.72rem;
-      font-weight: 500;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      color: var(--gold);
-      display: block;
-      margin-bottom: 0.7rem;
-    }
-
-    .alt-section .section-title {
-      font-family: 'DM Serif Display', serif;
-      font-size: clamp(1.6rem, 2.5vw, 2.2rem);
-      letter-spacing: -0.02em;
-      margin-bottom: 0.7rem;
-    }
-
-    .alt-section .section-sub {
-      font-size: 0.95rem;
-      color: var(--muted);
-      font-weight: 300;
-      max-width: 520px;
-      margin-bottom: 2rem;
-    }
-
-    /* ── FAQ ── */
-    .faq-list { display: flex; flex-direction: column; gap: 0; }
-
-    .faq-item {
-      border-bottom: 1px solid var(--border);
-    }
-    .faq-item:first-child { border-top: 1px solid var(--border); }
-
-    .faq-question {
-      width: 100%;
-      background: none;
-      border: none;
-      text-align: left;
-      font-family: 'DM Sans', sans-serif;
-      font-size: 0.95rem;
-      font-weight: 500;
-      color: var(--navy);
-      padding: 1.1rem 0;
-      cursor: pointer;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 1rem;
-    }
-
-    .faq-question .faq-arrow {
-      font-size: 1rem;
-      color: var(--gold);
-      transition: transform 0.25s;
-      flex-shrink: 0;
-    }
-
-    .faq-item.open .faq-arrow { transform: rotate(180deg); }
-
-    .faq-answer {
-      font-size: 0.88rem;
-      color: var(--muted);
-      font-weight: 300;
-      line-height: 1.75;
-      max-height: 0;
-      overflow: hidden;
-      transition: max-height 0.35s ease, padding 0.25s ease;
-      padding-bottom: 0;
-    }
-
-    .faq-item.open .faq-answer {
-      max-height: 400px;
-      padding-bottom: 1.2rem;
     }
 
     /* ── CTA ── */
@@ -484,6 +428,8 @@
       .step-block { grid-template-columns: 44px 1fr; gap: 0 1.2rem; }
       .step-circle { width: 40px; height: 40px; font-size: 1.05rem; }
       .step-content { padding-bottom: 3rem; }
+
+      .timeline-table td:first-child { width: 100px; }
     }
 
     @media (max-width: 600px) {
@@ -528,7 +474,6 @@
       <div class="step-content">
         <h2>Find an advisor</h2>
         <p class="step-lead">Find someone whose path mirrors where you want to go — by school and major.</p>
-
         <div class="info-grid">
           <div class="info-card">
             <h4>Filter by school</h4>
@@ -547,7 +492,6 @@
             <p>Each profile notes whether an advisor had legacy status at their school — we commit to honesty and transparency.</p>
           </div>
         </div>
-
         <div class="highlight-box">
           <div>
             <h4>Tip: Don't just look for the most impressive advisor</h4>
@@ -565,7 +509,6 @@
       <div class="step-content">
         <h2>Book a session</h2>
         <p class="step-lead">One session. One student. One advisor. One hour.</p>
-
         <div class="info-grid">
           <div class="info-card">
             <h4>Pick a time that works</h4>
@@ -591,7 +534,6 @@
       <div class="step-content">
         <h2>Prepare beforehand</h2>
         <p class="step-lead">The more focused you are going in, the more you'll get out. Here's how to make the most of your hour.</p>
-
         <div class="info-grid">
           <div class="info-card">
             <h4>Write down your questions</h4>
@@ -606,9 +548,7 @@
             <p>Essays? School list strategy? Interview prep? Activity list review? The more specific your goal, the more useful the session will be.</p>
           </div>
         </div>
-
         <hr class="step-divider" />
-
         <p style="font-size: 0.88rem; font-weight: 500; color: var(--navy); margin-bottom: 0.8rem;">Great things to bring up in your session:</p>
         <ul class="checklist">
           <li>How your stats compare with your advisor's</li>
@@ -623,7 +563,6 @@
           <li>Honest questions about campus life and culture at that school</li>
           <li>What surprised your advisor most about the process</li>
         </ul>
-
         <div class="highlight-box">
           <div>
             <h4>A note on privacy</h4>
@@ -641,7 +580,6 @@
       <div class="step-content">
         <h2>Get real advice — and use it</h2>
         <p class="step-lead">Your advisor will give you honest, firsthand perspective. It's your job to take it seriously.</p>
-
         <div class="info-grid">
           <div class="info-card">
             <h4>Expect honesty</h4>
@@ -666,8 +604,7 @@
       </div>
       <div class="step-content">
         <h2>A parting gift</h2>
-        <p class="step-lead">As a thank-you for trusting us with your process, every advisor shares a copy of their own Common App activities section after your session. This is the template that each advisor will fill out with their own Common App Information, for your future personal use and success.</p>
-
+        <p class="step-lead">As a thank-you for trusting us with your process, every advisor shares a copy of their own Common App advisor portfolio after your session. This is the template that each advisor will fill out with their own Common App Information, for your future personal use and success.</p>
         <iframe
           src="capweb.pdf"
           width="100%"
@@ -675,7 +612,6 @@
           style="border:1px solid var(--border); border-radius:10px; display:block; margin-bottom:1.4rem;"
           title="Sample Activities Section">
         </iframe>
-
         <div class="highlight-box">
           <div>
             <h4>Strictly confidential</h4>
@@ -685,9 +621,57 @@
       </div>
     </div>
 
-  </div><!-- end .process-section -->
+    <!-- SESSION TEMPLATE -->
+<div style="text-align: center; padding: 0 0 4rem 0;">
+  <h2 style="font-family: 'DM Serif Display', serif; font-size: clamp(1.5rem, 2.5vw, 2rem); letter-spacing: -0.02em; margin-bottom: 0.6rem;">Still not sure what to talk about?</h2>
+  <p style="font-size: 1rem; color: var(--muted); font-weight: 300; margin-bottom: 1.8rem; max-width: 600px; margin-left: auto; margin-right: auto;">Follow this suggested session structure to get the most out of your hour.</p>
 
-   <!-- FOOTER -->
+  <table class="timeline-table" style="max-width: 700px; margin: 0 auto 1.4rem;">
+    <thead>
+      <tr>
+        <th>Time</th>
+        <th>What to focus on</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>0–5 min</td>
+        <td><strong>Introductions</strong> — Briefly introduce yourself, your grade, and where you're applying. Let your advisor know what you're most stressed about so they know where to focus.</td>
+      </tr>
+      <tr>
+        <td>5–15 min</td>
+        <td><strong>Application Overview</strong> — Share your GPA, test scores, course load, and extracurriculars. Give your advisor the full picture so they can give you informed, personalized advice for the rest of the session.</td>
+      </tr>
+      <tr>
+        <td>15–45 min</td>
+        <td><strong>Deep Dive</strong> — This is the core of your session. Focus on one or two areas: your personal statement, activities list, school list balance, or interview prep. The more specific you are, the more useful the feedback.</td>
+      </tr>
+      <tr>
+        <td>45–55 min</td>
+        <td><strong>Action Plan</strong> — Your advisor gives you a clear, specific list of next steps to tackle before your next deadline. Write these down — this is what turns the session into real progress.</td>
+      </tr>
+      <tr>
+        <td>55–60 min</td>
+        <td><strong>Wrap Up</strong> — Recap what was covered, ask any final questions, and confirm next steps. Your advisor will send over their Common App advisor portfolio right before the session ends.</td>
+      </tr>
+    </tbody>
+  </table>
+
+<div class="highlight-box" style="max-width: 700px; margin: 0 auto; text-align: left;">
+    <div>
+      <h4>You're in control</h4>
+      <p>This is just a suggested structure — if you want to spend the whole hour on your essay, do that. Your advisor will follow your lead.</p>
+    </div>
+  </div>
+
+  <div style="text-align: center; margin-top: 1.5rem;">
+    <a href="book.html" class="btn btn-gold">Find your advisor now!</a>
+  </div>
+
+</div><!-- end centered session template -->
+</div><!-- end .process-section -->
+
+  <!-- FOOTER -->
   <footer>
     <a href="index.html" class="logo">Talk<span>Colleges</span></a>
     <div>
