@@ -1,17 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-3J9BPP208G"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
+  <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-3J9BPP208G"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
 
-    gtag('config', 'G-3J9BPP208G');
-  </script>
+  gtag('config', 'G-3J9BPP208G');
+</script>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Booking Confirmed — TalkColleges</title>
+  <title>Placeholder — TalkColleges</title>
   <link rel="icon" type="image/png" href="TCFavicon.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -131,7 +132,6 @@
       font-size: clamp(1.6rem, 3vw, 2.2rem);
       letter-spacing: -0.02em;
       margin-bottom: 1rem;
-      color: var(--navy);
     }
 
     .card p {
@@ -153,13 +153,6 @@
       margin: 1.8rem 0;
     }
 
-    .btn-container {
-      display: flex;
-      justify-content: center;
-      gap: 0.75rem;
-      margin-top: 1.5rem;
-    }
-
     .btn {
       display: inline-block;
       padding: 0.85rem 1.9rem;
@@ -169,12 +162,13 @@
       font-size: 0.93rem;
       transition: all 0.2s;
       cursor: pointer;
+      margin-top: 0.5rem;
     }
 
     .btn-gold { background: var(--gold); color: var(--white); border: 2px solid var(--gold); }
     .btn-gold:hover { background: transparent; color: var(--gold); }
 
-    .btn-outline { background: transparent; color: var(--navy); border: 2px solid var(--navy); }
+    .btn-outline { background: transparent; color: var(--navy); border: 2px solid var(--navy); margin-left: 0.6rem; }
     .btn-outline:hover { background: var(--navy); color: var(--white); }
 
     .card .note {
@@ -182,14 +176,6 @@
       color: var(--muted);
       font-weight: 300;
       margin-top: 1.4rem;
-    }
-
-    .card a {
-      color: var(--navy);
-      text-decoration: underline;
-    }
-    .card a:hover {
-      color: var(--gold);
     }
 
     /* ── FOOTER ── */
@@ -225,15 +211,16 @@
       }
       #menu-checkbox:checked ~ ul { display: flex; }
       .card { padding: 2.5rem 1.8rem; }
-      .btn-container { flex-direction: column; gap: 0.6rem; }
+      .btn-outline { margin-left: 0; margin-top: 0.6rem; }
     }
   </style>
 </head>
 <body>
 
+  <!-- NAV -->
   <nav>
     <a href="index.html" class="logo">
-      <img src="TalkCollegesIconTransparent.png" style="height:50px; vertical-align:middle; margin-right:6px;" alt="TalkColleges Logo" />
+      <img src="TalkCollegesIconTransparent.png" style="height:50px; vertical-align:middle; margin-right:6px;" alt="Icon" />
       Talk<span>Colleges</span>
     </a>
     <input type="checkbox" id="menu-checkbox">
@@ -247,24 +234,19 @@
       <li><a href="https://forms.gle/bgGKJLjvuvqv1REq5" class="nav-cta" target="_blank">Join Us!</a></li>
     </ul>
   </nav>
-
-  <div class="main">
-    <div class="card">
-      <div class="icon">!</div>
-      <h1>Just One More Step!</h1>
-      <p>If you haven't completed your payment details yet, please return to your open <strong>Cal.com</strong> tab to finish securing your advisor session slot.</p>
-      <p>Once payment is confirmed, your customized meeting link and calendar invitation details will be sent straight to your email inbox.</p>
-      
-      <div class="btn-container">
-        <a href="book.html" class="btn btn-gold">View Advisors</a>
-        <a href="index.html" class="btn btn-outline">Return Home</a>
-      </div>
-
-      <hr class="divider" />
-      <p class="note">Stuck or didn't receive your email validation? Contact us at <a href="mailto:support@talkcolleges.com">support@talkcolleges.com</a></p>
+<!-- MAIN -->
+<div class="main">
+  <div class="card">
+    <div style="width: 56px; height: 56px; border-radius: 50%; background: #EEEDFE; display: flex; align-items: center; justify-content: center; margin: 0 auto 1.5rem; font-size: 26px; font-weight: 700; color: #534AB7;">
+      !
     </div>
+    <h1 style="font-size: 28px; font-weight: 600; margin: 0 0 1rem;">This is a Placeholder Page!</h1>
+    <p style="font-size: 17px; color: #555; margin: 0 0 0.75rem; line-height: 1.6;">If you haven't completed payment yet, please return to Cal.com to finish your booking.</p>
+    <p style="font-size: 15px; color: #888; margin: 0 0 0.75rem; line-height: 1.6;">Your meeting link will be sent via email once payment is confirmed.</p>
+    <p style="font-size: 15px; color: #888; margin: 0; line-height: 1.6;">For any issues or questions, please email <a href="mailto:support@talkcolleges.com" style="color: #534AB7; text-decoration: none;">support@talkcolleges.com</a></p>
   </div>
-
+</div>
+<!-- FOOTER -->
   <footer>
     <a href="index.html" class="logo">Talk<span>Colleges</span></a>
     <div>
