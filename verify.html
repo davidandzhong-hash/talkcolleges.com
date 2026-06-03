@@ -30,11 +30,9 @@ body{
   display:flex;
   flex-direction:column;
 }
-
 @keyframes fadeUp{from{opacity:0;transform:translateY(16px);}to{opacity:1;transform:translateY(0);}}
 @keyframes shake{0%,100%{transform:translateX(0);}20%,60%{transform:translateX(-6px);}40%,80%{transform:translateX(6px);}}
 @keyframes spin{to{transform:rotate(360deg);}}
-@keyframes pulse{0%,100%{opacity:1;}50%{opacity:0.4;}}
 
 nav{
   position:fixed;top:0;left:0;right:0;z-index:100;
@@ -54,202 +52,98 @@ nav{
 .logo span{color:var(--gold);}
 
 main{
-  flex:1;
-  display:flex;
-  align-items:center;
-  justify-content:center;
+  flex:1;display:flex;align-items:center;justify-content:center;
   padding:7rem 1.5rem 4rem;
 }
-
 .card{
-  background:var(--white);
-  border:1px solid var(--border);
-  border-radius:16px;
-  padding:3rem 2.5rem;
-  width:100%;
-  max-width:540px;
+  background:var(--white);border:1px solid var(--border);
+  border-radius:16px;padding:3rem 2.5rem;
+  width:100%;max-width:540px;
   animation:fadeUp 0.5s ease;
 }
-
 .card-icon{
   width:64px;height:64px;border-radius:50%;
-  background:rgba(77,16,122,0.08);
-  color:var(--navy);
-  font-size:1.8rem;
-  display:flex;align-items:center;justify-content:center;
+  background:rgba(77,16,122,0.08);color:var(--navy);
+  font-size:1.8rem;display:flex;align-items:center;justify-content:center;
   margin:0 auto 1.5rem;
 }
-
 .card h1{
   font-family:'DM Serif Display',serif;
-  font-size:1.9rem;
-  letter-spacing:-0.02em;
-  text-align:center;
-  margin-bottom:0.5rem;
+  font-size:1.9rem;letter-spacing:-0.02em;
+  text-align:center;margin-bottom:0.5rem;
 }
-
 .card-desc{
-  text-align:center;
-  font-size:0.92rem;
-  color:var(--muted);
-  font-weight:300;
-  margin-bottom:2.2rem;
-  line-height:1.6;
+  text-align:center;font-size:0.92rem;color:var(--muted);
+  font-weight:300;margin-bottom:2.2rem;line-height:1.6;
 }
-.card-desc strong{color:var(--navy);font-weight:500;}
-
-.verify-block{
-  margin-bottom:1.8rem;
-}
+.verify-block{margin-bottom:1.8rem;}
 .verify-block-label{
-  font-size:0.78rem;
-  font-weight:500;
-  letter-spacing:0.1em;
-  text-transform:uppercase;
-  color:var(--muted);
-  margin-bottom:0.5rem;
+  font-size:0.78rem;font-weight:500;letter-spacing:0.1em;
+  text-transform:uppercase;color:var(--muted);margin-bottom:0.5rem;
 }
 .verify-block-email{
-  font-size:0.88rem;
-  font-weight:500;
-  color:var(--navy);
-  margin-bottom:0.75rem;
-  padding:0.5rem 0.75rem;
-  background:var(--cream);
-  border-radius:var(--radius);
-  border:1px solid var(--border);
-  word-break:break-all;
+  font-size:0.88rem;font-weight:500;color:var(--navy);
+  margin-bottom:0.75rem;padding:0.5rem 0.75rem;
+  background:var(--cream);border-radius:var(--radius);
+  border:1px solid var(--border);word-break:break-all;
 }
-
-/* CODE INPUT */
-.code-inputs{
-  display:flex;gap:10px;justify-content:flex-start;
-}
+.code-inputs{display:flex;gap:10px;}
 .code-inputs input{
-  width:46px;height:56px;
-  text-align:center;
-  font-size:1.4rem;
-  font-weight:500;
-  font-family:'DM Sans',sans-serif;
-  color:var(--navy);
-  border:1.5px solid var(--border);
-  border-radius:var(--radius);
-  background:var(--white);
-  outline:none;
+  width:46px;height:56px;text-align:center;
+  font-size:1.4rem;font-weight:500;
+  font-family:'DM Sans',sans-serif;color:var(--navy);
+  border:1.5px solid var(--border);border-radius:var(--radius);
+  background:var(--white);outline:none;
   transition:border-color 0.2s,box-shadow 0.2s;
-  caret-color:var(--navy);
 }
-.code-inputs input:focus{
-  border-color:var(--navy);
-  box-shadow:0 0 0 3px rgba(77,16,122,0.08);
-}
-.code-inputs input.error{
-  border-color:var(--error);
-  animation:shake 0.35s ease;
-}
-.code-inputs input.success{
-  border-color:var(--success);
-  background:rgba(34,160,107,0.04);
-}
-
-.field-error{
-  font-size:0.78rem;
-  color:var(--error);
-  margin-top:0.4rem;
-  display:none;
-}
+.code-inputs input:focus{border-color:var(--navy);box-shadow:0 0 0 3px rgba(77,16,122,0.08);}
+.code-inputs input.error{border-color:var(--error);animation:shake 0.35s ease;}
+.code-inputs input.success{border-color:var(--success);background:rgba(34,160,107,0.04);}
+.field-error{font-size:0.78rem;color:var(--error);margin-top:0.4rem;display:none;}
 .field-error.show{display:block;}
-
-.divider{
-  height:1px;
-  background:var(--border);
-  margin:1.5rem 0;
-}
-
-/* RESEND */
+.divider{height:1px;background:var(--border);margin:1.5rem 0;}
 .resend-row{
   display:flex;align-items:center;justify-content:space-between;
-  flex-wrap:wrap;gap:0.5rem;
-  margin-top:1.2rem;
-  font-size:0.84rem;
-  color:var(--muted);
+  flex-wrap:wrap;gap:0.5rem;margin-top:1.2rem;
+  font-size:0.84rem;color:var(--muted);
 }
 .resend-btn{
-  background:none;border:none;
-  font-family:'DM Sans',sans-serif;
-  font-size:0.84rem;
-  font-weight:500;
-  color:var(--navy);
-  cursor:pointer;
-  text-decoration:underline;
-  padding:0;
-  transition:color 0.2s;
+  background:none;border:none;font-family:'DM Sans',sans-serif;
+  font-size:0.84rem;font-weight:500;color:var(--navy);
+  cursor:pointer;text-decoration:underline;padding:0;transition:color 0.2s;
 }
-.resend-btn:disabled{
-  color:var(--muted);
-  text-decoration:none;
-  cursor:default;
-}
+.resend-btn:disabled{color:var(--muted);text-decoration:none;cursor:default;}
 .resend-btn:not(:disabled):hover{color:var(--gold);}
-.countdown{
-  font-variant-numeric:tabular-nums;
-  font-weight:500;
-}
-
-/* GLOBAL ERROR */
+.countdown{font-variant-numeric:tabular-nums;font-weight:500;}
 .global-error{
-  background:rgba(192,57,43,0.07);
-  border:1px solid rgba(192,57,43,0.25);
-  border-radius:var(--radius);
-  color:var(--error);
-  font-size:0.88rem;
-  padding:0.75rem 1rem;
-  margin-bottom:1.5rem;
-  display:none;
-  text-align:center;
+  background:rgba(192,57,43,0.07);border:1px solid rgba(192,57,43,0.25);
+  border-radius:var(--radius);color:var(--error);font-size:0.88rem;
+  padding:0.75rem 1rem;margin-bottom:1.5rem;display:none;text-align:center;
 }
 .global-error.show{display:block;}
-
-/* SUBMIT BTN */
 .btn-submit{
-  width:100%;
-  padding:0.9rem;
-  background:var(--navy);
-  color:var(--white);
-  border:none;
-  border-radius:var(--radius);
-  font-family:'DM Sans',sans-serif;
-  font-size:0.95rem;
-  font-weight:500;
-  cursor:pointer;
+  width:100%;padding:0.9rem;background:var(--navy);color:var(--white);
+  border:none;border-radius:var(--radius);font-family:'DM Sans',sans-serif;
+  font-size:0.95rem;font-weight:500;cursor:pointer;
   transition:background 0.2s,opacity 0.2s;
-  display:flex;align-items:center;justify-content:center;gap:8px;
-  margin-top:2rem;
+  display:flex;align-items:center;justify-content:center;gap:8px;margin-top:2rem;
 }
 .btn-submit:hover:not(:disabled){background:#3a0c5c;}
 .btn-submit:disabled{opacity:0.6;cursor:default;}
-
 .spinner{
-  width:18px;height:18px;
-  border:2px solid rgba(255,255,255,0.3);
-  border-top-color:#fff;
-  border-radius:50%;
-  animation:spin 0.7s linear infinite;
-  display:none;
+  width:18px;height:18px;border:2px solid rgba(255,255,255,0.3);
+  border-top-color:#fff;border-radius:50%;
+  animation:spin 0.7s linear infinite;display:none;
 }
 .btn-submit.loading .spinner{display:block;}
 .btn-submit.loading .btn-text{display:none;}
-
-/* SUCCESS STATE */
 #success-state{display:none;text-align:center;animation:fadeUp 0.4s ease;}
 .success-icon{
   width:64px;height:64px;border-radius:50%;
   background:rgba(34,160,107,0.1);color:var(--success);
-  font-size:1.8rem;
-  display:flex;align-items:center;justify-content:center;
+  font-size:1.8rem;display:flex;align-items:center;justify-content:center;
   margin:0 auto 1.2rem;
 }
-
 footer{
   background:#080f1c;color:rgba(255,255,255,0.45);
   padding:2rem 6%;display:flex;align-items:center;
@@ -259,7 +153,6 @@ footer .logo{color:rgba(255,255,255,0.7);font-size:1.1rem;}
 footer .logo span{color:var(--gold);}
 footer a{color:rgba(255,255,255,0.45);text-decoration:none;margin-left:1.5rem;transition:color 0.2s;}
 footer a:hover{color:var(--gold);}
-
 @media(max-width:500px){
   .card{padding:2rem 1.25rem;}
   .code-inputs input{width:40px;height:50px;font-size:1.2rem;}
@@ -278,25 +171,24 @@ footer a:hover{color:var(--gold);}
 <main>
   <div class="card">
 
-    <!-- VERIFY STATE -->
     <div id="verify-state">
       <div class="card-icon">✉</div>
       <h1>Verify your emails</h1>
       <p class="card-desc">We sent a 6-digit code to each of your email addresses.<br/>Enter both codes below to complete your application.</p>
 
-      <div class="global-error" id="global-error">One or both codes are incorrect. Please try again.</div>
+      <div class="global-error" id="global-error"></div>
 
-      <!-- Personal Email Block -->
+      <!-- Personal Email -->
       <div class="verify-block">
         <div class="verify-block-label">Personal Email</div>
         <div class="verify-block-email" id="display-personal-email">—</div>
         <div class="code-inputs" id="personal-code-inputs">
-          <input type="text" maxlength="1" inputmode="numeric" pattern="[0-9]" autocomplete="off" data-group="personal" data-idx="0"/>
-          <input type="text" maxlength="1" inputmode="numeric" pattern="[0-9]" autocomplete="off" data-group="personal" data-idx="1"/>
-          <input type="text" maxlength="1" inputmode="numeric" pattern="[0-9]" autocomplete="off" data-group="personal" data-idx="2"/>
-          <input type="text" maxlength="1" inputmode="numeric" pattern="[0-9]" autocomplete="off" data-group="personal" data-idx="3"/>
-          <input type="text" maxlength="1" inputmode="numeric" pattern="[0-9]" autocomplete="off" data-group="personal" data-idx="4"/>
-          <input type="text" maxlength="1" inputmode="numeric" pattern="[0-9]" autocomplete="off" data-group="personal" data-idx="5"/>
+          <input type="text" maxlength="1" inputmode="numeric" autocomplete="off" data-group="personal" data-idx="0"/>
+          <input type="text" maxlength="1" inputmode="numeric" autocomplete="off" data-group="personal" data-idx="1"/>
+          <input type="text" maxlength="1" inputmode="numeric" autocomplete="off" data-group="personal" data-idx="2"/>
+          <input type="text" maxlength="1" inputmode="numeric" autocomplete="off" data-group="personal" data-idx="3"/>
+          <input type="text" maxlength="1" inputmode="numeric" autocomplete="off" data-group="personal" data-idx="4"/>
+          <input type="text" maxlength="1" inputmode="numeric" autocomplete="off" data-group="personal" data-idx="5"/>
         </div>
         <div class="field-error" id="err-personal-code">Please enter the 6-digit code.</div>
         <div class="resend-row">
@@ -307,17 +199,17 @@ footer a:hover{color:var(--gold);}
 
       <div class="divider"></div>
 
-      <!-- College Email Block -->
+      <!-- College Email -->
       <div class="verify-block">
         <div class="verify-block-label">College (.edu) Email</div>
         <div class="verify-block-email" id="display-college-email">—</div>
         <div class="code-inputs" id="college-code-inputs">
-          <input type="text" maxlength="1" inputmode="numeric" pattern="[0-9]" autocomplete="off" data-group="college" data-idx="0"/>
-          <input type="text" maxlength="1" inputmode="numeric" pattern="[0-9]" autocomplete="off" data-group="college" data-idx="1"/>
-          <input type="text" maxlength="1" inputmode="numeric" pattern="[0-9]" autocomplete="off" data-group="college" data-idx="2"/>
-          <input type="text" maxlength="1" inputmode="numeric" pattern="[0-9]" autocomplete="off" data-group="college" data-idx="3"/>
-          <input type="text" maxlength="1" inputmode="numeric" pattern="[0-9]" autocomplete="off" data-group="college" data-idx="4"/>
-          <input type="text" maxlength="1" inputmode="numeric" pattern="[0-9]" autocomplete="off" data-group="college" data-idx="5"/>
+          <input type="text" maxlength="1" inputmode="numeric" autocomplete="off" data-group="college" data-idx="0"/>
+          <input type="text" maxlength="1" inputmode="numeric" autocomplete="off" data-group="college" data-idx="1"/>
+          <input type="text" maxlength="1" inputmode="numeric" autocomplete="off" data-group="college" data-idx="2"/>
+          <input type="text" maxlength="1" inputmode="numeric" autocomplete="off" data-group="college" data-idx="3"/>
+          <input type="text" maxlength="1" inputmode="numeric" autocomplete="off" data-group="college" data-idx="4"/>
+          <input type="text" maxlength="1" inputmode="numeric" autocomplete="off" data-group="college" data-idx="5"/>
         </div>
         <div class="field-error" id="err-college-code">Please enter the 6-digit code.</div>
         <div class="resend-row">
@@ -332,7 +224,6 @@ footer a:hover{color:var(--gold);}
       </button>
     </div>
 
-    <!-- SUCCESS STATE (fallback — normally redirects) -->
     <div id="success-state">
       <div class="success-icon">✓</div>
       <h2 style="font-family:'DM Serif Display',serif;font-size:1.8rem;text-align:center;margin-bottom:0.6rem;">Application received!</h2>
@@ -352,62 +243,42 @@ footer a:hover{color:var(--gold);}
 </footer>
 
 <script>
-// ── CONFIG ──────────────────────────────────────────────────────────────────
-// When deployed to Vercel, this hits /api/send-code automatically.
-// For local dev, point to your local Vercel dev server: http://localhost:3000/api/send-code
-const SEND_CODE_URL = '/api/send-code';
-const RESEND_COOLDOWN_SEC = 60;
 const FORM_KEY = 'talkcolleges_advisor_form';
-
-// ── STATE ───────────────────────────────────────────────────────────────────
-let codes = { personal: '', college: '' };
+const RESEND_COOLDOWN_SEC = 60;
 let timers = { personal: null, college: null };
+let emails = { personal: '', college: '' };
 
-// ── INIT ON LOAD ─────────────────────────────────────────────────────────────
-document.addEventListener('DOMContentLoaded', init);
-
-// ── INIT ─────────────────────────────────────────────────────────────────────
-function init(){
+// ── INIT ──────────────────────────────────────────────────────────────────────
+document.addEventListener('DOMContentLoaded', () => {
   let saved;
   try { saved = JSON.parse(localStorage.getItem(FORM_KEY)); } catch(e){}
 
-  const personalEmail = saved?.['personal-email'] || sessionStorage.getItem('tc_personal_email') || '';
-  const collegeEmail  = saved?.['college-email']  || sessionStorage.getItem('tc_college_email')  || '';
+  emails.personal = saved?.['personal-email'] || '';
+  emails.college  = saved?.['college-email']  || '';
 
-  document.getElementById('display-personal-email').textContent = personalEmail || 'Not found';
-  document.getElementById('display-college-email').textContent  = collegeEmail  || 'Not found';
+  document.getElementById('display-personal-email').textContent = emails.personal || 'Not found';
+  document.getElementById('display-college-email').textContent  = emails.college  || 'Not found';
 
-  // Store emails in sessionStorage as backup
-  if(personalEmail) sessionStorage.setItem('tc_personal_email', personalEmail);
-  if(collegeEmail)  sessionStorage.setItem('tc_college_email',  collegeEmail);
-
-  // Send initial codes
-  sendCode('personal', personalEmail);
-  sendCode('college',  collegeEmail);
-
-  // Wire up code inputs
   wireInputs('personal');
   wireInputs('college');
-}
 
-// ── GENERATE CODE ─────────────────────────────────────────────────────────────
-function generateCode(){
-  return String(Math.floor(100000 + Math.random() * 900000));
-}
+  // Send both codes immediately on page load
+  sendCode('personal');
+  sendCode('college');
+});
 
-// ── SEND CODE VIA BREVO (Vercel function) ────────────────────────────────────
-async function sendCode(group, email){
-  const code = generateCode();
-  codes[group] = code;
-  console.log(`[TalkColleges] ${group} code: ${code}`); // dev fallback
+// ── SEND CODE — calls server, server generates & stores code, sends email ─────
+async function sendCode(group) {
+  const email = emails[group];
+  if (!email) return;
 
   try {
-    await fetch(SEND_CODE_URL, {
+    await fetch('/api/send-code', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ email, code }),
+      body: JSON.stringify({ email, group }),
     });
-  } catch(err){
+  } catch(err) {
     console.error(`Send error (${group}):`, err);
   }
 
@@ -415,27 +286,24 @@ async function sendCode(group, email){
 }
 
 // ── RESEND ────────────────────────────────────────────────────────────────────
-function resendCode(group){
-  const email = document.getElementById(`display-${group}-email`).textContent;
+function resendCode(group) {
   clearCodeInputs(group);
   clearErr(`err-${group}-code`);
   document.getElementById('global-error').classList.remove('show');
-  sendCode(group, email);
+  sendCode(group);
 }
 
-// ── COUNTDOWN ────────────────────────────────────────────────────────────────
-function startCountdown(group){
+// ── COUNTDOWN ─────────────────────────────────────────────────────────────────
+function startCountdown(group) {
   const btn   = document.getElementById(`resend-${group}-btn`);
   const timer = document.getElementById(`resend-${group}-timer`);
   btn.disabled = true;
-
   let secs = RESEND_COOLDOWN_SEC;
   timer.textContent = `${secs}s`;
-
-  if(timers[group]) clearInterval(timers[group]);
+  if (timers[group]) clearInterval(timers[group]);
   timers[group] = setInterval(() => {
     secs--;
-    if(secs <= 0){
+    if (secs <= 0) {
       clearInterval(timers[group]);
       btn.disabled = false;
       timer.textContent = '';
@@ -445,129 +313,126 @@ function startCountdown(group){
   }, 1000);
 }
 
-// ── WIRE CODE INPUTS ──────────────────────────────────────────────────────────
-function wireInputs(group){
+// ── WIRE INPUTS ───────────────────────────────────────────────────────────────
+function wireInputs(group) {
   const inputs = document.querySelectorAll(`[data-group="${group}"]`);
-
   inputs.forEach((inp, i) => {
     inp.addEventListener('keydown', e => {
-      if(e.key === 'Backspace' && !inp.value && i > 0){
+      if (e.key === 'Backspace' && !inp.value && i > 0) {
         inputs[i - 1].focus();
         inputs[i - 1].value = '';
       }
     });
-
-    inp.addEventListener('input', e => {
-      // Strip non-digits
+    inp.addEventListener('input', () => {
       inp.value = inp.value.replace(/\D/g, '').slice(-1);
       inp.classList.remove('error');
       clearErr(`err-${group}-code`);
       document.getElementById('global-error').classList.remove('show');
-
-      if(inp.value && i < inputs.length - 1){
-        inputs[i + 1].focus();
-      }
+      if (inp.value && i < inputs.length - 1) inputs[i + 1].focus();
     });
-
-    // Handle paste of full code
     inp.addEventListener('paste', e => {
       e.preventDefault();
       const pasted = (e.clipboardData || window.clipboardData).getData('text').replace(/\D/g,'');
-      if(pasted.length === 6){
-        inputs.forEach((box, idx) => {
-          box.value = pasted[idx] || '';
-          box.classList.remove('error');
-        });
+      if (pasted.length === 6) {
+        inputs.forEach((box, idx) => { box.value = pasted[idx] || ''; box.classList.remove('error'); });
         inputs[5].focus();
       }
     });
   });
 }
 
-// ── GET CODE VALUE ────────────────────────────────────────────────────────────
-function getEnteredCode(group){
-  return Array.from(document.querySelectorAll(`[data-group="${group}"]`))
-    .map(i => i.value).join('');
+// ── HELPERS ───────────────────────────────────────────────────────────────────
+function getEnteredCode(group) {
+  return Array.from(document.querySelectorAll(`[data-group="${group}"]`)).map(i => i.value).join('');
 }
-
-// ── CLEAR INPUTS ──────────────────────────────────────────────────────────────
-function clearCodeInputs(group){
-  document.querySelectorAll(`[data-group="${group}"]`).forEach(i => {
-    i.value = '';
-    i.classList.remove('error','success');
-  });
+function clearCodeInputs(group) {
+  document.querySelectorAll(`[data-group="${group}"]`).forEach(i => { i.value = ''; i.classList.remove('error','success'); });
 }
-
-function markInputsError(group){
-  document.querySelectorAll(`[data-group="${group}"]`).forEach(i => {
-    i.classList.add('error');
-    i.classList.remove('success');
-  });
+function markInputsError(group) {
+  document.querySelectorAll(`[data-group="${group}"]`).forEach(i => { i.classList.add('error'); i.classList.remove('success'); });
 }
-
-function markInputsSuccess(group){
-  document.querySelectorAll(`[data-group="${group}"]`).forEach(i => {
-    i.classList.add('success');
-    i.classList.remove('error');
-  });
+function markInputsSuccess(group) {
+  document.querySelectorAll(`[data-group="${group}"]`).forEach(i => { i.classList.add('success'); i.classList.remove('error'); });
 }
-
-// ── ERROR HELPERS ─────────────────────────────────────────────────────────────
-function showErr(id){ const el = document.getElementById(id); if(el) el.classList.add('show'); }
-function clearErr(id){ const el = document.getElementById(id); if(el) el.classList.remove('show'); }
+function showErr(id, msg) { const el = document.getElementById(id); if(el){ if(msg) el.textContent = msg; el.classList.add('show'); } }
+function clearErr(id) { const el = document.getElementById(id); if(el) el.classList.remove('show'); }
 
 // ── VERIFY & SUBMIT ───────────────────────────────────────────────────────────
-async function verifyAndSubmit(){
+async function verifyAndSubmit() {
   const enteredPersonal = getEnteredCode('personal');
   const enteredCollege  = getEnteredCode('college');
   let ok = true;
 
-  // Validate completeness
-  if(enteredPersonal.length < 6){ showErr('err-personal-code'); markInputsError('personal'); ok = false; }
-  if(enteredCollege.length  < 6){ showErr('err-college-code');  markInputsError('college');  ok = false; }
-  if(!ok) return;
+  if (enteredPersonal.length < 6) { showErr('err-personal-code', 'Please enter the 6-digit code.'); markInputsError('personal'); ok = false; }
+  if (enteredCollege.length  < 6) { showErr('err-college-code',  'Please enter the 6-digit code.'); markInputsError('college');  ok = false; }
+  if (!ok) return;
 
-  const personalCorrect = enteredPersonal === codes.personal;
-  const collegeCorrect  = enteredCollege  === codes.college;
-
-  if(!personalCorrect){ markInputsError('personal'); clearCodeInputs('personal'); }
-  else { markInputsSuccess('personal'); }
-
-  if(!collegeCorrect){ markInputsError('college'); clearCodeInputs('college'); }
-  else { markInputsSuccess('college'); }
-
-  if(!personalCorrect || !collegeCorrect){
-    document.getElementById('global-error').classList.add('show');
-    // Re-focus first empty group
-    if(!personalCorrect) document.querySelector('[data-group="personal"]').focus();
-    else if(!collegeCorrect) document.querySelector('[data-group="college"]').focus();
-    return;
-  }
-
-  // ── Both correct — submit ──
   const btn = document.getElementById('submit-btn');
   btn.disabled = true;
   btn.classList.add('loading');
+  document.getElementById('global-error').classList.remove('show');
 
-  // Simulate a brief processing delay
-  await new Promise(r => setTimeout(r, 1200));
+  // Verify both codes against the server
+  try {
+    const [personalRes, collegeRes] = await Promise.all([
+      fetch('/api/verify-code', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email: emails.personal, group: 'personal', entered: enteredPersonal }),
+      }),
+      fetch('/api/verify-code', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email: emails.college, group: 'college', entered: enteredCollege }),
+      }),
+    ]);
 
-  // TODO: POST form data to your backend here
-  // const formData = JSON.parse(localStorage.getItem(FORM_KEY));
-  // await fetch('/api/submit', { method: 'POST', body: JSON.stringify(formData) });
+    const personalOk = personalRes.ok;
+    const collegeOk  = collegeRes.ok;
 
-  // Clear saved form data
-  try { localStorage.removeItem(FORM_KEY); } catch(e){}
-  sessionStorage.removeItem('tc_personal_email');
-  sessionStorage.removeItem('tc_college_email');
+    if (!personalOk) { markInputsError('personal'); clearCodeInputs('personal'); }
+    else { markInputsSuccess('personal'); }
 
-  // Show success briefly then redirect
-  document.getElementById('verify-state').style.display = 'none';
-  document.getElementById('success-state').style.display = 'block';
+    if (!collegeOk) { markInputsError('college'); clearCodeInputs('college'); }
+    else { markInputsSuccess('college'); }
 
-  setTimeout(() => {
-    window.location.href = 'success.html';
-  }, 1500);
+    if (!personalOk || !collegeOk) {
+      const errMsg = (!personalOk && !collegeOk)
+        ? 'Both codes are incorrect. Please try again.'
+        : !personalOk
+          ? 'Personal email code is incorrect. Please try again.'
+          : 'College email code is incorrect. Please try again.';
+      const globalErr = document.getElementById('global-error');
+      globalErr.textContent = errMsg;
+      globalErr.classList.add('show');
+      btn.disabled = false;
+      btn.classList.remove('loading');
+      if (!personalOk) document.querySelector('[data-group="personal"]').focus();
+      else document.querySelector('[data-group="college"]').focus();
+      return;
+    }
+
+    // ── Both correct ──────────────────────────────────────────────────────────
+    // TODO: POST form data to your backend here before clearing
+    // const formData = JSON.parse(localStorage.getItem(FORM_KEY));
+    // await fetch('/api/submit', { method:'POST', body: JSON.stringify(formData) });
+
+    // Clear saved form data
+    try { localStorage.removeItem(FORM_KEY); } catch(e){}
+
+    // Show success then redirect
+    document.getElementById('verify-state').style.display = 'none';
+    document.getElementById('success-state').style.display = 'block';
+    setTimeout(() => { window.location.href = 'success.html'; }, 1500);
+
+  } catch(err) {
+    console.error('Verify error:', err);
+    const globalErr = document.getElementById('global-error');
+    globalErr.textContent = 'Something went wrong. Please try again.';
+    globalErr.classList.add('show');
+    btn.disabled = false;
+    btn.classList.remove('loading');
+  }
 }
 </script>
 </body>
