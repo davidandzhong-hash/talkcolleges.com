@@ -1,27 +1,40 @@
 // api/send-code.js
-// Vercel serverless function — handles sending verification codes via Brevo
-// Deploy this to Vercel. Set BREVO_API_KEY in your Vercel environment variables.
+// Generates code SERVER-SIDE, stores in Upstash with 10min expiry, sends via Brevo.
+// Code is never sent to the browser.
 
 export default async function handler(req, res) {
-  // Only allow POST
-  if (req.method !== 'POST') {
-    return res.status(405).json({ error: 'Method not allowed' });
-  }
+  if (req.method !== 'POST') return res.status(405).json({ error: 'Method not allowed' });
 
-  const { email, code } = req.body;
+  const { email, group } = req.body;
+  if (!email || !group) return res.status(400).json({ error: 'Missing email or group' });
 
-  // Basic validation
-  if (!email || !code) {
-    return res.status(400).json({ error: 'Missing email or code' });
-  }
+  const BREVO_API_KEY         = process.env.BREVO_API_KEY;
+  const UPSTASH_REDIS_REST_URL   = process.env.UPSTASH_REDIS_REST_URL;
+  const UPSTASH_REDIS_REST_TOKEN = process.env.UPSTASH_REDIS_REST_TOKEN;
 
-  const BREVO_API_KEY = process.env.BREVO_API_KEY;
-  if (!BREVO_API_KEY) {
+  if (!BREVO_API_KEY || !UPSTASH_REDIS_REST_URL || !UPSTASH_REDIS_REST_TOKEN) {
     return res.status(500).json({ error: 'Server misconfiguration' });
   }
 
+  // Generate code server-side — never exposed to browser
+  const code = String(Math.floor(100000 + Math.random() * 900000));
+
+  // Store in Upstash with 10 minute expiry (600 seconds)
+  // Key is scoped to email+group so personal and college codes don't collide
+  const key = `tc_verify_${group}_${email}`;
   try {
-    const response = await fetch('https://api.brevo.com/v3/smtp/email', {
+    const upstashRes = await fetch(`${UPSTASH_REDIS_REST_URL}/set/${encodeURIComponent(key)}/${code}/EX/600`, {
+      headers: { Authorization: `Bearer ${UPSTASH_REDIS_REST_TOKEN}` },
+    });
+    if (!upstashRes.ok) throw new Error('Upstash write failed');
+  } catch (err) {
+    console.error('Upstash error:', err);
+    return res.status(500).json({ error: 'Failed to store code' });
+  }
+
+  // Send email via Brevo
+  try {
+    const brevoRes = await fetch('https://api.brevo.com/v3/smtp/email', {
       method: 'POST',
       headers: {
         'Accept': 'application/json',
@@ -29,10 +42,7 @@ export default async function handler(req, res) {
         'api-key': BREVO_API_KEY,
       },
       body: JSON.stringify({
-        sender: {
-          name: 'TalkColleges',
-          email: 'noreply@talkcolleges.com', // must be verified in Brevo
-        },
+        sender: { name: 'TalkColleges', email: 'noreply@talkcolleges.com' },
         to: [{ email }],
         subject: 'Your TalkColleges Verification Code',
         htmlContent: `
@@ -57,10 +67,10 @@ export default async function handler(req, res) {
       }),
     });
 
-    if (!response.ok) {
-      const err = await response.json();
+    if (!brevoRes.ok) {
+      const err = await brevoRes.json();
       console.error('Brevo error:', err);
-      return res.status(500).json({ error: 'Failed to send email', detail: err });
+      return res.status(500).json({ error: 'Failed to send email' });
     }
 
     return res.status(200).json({ success: true });
