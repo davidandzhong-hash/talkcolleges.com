@@ -1,0 +1,1550 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Become an Advisor — TalkColleges</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,700&display=swap" rel="stylesheet"/>
+<style>
+strong { font-weight: 700; color: var(--navy); }
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+:root{
+  --navy:#4D107A;
+  --cream:#f9f5ff;
+  --gold:#D1B365;
+  --muted:#7a6b8d;
+  --white:#ffffff;
+  --border:#e2d5f0;
+  --error:#c0392b;
+  --success:#22a06b;
+  --input-bg:#ffffff;
+  --radius:8px;
+}
+html{scroll-behavior:smooth;}
+body{
+  font-family:'DM Sans',sans-serif;
+  background:var(--cream);
+  color:var(--navy);
+  line-height:1.7;
+  min-height:100vh;
+}
+@keyframes fadeUp{from{opacity:0;transform:translateY(16px);}to{opacity:1;transform:translateY(0);}}
+@keyframes fadeIn{from{opacity:0;}to{opacity:1;}}
+@keyframes shake{0%,100%{transform:translateX(0);}20%,60%{transform:translateX(-6px);}40%,80%{transform:translateX(6px);}}
+@keyframes pulse{0%,100%{box-shadow:0 0 0 0 rgba(77,16,122,0.2);}50%{box-shadow:0 0 0 8px rgba(77,16,122,0);}}
+
+/* NAV */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:100;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:1.1rem 6%;
+  background:rgba(249,245,255,0.93);
+  backdrop-filter:blur(12px);
+  border-bottom:1px solid var(--border);
+}
+.logo{
+  font-family:'DM Serif Display',serif;
+  font-size:clamp(1.2rem,4vw,1.6rem);
+  color:var(--navy);text-decoration:none;
+  letter-spacing:-0.01em;
+  display:flex;align-items:center;
+}
+.logo span{color:var(--gold);}
+nav ul{list-style:none;display:flex;gap:1.5rem;align-items:center;}
+nav ul a{text-decoration:none;color:var(--navy);font-size:0.88rem;font-weight:400;letter-spacing:0.01em;transition:color 0.2s;}
+nav ul a:hover{color:var(--gold);}
+.nav-cta{background:var(--navy)!important;color:var(--white)!important;padding:0.5rem 1.2rem!important;border-radius:4px;font-weight:500!important;transition:background 0.2s!important;}
+.nav-cta:hover{background:var(--gold)!important;}
+.menu-toggle{display:none;font-size:1.8rem;cursor:pointer;color:var(--navy);}
+#menu-checkbox{display:none;}
+@media(max-width:900px){
+  .menu-toggle{display:block;}
+  nav ul{display:none;flex-direction:column;position:absolute;top:100%;left:0;right:0;background:#f9f5ff;padding:2rem;gap:1.5rem;border-bottom:1px solid var(--border);box-shadow:0 10px 30px rgba(77,16,122,0.15);}
+  #menu-checkbox:checked~ul{display:flex;}
+}
+
+/* HERO HEADER */
+.form-hero{
+  padding:8rem 6% 3rem;
+  text-align:center;
+  border-bottom:1px solid var(--border);
+  background:var(--white);
+}
+.form-hero .tag{
+  display:inline-block;
+  font-size:0.7rem;font-weight:500;letter-spacing:0.14em;text-transform:uppercase;
+  color:var(--gold);border:1px solid var(--gold);
+  padding:0.25rem 0.7rem;border-radius:2px;margin-bottom:1.2rem;
+}
+.form-hero h1{
+  font-family:'DM Serif Display',serif;
+  font-size:clamp(2rem,4vw,3rem);
+  letter-spacing:-0.025em;line-height:1.2;
+  margin-bottom:0.8rem;
+}
+.form-hero p{font-size:1rem;color:var(--muted);font-weight:300;max-width:480px;margin:0 auto;}
+
+/* PROGRESS BAR */
+.progress-wrap{
+  background:var(--white);
+  border-bottom:1px solid var(--border);
+  padding:1.2rem 6%;
+  position:sticky;top:64px;z-index:90;
+}
+.progress-steps{
+  display:flex;align-items:center;gap:0;
+  max-width:900px;margin:0 auto;
+}
+.step-dot{
+  display:flex;flex-direction:column;align-items:center;gap:4px;
+  flex:1;cursor:pointer;
+}
+.step-dot-circle{
+  width:28px;height:28px;border-radius:50%;
+  background:var(--border);color:var(--muted);
+  display:flex;align-items:center;justify-content:center;
+  font-size:0.75rem;font-weight:500;
+  transition:all 0.3s;
+}
+.step-dot.active .step-dot-circle{background:var(--navy);color:var(--white);}
+.step-dot.done .step-dot-circle{background:var(--gold);color:var(--white);}
+.step-dot-label{font-size:0.65rem;color:var(--muted);text-align:center;font-weight:400;white-space:nowrap;}
+.step-dot.active .step-dot-label{color:var(--navy);font-weight:500;}
+.step-line{flex:1;height:2px;background:var(--border);margin-bottom:18px;transition:background 0.3s;}
+.step-line.done{background:var(--gold);}
+
+/* MAIN FORM AREA */
+.form-wrap{
+  max-width:700px;margin:0 auto;
+  padding:3rem 6% 6rem;
+}
+.form-section{
+  display:none;
+  animation:fadeUp 0.4s ease;
+}
+.form-section.active{display:block;}
+
+.section-label{
+  font-size:0.7rem;font-weight:500;letter-spacing:0.14em;text-transform:uppercase;
+  color:var(--gold);margin-bottom:0.4rem;
+}
+.section-heading{
+  font-family:'DM Serif Display',serif;
+  font-size:1.7rem;letter-spacing:-0.02em;
+  margin-bottom:0.4rem;
+}
+.section-desc{font-size:0.9rem;color:var(--muted);font-weight:300;margin-bottom:2.5rem;}
+
+/* FIELD */
+.field{margin-bottom:1.6rem;}
+.field label{
+  display:block;font-size:0.88rem;font-weight:500;
+  margin-bottom:0.45rem;color:var(--navy);
+}
+.field label .req{color:var(--gold);margin-left:2px;}
+.field label .hint{
+  display:block;font-size:0.78rem;font-weight:300;
+  color:var(--muted);margin-top:1px;
+}
+
+input[type=text],input[type=email],textarea,select{
+  width:100%;padding:0.7rem 0.95rem;
+  border:1.5px solid var(--border);
+  border-radius:var(--radius);
+  font-family:'DM Sans',sans-serif;
+  font-size:0.93rem;color:var(--navy);
+  background:var(--input-bg);
+  outline:none;transition:border-color 0.2s,box-shadow 0.2s;
+  appearance:none;-webkit-appearance:none;
+}
+input[type=text]:focus,input[type=email]:focus,textarea:focus,select:focus{
+  border-color:var(--navy);
+  box-shadow:0 0 0 3px rgba(77,16,122,0.08);
+}
+input.error,textarea.error,select.error{
+  border-color:var(--error);
+  animation:shake 0.35s ease;
+}
+textarea{resize:vertical;min-height:110px;line-height:1.6;}
+
+/* SELECT STYLING */
+.select-wrap{position:relative;}
+.select-wrap select{
+  width:100%;padding:0.7rem 2.5rem 0.7rem 0.95rem;
+  cursor:pointer;
+}
+.select-wrap::after{
+  content:'▾';position:absolute;right:0.9rem;top:50%;
+  transform:translateY(-50%);pointer-events:none;
+  color:var(--muted);font-size:0.8rem;
+}
+
+/* INLINE SELECT ROW */
+.inline-select-row{display:flex;gap:0.75rem;align-items:flex-start;}
+.inline-select-row .select-wrap{flex:1;}
+.inline-select-row .select-sep{
+  padding-top:0.9rem;color:var(--muted);font-size:0.9rem;font-weight:300;
+  flex-shrink:0;
+}
+
+/* SEARCHABLE SELECT */
+.search-select-wrap{position:relative;}
+.search-select-input{
+  width:100%;padding:0.7rem 2.5rem 0.7rem 0.95rem;
+  border:1.5px solid var(--border);border-radius:var(--radius);
+  font-family:'DM Sans',sans-serif;font-size:0.93rem;color:var(--navy);
+  background:var(--input-bg);outline:none;cursor:pointer;
+  transition:border-color 0.2s,box-shadow 0.2s;
+}
+.search-select-input:focus{border-color:var(--navy);box-shadow:0 0 0 3px rgba(77,16,122,0.08);}
+.search-select-input.error{border-color:var(--error);}
+.search-select-arrow{
+  position:absolute;right:0.9rem;top:50%;transform:translateY(-50%);
+  pointer-events:none;color:var(--muted);font-size:0.8rem;
+}
+.dropdown-panel{
+  display:none;position:absolute;top:calc(100% + 4px);left:0;right:0;
+  background:var(--white);border:1.5px solid var(--border);
+  border-radius:var(--radius);z-index:200;
+  box-shadow:0 8px 32px rgba(77,16,122,0.12);
+  max-height:260px;overflow:hidden;
+  flex-direction:column;
+}
+.dropdown-panel.open{display:flex;}
+.dropdown-search{
+  padding:0.6rem 0.9rem;
+  border-bottom:1px solid var(--border);
+  font-size:0.88rem;
+  border-radius:0;border:none;border-bottom:1px solid var(--border);
+}
+.dropdown-search:focus{box-shadow:none;border-color:var(--border);}
+.dropdown-list{overflow-y:auto;flex:1;}
+.dropdown-opt{
+  padding:0.6rem 0.95rem;font-size:0.88rem;cursor:pointer;
+  color:var(--navy);transition:background 0.15s;
+}
+.dropdown-opt:hover{background:var(--cream);}
+.dropdown-opt.selected{background:rgba(77,16,122,0.06);font-weight:500;}
+.dropdown-opt.hidden{display:none;}
+.dropdown-empty{padding:0.8rem 0.95rem;font-size:0.85rem;color:var(--muted);}
+
+/* MULTI SELECT TAGS */
+.multi-select-wrap{position:relative;}
+.multi-tags-box{
+  min-height:48px;padding:0.4rem 0.9rem;
+  border:1.5px solid var(--border);border-radius:var(--radius);
+  display:flex;flex-wrap:wrap;gap:6px;align-items:center;cursor:pointer;
+  background:var(--input-bg);transition:border-color 0.2s,box-shadow 0.2s;
+}
+.multi-tags-box:focus-within,.multi-tags-box.open{
+  border-color:var(--navy);box-shadow:0 0 0 3px rgba(77,16,122,0.08);
+}
+.tag-chip{
+  background:rgba(77,16,122,0.09);color:var(--navy);
+  font-size:0.78rem;padding:3px 10px 3px 10px;border-radius:20px;
+  display:flex;align-items:center;gap:5px;
+}
+.tag-chip button{
+  background:none;border:none;cursor:pointer;color:var(--navy);
+  font-size:0.85rem;line-height:1;padding:0;opacity:0.6;
+}
+.tag-chip button:hover{opacity:1;}
+.multi-placeholder{font-size:0.88rem;color:#aaa;}
+
+/* RADIO / CHECKBOX GROUP */
+.radio-group,.check-group{display:flex;flex-direction:column;gap:0.55rem;}
+.radio-opt,.check-opt{
+  display:flex;align-items:flex-start;gap:0.75rem;
+  padding:0.75rem 1rem;
+  border:1.5px solid var(--border);border-radius:var(--radius);
+  cursor:pointer;transition:border-color 0.2s,background 0.2s;
+  background:var(--input-bg);
+}
+.radio-opt:hover,.check-opt:hover{border-color:var(--navy);background:var(--cream);}
+.radio-opt.selected,.check-opt.selected{
+  border-color:var(--navy);background:rgba(77,16,122,0.05);
+}
+.radio-opt input,.check-opt input{margin-top:3px;accent-color:var(--navy);flex-shrink:0;}
+.radio-opt-label{font-size:0.9rem;}
+.write-in-wrap{
+  margin-top:0.6rem;display:none;
+}
+.write-in-wrap.visible{display:block;}
+.write-in-wrap input{
+  padding:0.55rem 0.85rem;font-size:0.88rem;
+}
+
+/* FIELD ERROR MSG */
+.field-error{
+  font-size:0.78rem;color:var(--error);margin-top:0.35rem;
+  display:none;
+}
+.field-error.show{display:block;}
+
+/* CONDITIONAL SECTION */
+.conditional{display:none;}
+.conditional.visible{display:block;}
+
+/* NAV BUTTONS */
+.form-nav{
+  display:flex;justify-content:space-between;align-items:center;
+  margin-top:3rem;padding-top:1.5rem;
+  border-top:1px solid var(--border);
+}
+.btn{
+  display:inline-flex;align-items:center;gap:6px;
+  padding:0.8rem 2rem;border-radius:var(--radius);
+  font-family:'DM Sans',sans-serif;font-size:0.93rem;font-weight:500;
+  cursor:pointer;transition:all 0.2s;border:2px solid transparent;
+  text-decoration:none;
+}
+.btn-primary{background:var(--navy);color:var(--white);}
+.btn-primary:hover{background:#3a0c5c;}
+.btn-ghost{background:transparent;color:var(--navy);border-color:var(--border);}
+.btn-ghost:hover{border-color:var(--navy);}
+.btn-gold{background:var(--gold);color:var(--white);}
+.btn-gold:hover{background:#b89a4a;}
+
+/* POLICY BOX */
+.policy-box{
+  background:var(--white);border:1px solid var(--border);
+  border-radius:var(--radius);padding:1.2rem 1.4rem;
+  font-size:0.85rem;color:var(--muted);line-height:1.8;
+  max-height:220px;overflow-y:auto;margin-bottom:1rem;
+}
+.policy-box ol{padding-left:1.2rem;}
+.policy-box li{margin-bottom:0.4rem;}
+
+/* AGREE CHECKBOX */
+.agree-row{
+  display:flex;align-items:flex-start;gap:0.75rem;
+  padding:0.85rem 1rem;
+  border:1.5px solid var(--border);border-radius:var(--radius);
+  background:var(--input-bg);cursor:pointer;
+  transition:border-color 0.2s,background 0.2s;
+}
+.agree-row.selected{border-color:var(--navy);background:rgba(77,16,122,0.05);}
+.agree-row input[type=checkbox]{
+  width:16px;height:16px;flex-shrink:0;margin-top:3px;
+  accent-color:var(--navy);cursor:pointer;
+}
+.agree-row-label{font-size:0.9rem;font-weight:500;}
+
+/* SUCCESS SCREEN */
+#success-screen{display:none;text-align:center;padding:5rem 6%;}
+.success-icon{
+  width:72px;height:72px;border-radius:50%;
+  background:rgba(34,160,107,0.1);color:var(--success);
+  font-size:2rem;display:flex;align-items:center;justify-content:center;
+  margin:0 auto 1.5rem;
+}
+#success-screen h2{
+  font-family:'DM Serif Display',serif;font-size:2rem;margin-bottom:0.8rem;
+}
+#success-screen p{color:var(--muted);font-weight:300;max-width:420px;margin:0 auto 2rem;}
+
+/* VERIFICATION SCREEN */
+#verify-screen{display:none;text-align:center;padding:5rem 6%;}
+.verify-icon{
+  width:72px;height:72px;border-radius:50%;
+  background:rgba(77,16,122,0.1);color:var(--navy);
+  font-size:2rem;display:flex;align-items:center;justify-content:center;
+  margin:0 auto 1.5rem;
+}
+#verify-screen h2{font-family:'DM Serif Display',serif;font-size:2rem;margin-bottom:0.8rem;}
+#verify-screen p{color:var(--muted);font-weight:300;max-width:420px;margin:0 auto 1.5rem;}
+
+footer{
+  background:#080f1c;color:rgba(255,255,255,0.45);
+  padding:2.2rem 6%;display:flex;align-items:center;
+  justify-content:space-between;flex-wrap:wrap;gap:1rem;font-size:0.82rem;
+}
+footer .logo{color:rgba(255,255,255,0.7);font-size:1.1rem;}
+footer .logo span{color:var(--gold);}
+footer a{color:rgba(255,255,255,0.45);text-decoration:none;margin-left:1.5rem;transition:color 0.2s;}
+footer a:hover{color:var(--gold);}
+
+@media(max-width:600px){
+  .progress-steps{gap:0;}
+  .step-dot-label{display:none;}
+  .form-nav{flex-direction:column;gap:1rem;}
+  .btn{width:100%;justify-content:center;}
+  .inline-select-row{flex-direction:column;}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="logo">
+    <img src="TalkCollegesIconTransparent.png" style="height:50px;vertical-align:middle;margin-right:6px;" alt="Icon"/>
+    Talk<span>Colleges</span>
+  </a>
+  <input type="checkbox" id="menu-checkbox">
+  <label for="menu-checkbox" class="menu-toggle">&#9776;</label>
+  <ul>
+    <li><a href="ourprocess.html">Our Process</a></li>
+    <li><a href="index.html#why-us">Why Us</a></li>
+    <li><a href="index.html#advisors">Advisors</a></li>
+    <li><a href="index.html#become-an-advisor">Become an Advisor</a></li>
+    <li><a href="book.html" class="nav-cta">Get started</a></li>
+    <li><a href="advisor-apply.html" class="nav-cta">Join Us!</a></li>
+  </ul>
+</nav>
+
+<div class="form-hero">
+  <h1>Join Us!</h1>
+  <h2>Don't Worry, It's mostly checkboxes.</h2>
+  <p>Please answer all of the questions to the best of your knowledge.</p>
+  <p>All personally identifying information is <strong>fully protected and will never be visible to students</strong> — your privacy is our priority.</p>
+</div>
+
+<div class="progress-wrap">
+  <div class="progress-steps" id="progress-steps">
+    <div class="step-dot active" data-step="1" onclick="jumpToStep(1)">
+      <div class="step-dot-circle">1</div>
+      <div class="step-dot-label">Identity</div>
+    </div>
+    <div class="step-line" id="line-1"></div>
+    <div class="step-dot" data-step="2" onclick="jumpToStep(2)">
+      <div class="step-dot-circle">2</div>
+      <div class="step-dot-label">College</div>
+    </div>
+    <div class="step-line" id="line-2"></div>
+    <div class="step-dot" data-step="3" onclick="jumpToStep(3)">
+      <div class="step-dot-circle">3</div>
+      <div class="step-dot-label">Other Schools</div>
+    </div>
+    <div class="step-line" id="line-3"></div>
+    <div class="step-dot" data-step="4" onclick="jumpToStep(4)">
+      <div class="step-dot-circle">4</div>
+      <div class="step-dot-label">Stats</div>
+    </div>
+    <div class="step-line" id="line-4"></div>
+    <div class="step-dot" data-step="5" onclick="jumpToStep(5)">
+      <div class="step-dot-circle">5</div>
+      <div class="step-dot-label">Presentation</div>
+    </div>
+    <div class="step-line" id="line-5"></div>
+    <div class="step-dot" data-step="6" onclick="jumpToStep(6)">
+      <div class="step-dot-circle">6</div>
+      <div class="step-dot-label">Policies</div>
+    </div>
+    <div class="step-line" id="line-6"></div>
+    <div class="step-dot" data-step="7" onclick="jumpToStep(7)">
+      <div class="step-dot-circle">7</div>
+      <div class="step-dot-label">Review</div>
+    </div>
+  </div>
+</div>
+
+<div class="form-wrap">
+
+  <!-- STEP 1: IDENTITY -->
+  <div class="form-section active" id="step-1">
+    <div class="section-label">Step 1 of 7</div>
+    <h2 class="section-heading">Let's start with you</h2>
+    <p class="section-desc">Only your selected name will be visible to your students; all other responses in this section will remain private.</p>
+
+    <div class="field">
+      <label>What name do you wish to be displayed on your advisor profile?<span class="req">*</span>
+        <span class="hint">Reasonable nicknames are acceptable in lieu of your real name.</span>
+      </label>
+      <input type="text" id="display-name" autocomplete="off"/>
+      <div class="field-error" id="err-display-name">Please enter your display name.</div>
+    </div>
+
+    <div class="field">
+      <label>PERSONAL Email <span class="req">*</span></label>
+      <input type="email" id="personal-email" autocomplete="email"/>
+      <div class="field-error" id="err-personal-email"></div>
+    </div>
+
+    <div class="field">
+      <label>Confirm PERSONAL Email <span class="req">*</span></label>
+      <input type="email" id="personal-email-confirm" autocomplete="off"/>
+      <div class="field-error" id="err-personal-email-confirm">Emails do not match.</div>
+    </div>
+
+    <div class="field">
+      <label>COLLEGE Email <span class="req">*</span>
+        <span class="hint">Must end with .edu — used to verify your enrollment.</span>
+      </label>
+      <input type="email" id="college-email" autocomplete="off"/>
+      <div class="field-error" id="err-college-email">Must be a valid .edu email address.</div>
+    </div>
+
+    <div class="field">
+      <label>Confirm COLLEGE Email <span class="req">*</span></label>
+      <input type="email" id="college-email-confirm" autocomplete="off"/>
+      <div class="field-error" id="err-college-email-confirm">Emails do not match.</div>
+    </div>
+
+    <div class="form-nav">
+      <span></span>
+      <button class="btn btn-primary" onclick="nextStep(1)">Continue →</button>
+    </div>
+  </div>
+
+  <!-- STEP 2: COLLEGE INFO + APPLICATION -->
+  <div class="form-section" id="step-2">
+    <div class="section-label">Step 2 of 7</div>
+    <h2 class="section-heading">Your college &amp; application</h2>
+    <p class="section-desc">Tell us about where you're studying and how you applied.</p>
+
+    <div class="field">
+      <label>College / University <span class="req">*</span></label>
+      <div class="search-select-wrap" id="school-wrap">
+        <input class="search-select-input" id="school-display" placeholder="Search for your school&hellip;" readonly onclick="toggleDropdown('school')" autocomplete="off"/>
+        <span class="search-select-arrow">&#9662;</span>
+        <div class="dropdown-panel" id="school-dropdown">
+          <input class="dropdown-search" id="school-search" placeholder="Type to search&hellip;" oninput="filterDropdown('school')" autocomplete="off"/>
+          <div class="dropdown-list" id="school-list"></div>
+        </div>
+      </div>
+      <input type="hidden" id="school-value"/>
+      <div class="field-error" id="err-school">Please select your college or university.</div>
+    </div>
+
+    <div class="field">
+      <label>Graduating Class <span class="req">*</span></label>
+      <div class="radio-group" id="grad-class-group">
+        <label class="radio-opt" onclick="selectRadio('grad-class','2027')">
+          <input type="radio" name="grad-class" value="2027"/> <span class="radio-opt-label">Class of 2027</span>
+        </label>
+        <label class="radio-opt" onclick="selectRadio('grad-class','2028')">
+          <input type="radio" name="grad-class" value="2028"/> <span class="radio-opt-label">Class of 2028</span>
+        </label>
+        <label class="radio-opt" onclick="selectRadio('grad-class','2029')">
+          <input type="radio" name="grad-class" value="2029"/> <span class="radio-opt-label">Class of 2029</span>
+        </label>
+        <label class="radio-opt" onclick="selectRadio('grad-class','2030')">
+          <input type="radio" name="grad-class" value="2030"/> <span class="radio-opt-label">Class of 2030</span>
+        </label>
+        <label class="radio-opt" onclick="selectRadio('grad-class','other')">
+          <input type="radio" name="grad-class" value="other"/> <span class="radio-opt-label">Other</span>
+        </label>
+        <div class="write-in-wrap" id="grad-class-other-wrap">
+          <input type="text" id="grad-class-other" placeholder="e.g. Class of 2031"/>
+        </div>
+      </div>
+      <div class="field-error" id="err-grad-class">Please select your graduating class.</div>
+    </div>
+
+    <div class="field">
+      <label>College within the University <span class="req">*</span>
+        <span class="hint">e.g. "College of Arts &amp; Sciences" &mdash; please type N/A if there is only one undergraduate college.</span>
+      </label>
+      <input type="text" id="college-within" placeholder="N/A"/>
+      <div class="field-error" id="err-college-within">Please type N/A if there is only one undergraduate college.</div>
+    </div>
+
+    <div class="field">
+      <label>Major(s) <span class="req">*</span></label>
+      <input type="text" id="major" placeholder="e.g. Biology, Computer Science"/>
+      <div class="field-error" id="err-major">Please enter your major(s).</div>
+    </div>
+
+    <div class="field">
+      <label>Action Plan Used <span class="req">*</span>
+        <span class="hint">Which application round did you use to apply to this college?</span>
+      </label>
+      <div class="radio-group">
+        <label class="radio-opt" onclick="selectRadio('action-plan','Early Decision 1')">
+          <input type="radio" name="action-plan" value="Early Decision 1"/> <span class="radio-opt-label">Early Decision 1 (ED1)</span>
+        </label>
+        <label class="radio-opt" onclick="selectRadio('action-plan','Early Decision 2')">
+          <input type="radio" name="action-plan" value="Early Decision 2"/> <span class="radio-opt-label">Early Decision 2 (ED2)</span>
+        </label>
+        <label class="radio-opt" onclick="selectRadio('action-plan','Early Action 1/REA')">
+          <input type="radio" name="action-plan" value="Early Action 1/REA"/> <span class="radio-opt-label">Early Action 1 / REA</span>
+        </label>
+        <label class="radio-opt" onclick="selectRadio('action-plan','Early Action 2')">
+          <input type="radio" name="action-plan" value="Early Action 2"/> <span class="radio-opt-label">Early Action 2</span>
+        </label>
+        <label class="radio-opt" onclick="selectRadio('action-plan','Regular Decision')">
+          <input type="radio" name="action-plan" value="Regular Decision"/> <span class="radio-opt-label">Regular Decision</span>
+        </label>
+        <label class="radio-opt" onclick="selectRadio('action-plan','other-plan')">
+          <input type="radio" name="action-plan" value="other-plan"/> <span class="radio-opt-label">Other</span>
+        </label>
+        <div class="write-in-wrap" id="action-plan-other-wrap">
+          <input type="text" id="action-plan-other" placeholder="Please describe&hellip;"/>
+        </div>
+      </div>
+      <div class="field-error" id="err-action-plan">Please select your application plan.</div>
+    </div>
+
+    <div class="field">
+      <label>Was your acceptance a conditioned acceptance? <span class="req">*</span>
+        <span class="hint">e.g. required to start abroad, spring semester start, etc.</span>
+      </label>
+      <div class="radio-group">
+        <label class="radio-opt" onclick="selectRadio('conditioned','No')">
+          <input type="radio" name="conditioned" value="No"/> <span class="radio-opt-label">No</span>
+        </label>
+        <label class="radio-opt" onclick="selectRadio('conditioned','other-conditioned')">
+          <input type="radio" name="conditioned" value="other-conditioned"/> <span class="radio-opt-label">Yes &mdash; please explain</span>
+        </label>
+        <div class="write-in-wrap" id="conditioned-other-wrap">
+          <textarea id="conditioned-other" placeholder="Please describe the condition of your acceptance&hellip;"></textarea>
+        </div>
+      </div>
+      <div class="field-error" id="err-conditioned">Please select an option.</div>
+    </div>
+
+    <div class="field">
+      <label>Were you accepted to any special programs? <span class="req">*</span>
+        <span class="hint">e.g. BS/MD, BA/JD, Honors, etc.</span>
+      </label>
+      <div class="radio-group">
+        <label class="radio-opt" onclick="selectRadio('special-program','No')">
+          <input type="radio" name="special-program" value="No"/> <span class="radio-opt-label">No</span>
+        </label>
+        <label class="radio-opt" onclick="selectRadio('special-program','other-special')">
+          <input type="radio" name="special-program" value="other-special"/> <span class="radio-opt-label">Yes &mdash; please explain</span>
+        </label>
+        <div class="write-in-wrap" id="special-program-other-wrap">
+          <textarea id="special-program-other" placeholder="Please describe the program(s)&hellip;"></textarea>
+        </div>
+      </div>
+      <div class="field-error" id="err-special-program">Please select an option.</div>
+    </div>
+
+    <div class="field">
+      <label>Are you a Legacy Student? <span class="req">*</span></label>
+      <div class="radio-group">
+        <label class="radio-opt" onclick="selectRadio('legacy','Yes')">
+          <input type="radio" name="legacy" value="Yes"/> <span class="radio-opt-label">Yes</span>
+        </label>
+        <label class="radio-opt" onclick="selectRadio('legacy','No')">
+          <input type="radio" name="legacy" value="No"/> <span class="radio-opt-label">No</span>
+        </label>
+              </div>
+      <div class="field-error" id="err-legacy">Please select an option.</div>
+    </div>
+
+    <div class="field">
+      <label>Anything else about your acceptance you'd like to share?
+        <span class="hint">Optional &mdash; share anything significant not covered above.</span>
+      </label>
+      <textarea id="acceptance-extra" placeholder="Optional&hellip;"></textarea>
+    </div>
+
+    <div class="form-nav">
+      <button class="btn btn-ghost" onclick="prevStep(2)">&larr; Back</button>
+      <button class="btn btn-primary" onclick="nextStep(2)">Continue &rarr;</button>
+    </div>
+  </div>
+
+  <!-- STEP 3: OTHER ACCEPTANCES -->
+  <div class="form-section" id="step-3">
+    <div class="section-label">Step 3 of 7</div>
+    <h2 class="section-heading">Other acceptances</h2>
+    <p class="section-desc">Let us know if you'd like to list other schools you were admitted to on your profile.</p>
+
+    <div class="field">
+      <label>Do you wish to list other universities you were accepted to but did not attend? <span class="req">*</span></label>
+      <div class="radio-group">
+        <label class="radio-opt" onclick="selectRadio('other-accepts','Yes'); showOtherAccepts(true)">
+          <input type="radio" name="other-accepts" value="Yes"/> <span class="radio-opt-label">Yes</span>
+        </label>
+        <label class="radio-opt" onclick="selectRadio('other-accepts','No'); showOtherAccepts(false)">
+          <input type="radio" name="other-accepts" value="No"/> <span class="radio-opt-label">No</span>
+        </label>
+      </div>
+      <div class="field-error" id="err-other-accepts">Please select an option.</div>
+    </div>
+
+    <div class="conditional" id="other-accepts-section">
+      <div class="field">
+        <label>List the schools you'd like on your profile <span class="req">*</span>
+          <span class="hint">You may select multiple schools.</span>
+        </label>
+        <div class="multi-select-wrap" id="other-schools-wrap">
+          <div class="multi-tags-box" id="other-schools-box" onclick="toggleMultiDropdown()">
+            <span class="multi-placeholder" id="other-schools-placeholder">Search and select schools…</span>
+          </div>
+          <div class="dropdown-panel" id="other-schools-dropdown">
+            <input class="dropdown-search" id="other-schools-search" placeholder="Type to search…" oninput="filterMultiDropdown()" autocomplete="off"/>
+            <div class="dropdown-list" id="other-schools-list"></div>
+          </div>
+        </div>
+        <div class="field-error" id="err-other-schools">Please select at least one school.</div>
+      </div>
+
+      <div class="field">
+        <label>Anything else about your alternative acceptances you'd like to share?
+          <span class="hint">Optional.</span>
+        </label>
+        <input type="text" id="alt-accept-extra" placeholder="Optional…"/>
+      </div>
+    </div>
+
+    <div class="form-nav">
+      <button class="btn btn-ghost" onclick="prevStep(3)">← Back</button>
+      <button class="btn btn-primary" onclick="nextStep(3)">Continue →</button>
+    </div>
+  </div>
+
+  <!-- STEP 4: PRELIMINARY STATS -->
+  <div class="form-section" id="step-4">
+    <div class="section-label">Step 4 of 7</div>
+    <h2 class="section-heading">Preliminary Stats</h2>
+    <p class="section-desc">Tell us a bit about your academic experience.</p>
+
+    <!-- Test Type -->
+    <div class="field">
+      <label>Did you take the SAT, ACT, or were you test optional? <span class="req">*</span></label>
+      <div class="radio-group">
+        <label class="radio-opt" onclick="selectRadio('test-type','SAT'); showTestSection('SAT')">
+          <input type="radio" name="test-type" value="SAT"/> <span class="radio-opt-label">SAT</span>
+        </label>
+        <label class="radio-opt" onclick="selectRadio('test-type','ACT'); showTestSection('ACT')">
+          <input type="radio" name="test-type" value="ACT"/> <span class="radio-opt-label">ACT</span>
+        </label>
+        <label class="radio-opt" onclick="selectRadio('test-type','Test Optional'); showTestSection('none')">
+          <input type="radio" name="test-type" value="Test Optional"/> <span class="radio-opt-label">Test Optional</span>
+        </label>
+      </div>
+      <div class="field-error" id="err-test-type">Please select an option.</div>
+    </div>
+
+    <!-- SAT Score -->
+    <div class="conditional" id="sat-section">
+      <div class="field">
+        <label>SAT Score <span class="req">*</span>
+          <span class="hint">Select the hundreds and tens digits to form your total score (e.g. 14 + 30 = 1430).</span>
+        </label>
+        <div class="inline-select-row">
+          <div class="select-wrap">
+            <select id="sat-hundreds" onchange="saveForm()">
+              <option value="">Hundreds…</option>
+              <option>10</option><option>11</option><option>12</option>
+              <option>13</option><option>14</option><option>15</option><option>16</option>
+            </select>
+          </div>
+          <div class="inline-select-sep" style="padding-top:0.85rem;color:var(--muted);font-size:0.9rem;flex-shrink:0;">+</div>
+          <div class="select-wrap">
+            <select id="sat-tens" onchange="saveForm()">
+              <option value="">Tens…</option>
+              <option>00</option><option>10</option><option>20</option><option>30</option>
+              <option>40</option><option>50</option><option>60</option><option>70</option>
+              <option>80</option><option>90</option>
+            </select>
+          </div>
+          <div class="inline-select-sep" style="padding-top:0.85rem;color:var(--muted);font-size:0.9rem;flex-shrink:0;">= <span id="sat-preview" style="font-weight:600;color:var(--navy);">—</span></div>
+        </div>
+        <div class="field-error" id="err-sat">Please select both parts of your SAT score.</div>
+      </div>
+    </div>
+
+    <!-- ACT Score -->
+    <div class="conditional" id="act-section">
+      <div class="field">
+        <label>ACT Score <span class="req">*</span></label>
+        <div class="select-wrap" style="max-width:200px;">
+          <select id="act-score" onchange="saveForm()">
+            <option value="">Select score…</option>
+            <option>1</option><option>2</option><option>3</option><option>4</option><option>5</option>
+            <option>6</option><option>7</option><option>8</option><option>9</option><option>10</option>
+            <option>11</option><option>12</option><option>13</option><option>14</option><option>15</option>
+            <option>16</option><option>17</option><option>18</option><option>19</option><option>20</option>
+            <option>21</option><option>22</option><option>23</option><option>24</option><option>25</option>
+            <option>26</option><option>27</option><option>28</option><option>29</option><option>30</option>
+            <option>31</option><option>32</option><option>33</option><option>34</option><option>35</option>
+            <option>36</option>
+          </select>
+        </div>
+        <div class="field-error" id="err-act">Please select your ACT score.</div>
+      </div>
+    </div>
+<!-- AP Courses -->
+    <div class="field">
+      <label>How many AP courses did you take? <span class="req">*</span>
+        <span class="hint">Include all AP courses taken throughout high school.</span>
+      </label>
+      <div class="select-wrap" style="max-width:200px;">
+        <select id="ap-count" onchange="saveForm()">
+          <option value="">Select…</option>
+          <option>0</option><option>1</option><option>2</option><option>3</option><option>4</option>
+          <option>5</option><option>6</option><option>7</option><option>8</option><option>9</option>
+          <option>10</option><option>11</option><option>12</option><option>13</option><option>14</option>
+          <option>15</option><option>16</option><option>17</option><option>18</option><option>19</option>
+          <option>20</option>
+        </select>
+      </div>
+      <div class="field-error" id="err-ap-count">Please select a value.</div>
+    </div>
+
+    <!-- IB Courses -->
+    <div class="field">
+      <label>How many IB courses did you take? <span class="req">*</span>
+        <span class="hint">Include all IB courses taken throughout high school.</span>
+      </label>
+      <div class="select-wrap" style="max-width:200px;">
+        <select id="ib-count" onchange="saveForm()">
+          <option value="">Select…</option>
+          <option>0</option><option>1</option><option>2</option><option>3</option><option>4</option>
+          <option>5</option><option>6</option><option>7</option><option>8</option><option>9</option>
+          <option>10</option><option>11</option><option>12</option><option>13</option><option>14</option>
+          <option>15</option><option>16</option><option>17</option><option>18</option><option>19</option>
+          <option>20</option>
+        </select>
+      </div>
+      <div class="field-error" id="err-ib-count">Please select a value.</div>
+    </div>
+
+    <!-- GPA -->
+    <div class="field">
+      <label>Unweighted GPA <span class="req">*</span>
+        <span class="hint">Format: #.##</span>
+      </label>
+      <input type="text" id="uwgpa" placeholder="e.g. 3.85" maxlength="4" style="max-width:160px;"/>
+      <div class="field-error" id="err-uwgpa">Please enter a valid GPA (e.g. 3.85).</div>
+    </div>
+
+    <div class="field">
+      <label>Weighted GPA <span class="req">*</span>
+        <span class="hint">Format: #.## (e.g. 4.52</span>
+      </label>
+      <input type="text" id="wgpa" placeholder="e.g. 4.52" maxlength="4" style="max-width:160px;"/>
+      <div class="field-error" id="err-wgpa">Please enter a valid GPA (e.g. 4.52).</div>
+    </div>
+
+    <div class="field">
+      <label>What GPA scale did your high school use? <span class="req">*</span>
+      </label>
+      <input type="text" id="gpa-scale">
+      <div class="field-error" id="err-gpa-scale">Please enter your high school's GPA scale.</div>
+    </div>
+
+    <!-- Sports -->
+    <div class="field">
+      <label>Were you a sports student? <span class="req">*</span></label>
+      <div class="radio-group">
+        <label class="radio-opt" onclick="selectRadio('sports','recruited')">
+          <input type="radio" name="sports" value="recruited"/>
+          <span class="radio-opt-label">Yes — sports was a significant factor in my application / I was a recruited athlete</span>
+        </label>
+        <label class="radio-opt" onclick="selectRadio('sports','ncaa-significant')">
+          <input type="radio" name="sports" value="ncaa-significant"/>
+          <span class="radio-opt-label">Yes — I had a NCAA account, and sports is somewhat of a significant factor in my application</span>
+        </label>
+        <label class="radio-opt" onclick="selectRadio('sports','ncaa-minor')">
+          <input type="radio" name="sports" value="ncaa-minor"/>
+          <span class="radio-opt-label">I had a NCAA account, but sports was not a major factor in my application</span>
+        </label>
+        <label class="radio-opt" onclick="selectRadio('sports','played-minor')">
+          <input type="radio" name="sports" value="played-minor"/>
+          <span class="radio-opt-label">I played sports in high school, but it was not a major factor in my application</span>
+        </label>
+        <label class="radio-opt" onclick="selectRadio('sports','no-sports')">
+          <input type="radio" name="sports" value="no-sports"/>
+          <span class="radio-opt-label">I did not play sports</span>
+        </label>
+        <label class="radio-opt" onclick="selectRadio('sports','sports-other')">
+          <input type="radio" name="sports" value="sports-other"/>
+          <span class="radio-opt-label">Other</span>
+        </label>
+        <div class="write-in-wrap" id="sports-other-wrap">
+          <input type="text" id="sports-other" placeholder="Please describe…"/>
+        </div>
+      </div>
+      <div class="field-error" id="err-sports">Please select an option.</div>
+    </div>
+
+    <!-- Questbridge -->
+    <div class="field">
+      <label>Did you apply via QuestBridge? <span class="req">*</span></label>
+      <div class="radio-group">
+        <label class="radio-opt" onclick="selectRadio('questbridge','Yes')">
+          <input type="radio" name="questbridge" value="Yes"/> <span class="radio-opt-label">Yes</span>
+        </label>
+        <label class="radio-opt" onclick="selectRadio('questbridge','No')">
+          <input type="radio" name="questbridge" value="No"/> <span class="radio-opt-label">No</span>
+        </label>
+      </div>
+      <div class="field-error" id="err-questbridge">Please select an option.</div>
+    </div>
+
+    <!-- Anything else -->
+    <div class="field">
+      <label>Do you wish to share anything else that you think is significant and we should know?
+        <span class="hint">Optional — short answer.</span>
+      </label>
+      <input type="text" id="stats-extra" placeholder="Optional…"/>
+    </div>
+
+    <div class="form-nav">
+      <button class="btn btn-ghost" onclick="prevStep(4)">← Back</button>
+      <button class="btn btn-primary" onclick="nextStep(4)">Continue →</button>
+    </div>
+  </div>
+
+  <!-- STEP 5: SELF-PRESENTATION -->
+  <div class="form-section" id="step-5">
+    <div class="section-label">Step 5 of 7</div>
+    <h2 class="section-heading">Self-Presentation</h2>
+    <p class="section-desc">We want to make sure you're comfortable presenting your story to students and their families.</p>
+
+    <div class="field">
+      <label>Are you confident enough to present and speak openly about your college application journey for 60 minutes to students and their parents? <span class="req">*</span></label>
+      <div class="radio-group">
+        <label class="radio-opt" onclick="selectRadio('presentation-confidence','Yes')">
+          <input type="radio" name="presentation-confidence" value="Yes"/> <span class="radio-opt-label">Yes</span>
+        </label>
+        <label class="radio-opt" onclick="selectRadio('presentation-confidence','No')">
+          <input type="radio" name="presentation-confidence" value="No"/> <span class="radio-opt-label">No</span>
+        </label>
+        <label class="radio-opt" onclick="selectRadio('presentation-confidence','Maybe')">
+          <input type="radio" name="presentation-confidence" value="Maybe"/> <span class="radio-opt-label">Maybe</span>
+        </label>
+        <label class="radio-opt" onclick="selectRadio('presentation-confidence','presentation-other')">
+          <input type="radio" name="presentation-confidence" value="presentation-other"/> <span class="radio-opt-label">Other</span>
+        </label>
+        <div class="write-in-wrap" id="presentation-other-wrap">
+          <input type="text" id="presentation-other" placeholder="Please explain…"/>
+        </div>
+      </div>
+      <div class="field-error" id="err-presentation-confidence">Please select an option.</div>
+    </div>
+
+    <div class="form-nav">
+      <button class="btn btn-ghost" onclick="prevStep(5)">← Back</button>
+      <button class="btn btn-primary" onclick="nextStep(5)">Continue →</button>
+    </div>
+  </div>
+
+  <!-- STEP 6: POLICIES -->
+  <div class="form-section" id="step-6">
+    <div class="section-label">Step 6 of 7</div>
+    <h2 class="section-heading">Policies</h2>
+    <p class="section-desc">Please take a moment to carefully review the following terms and conditions before submitting your application.</p>
+
+    <!-- General Policy -->
+    <div class="field">
+      <label style="margin-bottom:0.75rem;">By submitting this application, I understand that: <span class="req">*</span></label>
+      <div class="policy-box">
+        <ol>
+          <li>All personally identifying information is fully protected and will never be visible to students.</li>
+          <li>Students and parents may request to reference parts of your Common App during sessions, and you agree to share relevant materials with them.</li>
+          <li>All information entered is true and correct to the best of your knowledge.</li>
+          <li>TalkColleges reserves the right to approve, deny, or remove any advisor from the platform at its discretion.</li>
+        </ol>
+      </div>
+      <label class="agree-row" onclick="toggleAgree('agree-policy')">
+        <input type="checkbox" id="agree-policy" onchange="saveForm()"/>
+        <span class="agree-row-label">I have read and agree to the policy</span>
+      </label>
+      <div class="field-error" id="err-agree-policy">You must agree to the policy to continue.</div>
+    </div>
+
+    <!-- Payment Policy -->
+    <div class="field">
+      <label style="margin-bottom:0.75rem;">Payment Policy <span class="req">*</span></label>
+      <div class="policy-box">
+        <ol>
+          <li> Advisors can <strong>set their own rates</strong>, which will be taken into careful consideration. TalkColleges retains final authority over published rates, though in practice we make every effort to honor the advisor's preference. All advisors will be informed of their confirmed rate before their profile goes live, and will receive advance notice of any adjustments. The minimum and maximum rate is $50 and $150 per session, respectively.</li>
+          <li>The standard revenue split is 70% to the advisor and 30% to TalkColleges. This split is subject to adjustment based on advisor performance over time.</li>
+          <li>For the first two sessions, new advisors will receive 50% of their standard rate as part of an introductory period. Full rates will take effect beginning with the third session.</li>
+          <li>In the event that an advisor is absent during a scheduled session without prior notice, a temporary split of 50% to the advisor and 50% to TalkColleges will be applied to only the next session.</li>
+          <li>Payment will be disbursed upon the completion of each session.</li>
+          <li>Earnings are not guaranteed. Session availability and income depend on student demand, your availability, and other factors outside of TalkColleges' control. TalkColleges makes no representations or guarantees regarding the amount of income you may earn as an advisor.</li>
+        </ol>
+      </div>
+      <label class="agree-row" onclick="toggleAgree('agree-payment')">
+        <input type="checkbox" id="agree-payment" onchange="saveForm()"/>
+        <span class="agree-row-label">I have read and agree to the payment policy</span>
+      </label>
+      <div class="field-error" id="err-agree-payment">You must agree to the payment policy to continue.</div>
+    </div>
+
+    <div class="form-nav">
+      <button class="btn btn-ghost" onclick="prevStep(6)">← Back</button>
+      <button class="btn btn-primary" onclick="nextStep(6)">Continue →</button>
+    </div>
+  </div>
+
+  <!-- STEP 7: REVIEW -->
+  <div class="form-section" id="step-7">
+    <div class="section-label">Step 7 of 7</div>
+    <h2 class="section-heading">Review &amp; Submit</h2>
+    <p class="section-desc">Check your information before submitting. After you submit, we'll send a verification code to your personal and .edu email.</p>
+
+    <div id="review-summary" style="background:var(--white);border:1px solid var(--border);border-radius:12px;overflow:hidden;margin-bottom:2rem;"></div>
+
+    <div class="form-nav">
+      <button class="btn btn-ghost" onclick="prevStep(7)">← Back</button>
+      <button class="btn btn-gold" onclick="submitForm()"> Verify Your Email & Submit Application ✓</button>
+    </div>
+  </div>
+
+</div><!-- /form-wrap -->
+
+<!-- VERIFY SCREEN -->
+<div id="verify-screen">
+  <div class="verify-icon">✉</div>
+  <h2>Check your school email</h2>
+  <p>We've sent a verification link to <strong id="verify-edu-display"></strong>. Click the link to confirm your application.</p>
+  <p style="font-size:0.82rem;color:var(--muted);margin-top:1rem;">Didn't get it? Check your spam folder, or <a href="#" onclick="resendVerification()" style="color:var(--navy);">resend the email</a>.</p>
+</div>
+
+<!-- SUCCESS SCREEN -->
+<div id="success-screen">
+  <div class="success-icon">✓</div>
+  <h2>Application Received!</h2>
+  <p>Thanks for applying to be a TalkColleges advisor. We'll review your application and be in touch via your personal email shortly.</p>
+  <a href="index.html" class="btn btn-primary" style="margin:0 auto;display:inline-flex;">Back to home</a>
+</div>
+
+<footer>
+  <a href="index.html" class="logo">Talk<span>Colleges</span></a>
+  <div>
+    <a href="ourprocess.html">Our Process</a>
+    <a href="index.html#why-us">Why Us</a>
+    <a href="index.html#advisors">Advisors</a>
+    <a href="index.html#become-an-advisor">Become an Advisor</a>
+    <a href="privacypolicy.html">Privacy Policy</a>
+    <a href="mailto:support@talkcolleges.com">Contact</a>
+  </div>
+  <span>© 2026 TalkColleges. All rights reserved.</span>
+</footer>
+
+<script>
+const SCHOOLS = ["Princeton University","Massachusetts Institute of Technology","Harvard University","Stanford University","Yale University","California Institute of Technology","Duke University","Johns Hopkins University","Northwestern University","University of Pennsylvania","Cornell University","University of Chicago","Brown University","Columbia University","Dartmouth College","University of California, Los Angeles","University of California, Berkeley","Rice University","University of Notre Dame","Vanderbilt University","Carnegie Mellon University","University of Michigan","Washington University in St. Louis","Emory University","Georgetown University","University of Virginia","University of North Carolina at Chapel Hill","University of Southern California","University of California, San Diego","New York University","University of Florida","University of Texas at Austin","Georgia Institute of Technology","University of California, Davis","University of California, Irvine","University of Illinois Urbana-Champaign","Boston College","Tufts University","University of California, Santa Barbara","University of Wisconsin–Madison","Boston University","University of Maryland, College Park","Rutgers University–New Brunswick","Ohio State University","Purdue University","University of Washington","Case Western Reserve University","Lehigh University","Texas A&M University","University of Georgia","Florida State University","Virginia Tech","Wake Forest University","Northeastern University","University of Rochester","William & Mary","Brandeis University","University of Minnesota Twin Cities","North Carolina State University","Pepperdine University","Rensselaer Polytechnic Institute","University of Miami","Stony Brook University","University of Pittsburgh","Clemson University","Syracuse University","Michigan State University","Indiana University Bloomington","Binghamton University","University of Connecticut","University of Delaware","Auburn University","University of Iowa","University of Massachusetts Amherst","Colorado School of Mines"].sort();
+
+let currentStep = 1;
+const totalSteps = 7;
+let selectedOtherSchools = [];
+
+/* ── SCHOOL DROPDOWN (single select) ── */
+function buildSchoolDropdown(){
+  const list = document.getElementById('school-list');
+  list.innerHTML = '';
+  SCHOOLS.forEach(s => {
+    const d = document.createElement('div');
+    d.className = 'dropdown-opt';
+    d.textContent = s;
+    d.dataset.value = s;
+    d.onclick = () => selectSchool(s);
+    list.appendChild(d);
+  });
+}
+
+function toggleDropdown(id){
+  const panel = document.getElementById(id+'-dropdown');
+  const isOpen = panel.classList.contains('open');
+  closeAllDropdowns();
+  if(!isOpen){ panel.classList.add('open'); document.getElementById(id+'-search').focus(); }
+}
+
+function closeAllDropdowns(){
+  document.querySelectorAll('.dropdown-panel').forEach(p => p.classList.remove('open'));
+}
+
+function filterDropdown(id){
+  const q = document.getElementById(id+'-search').value.toLowerCase();
+  document.querySelectorAll('#'+id+'-list .dropdown-opt').forEach(opt => {
+    opt.classList.toggle('hidden', !opt.textContent.toLowerCase().includes(q));
+  });
+}
+
+function selectSchool(val){
+  document.getElementById('school-display').value = val;
+  document.getElementById('school-value').value = val;
+  document.getElementById('school-display').classList.remove('error');
+  closeAllDropdowns();
+  saveForm();
+}
+
+/* ── OTHER SCHOOLS MULTI-SELECT ── */
+function buildOtherSchoolsDropdown(){
+  const list = document.getElementById('other-schools-list');
+  list.innerHTML = '';
+  SCHOOLS.forEach(s => {
+    const d = document.createElement('div');
+    d.className = 'dropdown-opt';
+    d.textContent = s;
+    d.dataset.value = s;
+    d.onclick = () => toggleOtherSchool(s, d);
+    list.appendChild(d);
+  });
+}
+
+function toggleMultiDropdown(){
+  const panel = document.getElementById('other-schools-dropdown');
+  const isOpen = panel.classList.contains('open');
+  closeAllDropdowns();
+  if(!isOpen){ panel.classList.add('open'); document.getElementById('other-schools-search').focus(); }
+}
+
+function filterMultiDropdown(){
+  const q = document.getElementById('other-schools-search').value.toLowerCase();
+  document.querySelectorAll('#other-schools-list .dropdown-opt').forEach(opt => {
+    opt.classList.toggle('hidden', !opt.dataset.value.toLowerCase().includes(q));
+  });
+}
+
+function toggleOtherSchool(val, el){
+  const idx = selectedOtherSchools.indexOf(val);
+  if(idx > -1){
+    selectedOtherSchools.splice(idx,1);
+    el.classList.remove('selected');
+  } else {
+    selectedOtherSchools.push(val);
+    el.classList.add('selected');
+  }
+  renderOtherSchoolTags();
+  saveForm();
+}
+
+function renderOtherSchoolTags(){
+  const box = document.getElementById('other-schools-box');
+  const placeholder = document.getElementById('other-schools-placeholder');
+  const existing = box.querySelectorAll('.tag-chip');
+  existing.forEach(e => e.remove());
+  placeholder.style.display = selectedOtherSchools.length ? 'none' : 'inline';
+  selectedOtherSchools.forEach(s => {
+    const chip = document.createElement('div');
+    chip.className = 'tag-chip';
+    chip.innerHTML = s + '<button onclick="removeOtherSchool(\''+s+'\', event)" aria-label="Remove">×</button>';
+    box.insertBefore(chip, placeholder);
+  });
+}
+
+function removeOtherSchool(val, e){
+  e.stopPropagation();
+  selectedOtherSchools = selectedOtherSchools.filter(s => s !== val);
+  document.querySelectorAll('#other-schools-list .dropdown-opt').forEach(opt => {
+    if(opt.dataset.value === val) opt.classList.remove('selected');
+  });
+  renderOtherSchoolTags();
+  saveForm();
+}
+
+/* ── RADIO SELECT ── */
+function selectRadio(name, value){
+  document.querySelectorAll('input[name="'+name+'"]').forEach(inp => {
+    inp.parentElement.classList.remove('selected');
+  });
+  const chosen = document.querySelector('input[name="'+name+'"][value="'+value+'"]');
+  if(chosen){ chosen.checked = true; chosen.parentElement.classList.add('selected'); }
+  clearErr('err-'+name);
+
+  const writeInMap = {
+    'grad-class':               { triggerVal: 'other',               wrapId: 'grad-class-other-wrap' },
+    'action-plan':              { triggerVal: 'other-plan',          wrapId: 'action-plan-other-wrap' },
+    'conditioned':              { triggerVal: 'other-conditioned',   wrapId: 'conditioned-other-wrap' },
+    'special-program':          { triggerVal: 'other-special',       wrapId: 'special-program-other-wrap' },
+    'sports':                   { triggerVal: 'sports-other',        wrapId: 'sports-other-wrap' },
+    'presentation-confidence':  { triggerVal: 'presentation-other',  wrapId: 'presentation-other-wrap' },
+  };
+  if(writeInMap[name]){
+    const { triggerVal, wrapId } = writeInMap[name];
+    const wrap = document.getElementById(wrapId);
+    if(wrap) wrap.classList.toggle('visible', value === triggerVal);
+  }
+  saveForm();
+}
+
+function showOtherAccepts(show){
+  document.getElementById('other-accepts-section').classList.toggle('visible', show);
+}
+
+function showTestSection(type){
+  document.getElementById('sat-section').classList.toggle('visible', type === 'SAT');
+  document.getElementById('act-section').classList.toggle('visible', type === 'ACT');
+}
+
+/* ── SAT SCORE PREVIEW ── */
+document.addEventListener('change', e => {
+  if(e.target.id === 'sat-hundreds' || e.target.id === 'sat-tens'){
+    const h = document.getElementById('sat-hundreds').value;
+    const tens = document.getElementById('sat-tens');
+    if(h === '16'){
+      tens.value = '00';
+      tens.disabled = true;
+    } else {
+      tens.disabled = false;
+    }
+    const t = tens.value;
+    document.getElementById('sat-preview').textContent = (h && t) ? (h + t) : '—';
+  }
+});
+/* ── AGREE CHECKBOX ── */
+function toggleAgree(id){
+  const cb = document.getElementById(id);
+  cb.checked = !cb.checked;
+  cb.closest('.agree-row').classList.toggle('selected', cb.checked);
+  clearErr('err-' + id);
+  saveForm();
+}
+
+/* ── VALIDATION ── */
+function showErr(id, msg){
+  const el = document.getElementById(id);
+  if(el){ el.textContent = msg || el.textContent; el.classList.add('show'); }
+}
+function clearErr(id){
+  const el = document.getElementById(id);
+  if(el) el.classList.remove('show');
+}
+function markInputErr(id){ const el = document.getElementById(id); if(el) el.classList.add('error'); }
+function clearInputErr(id){ const el = document.getElementById(id); if(el) el.classList.remove('error'); }
+
+const gpaRe = /^\d\.\d\d$/;
+
+function validateStep(step){
+  let ok = true;
+
+  if(step === 1){
+    const dn = document.getElementById('display-name').value.trim();
+    const pe = document.getElementById('personal-email').value.trim();
+    const pec = document.getElementById('personal-email-confirm').value.trim();
+    const ce = document.getElementById('college-email').value.trim();
+    const cec = document.getElementById('college-email-confirm').value.trim();
+
+    if(!dn){ showErr('err-display-name'); markInputErr('display-name'); ok=false; } else clearErr('err-display-name');
+
+    const emailRe = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if(!emailRe.test(pe)){ showErr('err-personal-email','Please enter a valid email address.'); markInputErr('personal-email'); ok=false; } else clearErr('err-personal-email');
+    if(pe !== pec){ showErr('err-personal-email-confirm','Emails do not match.'); markInputErr('personal-email-confirm'); ok=false; } else clearErr('err-personal-email-confirm');
+    if(!/^[^\s@]+@[^\s@]+\.edu$/i.test(ce)){ showErr('err-college-email','Must be a valid .edu email address.'); markInputErr('college-email'); ok=false; } else clearErr('err-college-email');
+    if(ce !== cec){ showErr('err-college-email-confirm','Emails do not match.'); markInputErr('college-email-confirm'); ok=false; } else clearErr('err-college-email-confirm');
+  }
+
+  if(step === 2){
+    if(!document.getElementById('school-value').value){ showErr('err-school'); markInputErr('school-display'); ok=false; } else clearErr('err-school');
+    const gc = document.querySelector('input[name="grad-class"]:checked');
+    if(!gc){ showErr('err-grad-class'); ok=false; } else clearErr('err-grad-class');
+    if(gc?.value === 'other' && !document.getElementById('grad-class-other').value.trim()){ showErr('err-grad-class','Please describe your graduating class.'); markInputErr('grad-class-other'); ok=false; }
+    if(!document.getElementById('college-within').value.trim()){ showErr('err-college-within'); markInputErr('college-within'); ok=false; } else clearErr('err-college-within');
+    if(!document.getElementById('major').value.trim()){ showErr('err-major'); markInputErr('major'); ok=false; } else clearErr('err-major');
+    if(!document.querySelector('input[name="action-plan"]:checked')){ showErr('err-action-plan'); ok=false; } else clearErr('err-action-plan');
+    if(document.querySelector('input[name="action-plan"]:checked')?.value === 'other-plan' && !document.getElementById('action-plan-other').value.trim()){ showErr('err-action-plan','Please describe your application plan.'); markInputErr('action-plan-other'); ok=false; }
+    if(!document.querySelector('input[name="conditioned"]:checked')){ showErr('err-conditioned'); ok=false; } else clearErr('err-conditioned');
+    if(document.querySelector('input[name="conditioned"]:checked')?.value === 'other-conditioned' && !document.getElementById('conditioned-other').value.trim()){ showErr('err-conditioned','Please describe the condition of your acceptance.'); markInputErr('conditioned-other'); ok=false; }
+    if(!document.querySelector('input[name="special-program"]:checked')){ showErr('err-special-program'); ok=false; } else clearErr('err-special-program');
+    if(document.querySelector('input[name="special-program"]:checked')?.value === 'other-special' && !document.getElementById('special-program-other').value.trim()){ showErr('err-special-program','Please describe the special program(s).'); markInputErr('special-program-other'); ok=false; }
+    if(!document.querySelector('input[name="legacy"]:checked')){ showErr('err-legacy'); ok=false; } else clearErr('err-legacy');
+  }
+
+  if(step === 3){
+    if(!document.querySelector('input[name="other-accepts"]:checked')){ showErr('err-other-accepts'); ok=false; } else clearErr('err-other-accepts');
+    if(getRadioVal('other-accepts') === 'Yes' && selectedOtherSchools.length === 0){
+      showErr('err-other-schools','Please select at least one school.');
+      ok=false;
+    } else {
+      clearErr('err-other-schools');
+    }
+  }
+
+  if(step === 4){
+    const tt = document.querySelector('input[name="test-type"]:checked');
+    if(!tt){ showErr('err-test-type'); ok=false; } else clearErr('err-test-type');
+
+    if(tt?.value === 'SAT'){
+      const h = document.getElementById('sat-hundreds').value;
+      const t = document.getElementById('sat-tens').value;
+      if(!h || !t){ showErr('err-sat','Please select both parts of your SAT score.'); ok=false; } else clearErr('err-sat');
+    }
+    if(tt?.value === 'ACT'){
+      if(!document.getElementById('act-score').value){ showErr('err-act','Please select your ACT score.'); ok=false; } else clearErr('err-act');
+    }
+
+    const uwgpa = document.getElementById('uwgpa').value.trim();
+    if(!gpaRe.test(uwgpa)){ showErr('err-uwgpa','Please enter a valid GPA (e.g. 3.85).'); markInputErr('uwgpa'); ok=false; } else clearErr('err-uwgpa');
+
+    const wgpa = document.getElementById('wgpa').value.trim();
+    if(!gpaRe.test(wgpa)){ showErr('err-wgpa','Please enter a valid GPA (e.g. 4.52).'); markInputErr('wgpa'); ok=false; } else clearErr('err-wgpa');
+
+    if(!document.getElementById('gpa-scale').value.trim()){ showErr('err-gpa-scale'); markInputErr('gpa-scale'); ok=false; } else clearErr('err-gpa-scale');
+    if(!document.querySelector('input[name="sports"]:checked')){ showErr('err-sports'); ok=false; } else clearErr('err-sports');
+    if(document.querySelector('input[name="sports"]:checked')?.value === 'sports-other' && !document.getElementById('sports-other').value.trim()){ showErr('err-sports','Please describe.'); markInputErr('sports-other'); ok=false; }
+   if(!document.getElementById('ap-count').value){ showErr('err-ap-count'); ok=false; } else clearErr('err-ap-count');
+    if(!document.getElementById('ib-count').value){ showErr('err-ib-count'); ok=false; } else clearErr('err-ib-count');
+    if(!document.querySelector('input[name="questbridge"]:checked')){ showErr('err-questbridge'); ok=false; } else clearErr('err-questbridge');
+  }
+
+  if(step === 5){
+    const pc = document.querySelector('input[name="presentation-confidence"]:checked');
+    if(!pc){ showErr('err-presentation-confidence'); ok=false; } else clearErr('err-presentation-confidence');
+    if(pc?.value === 'presentation-other' && !document.getElementById('presentation-other').value.trim()){ showErr('err-presentation-confidence','Please describe your confidence level.'); markInputErr('presentation-other'); ok=false; }
+  }
+
+  if(step === 6){
+    if(!document.getElementById('agree-policy').checked){ showErr('err-agree-policy'); ok=false; } else clearErr('err-agree-policy');
+    if(!document.getElementById('agree-payment').checked){ showErr('err-agree-payment'); ok=false; } else clearErr('err-agree-payment');
+  }
+
+  return ok;
+}
+
+/* ── STEP NAVIGATION ── */
+function nextStep(from){
+  if(!validateStep(from)) return;
+  if(from === totalSteps) return;
+  goToStep(from + 1);
+}
+function prevStep(from){ goToStep(from - 1); }
+
+function jumpToStep(n){
+  if(n <= currentStep) goToStep(n);
+}
+
+function goToStep(n){
+  document.getElementById('step-'+currentStep).classList.remove('active');
+  document.querySelectorAll('.step-dot').forEach(d => {
+    const s = parseInt(d.dataset.step);
+    d.classList.remove('active','done');
+    if(s < n) d.classList.add('done');
+    if(s === n) d.classList.add('active');
+  });
+  for(let i=1;i<totalSteps;i++){
+    document.getElementById('line-'+i).classList.toggle('done', i < n);
+  }
+  currentStep = n;
+  document.getElementById('step-'+n).classList.add('active');
+  if(n === 7) buildReview();
+  window.scrollTo({top:0,behavior:'smooth'});
+  saveForm();
+}
+
+/* ── REVIEW ── */
+function getRadioVal(name){
+  const el = document.querySelector('input[name="'+name+'"]:checked');
+  return el ? el.value : '—';
+}
+
+function getSATScore(){
+  const h = document.getElementById('sat-hundreds').value;
+  const t = document.getElementById('sat-tens').value;
+  return (h && t) ? h + t : '—';
+}
+
+function buildReview(){
+  const gradClassRaw = getRadioVal('grad-class');
+  const gradClass = gradClassRaw === 'other' ? (document.getElementById('grad-class-other').value.trim() || '—') : (gradClassRaw !== '—' ? 'Class of '+gradClassRaw : '—');
+
+  const actionPlanRaw = getRadioVal('action-plan');
+  const actionPlan = actionPlanRaw === 'other-plan' ? document.getElementById('action-plan-other').value.trim() : actionPlanRaw;
+
+  const conditionedRaw = getRadioVal('conditioned');
+  const conditioned = conditionedRaw === 'other-conditioned' ? document.getElementById('conditioned-other').value.trim() : conditionedRaw;
+
+  const specialRaw = getRadioVal('special-program');
+  const special = specialRaw === 'other-special' ? document.getElementById('special-program-other').value.trim() : specialRaw;
+
+  const otherAccepts = getRadioVal('other-accepts');
+  const otherSchoolsList = selectedOtherSchools.length ? selectedOtherSchools.join(', ') : '—';
+
+  const testType = getRadioVal('test-type');
+  let testScore = '—';
+  if(testType === 'SAT') testScore = getSATScore();
+  else if(testType === 'ACT') testScore = document.getElementById('act-score').value || '—';
+  else if(testType === 'Test Optional') testScore = 'N/A';
+
+  const sportsRaw = getRadioVal('sports');
+  const sportsLabels = {
+    'recruited': 'Yes — recruited athlete / significant factor',
+    'ncaa-significant': 'Yes — NCAA account, somewhat significant',
+    'ncaa-minor': 'NCAA account, not a major factor',
+    'played-minor': 'Played sports, not a major factor',
+    'no-sports': 'Did not play sports',
+    'sports-other': document.getElementById('sports-other').value.trim() || '—',
+  };
+  const sports = sportsLabels[sportsRaw] || sportsRaw;
+
+  const presRaw = getRadioVal('presentation-confidence');
+  const pres = presRaw === 'presentation-other' ? document.getElementById('presentation-other').value.trim() : presRaw;
+
+  const rows = [
+    ['— Identity —', ''],
+    ['Display Name', document.getElementById('display-name').value.trim()],
+    ['Personal Email', document.getElementById('personal-email').value.trim()],
+    ['College Email', document.getElementById('college-email').value.trim()],
+    ['— College & Application —', ''],
+    ['College / University', document.getElementById('school-value').value || '—'],
+    ['Graduating Class', gradClass],
+    ['College within University', document.getElementById('college-within').value.trim() || 'N/A'],
+    ['Major(s)', document.getElementById('major').value.trim()],
+    ['Application Plan', actionPlan],
+    ['Conditioned Acceptance', conditioned],
+    ['Special Programs', special],
+    ['Legacy Student', getRadioVal('legacy')],
+    ['Additional Notes (Acceptance)', document.getElementById('acceptance-extra').value.trim() || '—'],
+    ['— Other Schools —', ''],
+    ['List Other Acceptances', otherAccepts],
+    ['Other Schools', otherAccepts === 'Yes' ? otherSchoolsList : 'N/A'],
+    ['Alt Acceptance Notes', otherAccepts === 'Yes' ? (document.getElementById('alt-accept-extra').value.trim() || '—') : 'N/A'],
+    ['— Preliminary Stats —', ''],
+    ['Test Type', testType],
+    ['Test Score', testScore],
+    ['Unweighted GPA', document.getElementById('uwgpa').value.trim()],
+    ['Weighted GPA', document.getElementById('wgpa').value.trim()],
+    ['GPA Scale', document.getElementById('gpa-scale').value.trim()],
+    ['AP Courses Taken', document.getElementById('ap-count').value || '—'],
+    ['IB Courses Taken', document.getElementById('ib-count').value || '—'],
+    ['Sports', sports],
+    ['QuestBridge', getRadioVal('questbridge')],
+    ['Additional Notes (Stats)', document.getElementById('stats-extra').value.trim() || '—'],
+    ['— Self-Presentation —', ''],
+    ['Presentation Confidence', pres],
+    ['— Policies —', ''],
+    ['Agreed to Policy', document.getElementById('agree-policy').checked ? 'Yes' : 'No'],
+    ['Agreed to Payment Policy', document.getElementById('agree-payment').checked ? 'Yes' : 'No'],
+  ];
+
+  const html = rows.map(([k,v],i) => {
+    if(v === ''){
+      return '<div style="padding:0.6rem 1.2rem;background:var(--navy);color:var(--white);font-size:0.75rem;font-weight:500;letter-spacing:0.1em;text-transform:uppercase;">'+k+'</div>';
+    }
+    return '<div style="display:flex;gap:1rem;padding:0.85rem 1.2rem;'+(i%2===0?'background:var(--cream)':'')+';font-size:0.88rem;">'
+      +'<span style="flex:0 0 220px;font-weight:500;color:var(--navy);">'+k+'</span>'
+      +'<span style="color:var(--muted);word-break:break-word;">'+v+'</span>'
+      +'</div>';
+  }).join('');
+  document.getElementById('review-summary').innerHTML = html;
+}
+
+/* ── SUBMIT ── */
+function submitForm(){
+  localStorage.removeItem('talkcolleges_advisor_form');
+  document.querySelector('.form-wrap').style.display = 'none';
+  document.getElementById('verify-screen').style.display = 'block';
+  document.getElementById('verify-edu-display').textContent = document.getElementById('college-email').value.trim();
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+function resendVerification(){
+  alert('Verification email resent to ' + document.getElementById('college-email').value.trim());
+}
+
+/* ── CLOSE DROPDOWNS ON OUTSIDE CLICK ── */
+document.addEventListener('click', e => {
+  if(!e.target.closest('.search-select-wrap') && !e.target.closest('.multi-select-wrap')){
+    closeAllDropdowns();
+  }
+});
+
+/* ── LIVE EMAIL VALIDATION ── */
+['personal-email','college-email'].forEach(id => {
+  document.getElementById(id).addEventListener('input', () => clearInputErr(id));
+});
+document.getElementById('personal-email-confirm').addEventListener('input', () => {
+  const pe = document.getElementById('personal-email').value.trim();
+  const pec = document.getElementById('personal-email-confirm').value.trim();
+  if(pe === pec){ clearInputErr('personal-email-confirm'); clearErr('err-personal-email-confirm'); }
+});
+document.getElementById('college-email-confirm').addEventListener('input', () => {
+  const ce = document.getElementById('college-email').value.trim();
+  const cec = document.getElementById('college-email-confirm').value.trim();
+  if(ce === cec){ clearInputErr('college-email-confirm'); clearErr('err-college-email-confirm'); }
+});
+
+/* ── LOCAL STORAGE PERSISTENCE ── */
+const FORM_KEY = 'talkcolleges_advisor_form';
+
+function saveForm(){
+  const data = {};
+  document.querySelectorAll('input[type=text], input[type=email], textarea').forEach(el => {
+    if(el.id) data[el.id] = el.value;
+  });
+  document.querySelectorAll('input[type=radio]:checked').forEach(el => {
+    if(el.name) data['radio__' + el.name] = el.value;
+  });
+  document.querySelectorAll('input[type=checkbox]').forEach(el => {
+    if(el.id) data['check__' + el.id] = el.checked;
+  });
+  // Selects
+  ['sat-hundreds','sat-tens','act-score','ap-count','ib-count'].forEach(id => {
+    const el = document.getElementById(id);
+    if(el) data[id] = el.value;
+  });
+  data['school-value'] = document.getElementById('school-value').value;
+  data['school-display'] = document.getElementById('school-display').value;
+  data['other-schools'] = JSON.stringify(selectedOtherSchools);
+  data['current-step'] = currentStep;
+  try { localStorage.setItem(FORM_KEY, JSON.stringify(data)); } catch(e) {}
+}
+
+function restoreForm(){
+  let saved;
+  try { saved = localStorage.getItem(FORM_KEY); } catch(e) { return; }
+  if(!saved) return;
+  let data;
+  try { data = JSON.parse(saved); } catch(e) { return; }
+
+  document.querySelectorAll('input[type=text], input[type=email], textarea').forEach(el => {
+    if(el.id && data[el.id] !== undefined) el.value = data[el.id];
+  });
+
+  Object.entries(data).forEach(([key, val]) => {
+    if(key.startsWith('radio__')){
+      const name = key.replace('radio__', '');
+      selectRadio(name, val);
+      if(name === 'other-accepts') showOtherAccepts(val === 'Yes');
+      if(name === 'test-type') showTestSection(val);
+    }
+    if(key.startsWith('check__')){
+      const id = key.replace('check__', '');
+      const el = document.getElementById(id);
+      if(el){ el.checked = val; el.closest('.agree-row')?.classList.toggle('selected', val); }
+    }
+  });
+
+  ['sat-hundreds','sat-tens','act-score','ap-count','ib-count'].forEach(id => {
+    const el = document.getElementById(id);
+    if(el && data[id] !== undefined) el.value = data[id];
+  });
+  // Update SAT preview
+  const h = document.getElementById('sat-hundreds').value;
+  const t = document.getElementById('sat-tens').value;
+  document.getElementById('sat-preview').textContent = (h && t) ? (h + t) : '—';
+
+  if(data['school-value']){
+    document.getElementById('school-value').value = data['school-value'];
+    document.getElementById('school-display').value = data['school-display'] || data['school-value'];
+  }
+
+  if(data['other-schools']){
+    try {
+      const schools = JSON.parse(data['other-schools']);
+      schools.forEach(s => {
+        if(selectedOtherSchools.indexOf(s) === -1) selectedOtherSchools.push(s);
+        const opt = document.querySelector('#other-schools-list .dropdown-opt[data-value="' + s + '"]');
+        if(opt) opt.classList.add('selected');
+      });
+      renderOtherSchoolTags();
+    } catch(e){}
+  }
+
+  if(data['current-step'] && data['current-step'] > 1){
+    const n = parseInt(data['current-step']);
+    document.getElementById('step-'+currentStep).classList.remove('active');
+    document.querySelectorAll('.step-dot').forEach(d => {
+      const s = parseInt(d.dataset.step);
+      d.classList.remove('active','done');
+      if(s < n) d.classList.add('done');
+      if(s === n) d.classList.add('active');
+    });
+    for(let i=1;i<totalSteps;i++){
+      document.getElementById('line-'+i).classList.toggle('done', i < n);
+    }
+    currentStep = n;
+    document.getElementById('step-'+n).classList.add('active');
+  }
+}
+
+document.addEventListener('input', saveForm);
+
+/* ── INIT ── */
+buildSchoolDropdown();
+buildOtherSchoolsDropdown();
+restoreForm();
+</script>
+</body>
+</html>
