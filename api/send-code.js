@@ -1,0 +1,72 @@
+// api/send-code.js
+// Vercel serverless function — handles sending verification codes via Brevo
+// Deploy this to Vercel. Set BREVO_API_KEY in your Vercel environment variables.
+
+export default async function handler(req, res) {
+  // Only allow POST
+  if (req.method !== 'POST') {
+    return res.status(405).json({ error: 'Method not allowed' });
+  }
+
+  const { email, code } = req.body;
+
+  // Basic validation
+  if (!email || !code) {
+    return res.status(400).json({ error: 'Missing email or code' });
+  }
+
+  const BREVO_API_KEY = process.env.BREVO_API_KEY;
+  if (!BREVO_API_KEY) {
+    return res.status(500).json({ error: 'Server misconfiguration' });
+  }
+
+  try {
+    const response = await fetch('https://api.brevo.com/v3/smtp/email', {
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+        'api-key': BREVO_API_KEY,
+      },
+      body: JSON.stringify({
+        sender: {
+          name: 'TalkColleges',
+          email: 'noreply@talkcolleges.com', // must be verified in Brevo
+        },
+        to: [{ email }],
+        subject: 'Your TalkColleges Verification Code',
+        htmlContent: `
+          <div style="font-family:'DM Sans',sans-serif;max-width:480px;margin:0 auto;padding:2rem;">
+            <h2 style="font-family:Georgia,serif;color:#4D107A;margin-bottom:0.5rem;">TalkColleges</h2>
+            <p style="color:#444;font-size:1rem;margin-bottom:1.5rem;">
+              Here is your verification code to complete your advisor application:
+            </p>
+            <div style="letter-spacing:0.25em;font-size:2rem;font-weight:700;color:#4D107A;
+                        background:#f9f5ff;border:1px solid #e2d5f0;border-radius:8px;
+                        padding:1rem 1.5rem;text-align:center;margin-bottom:1.5rem;">
+              ${code}
+            </div>
+            <p style="color:#7a6b8d;font-size:0.88rem;">
+              This code expires in 10 minutes. If you did not apply to be a TalkColleges advisor,
+              you can safely ignore this email.
+            </p>
+            <hr style="border:none;border-top:1px solid #e2d5f0;margin:1.5rem 0;"/>
+            <p style="color:#aaa;font-size:0.78rem;">© 2026 TalkColleges. All rights reserved.</p>
+          </div>
+        `,
+      }),
+    });
+
+    if (!response.ok) {
+      const err = await response.json();
+      console.error('Brevo error:', err);
+      return res.status(500).json({ error: 'Failed to send email', detail: err });
+    }
+
+    return res.status(200).json({ success: true });
+
+  } catch (err) {
+    console.error('Server error:', err);
+    return res.status(500).json({ error: 'Internal server error' });
+  }
+}
