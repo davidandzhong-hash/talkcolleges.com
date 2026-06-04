@@ -253,8 +253,9 @@ document.addEventListener('DOMContentLoaded', () => {
   let saved;
   try { saved = JSON.parse(localStorage.getItem(FORM_KEY)); } catch(e){}
 
-  emails.personal = saved?.['personal-email'] || '';
-  emails.college  = saved?.['college-email']  || '';
+  const params = new URLSearchParams(window.location.search);
+emails.personal = params.get('personal') || saved?.['personal-email'] || '';
+emails.college  = params.get('college')  || saved?.['college-email']  || '';
 
   document.getElementById('display-personal-email').textContent = emails.personal || 'Not found';
   document.getElementById('display-college-email').textContent  = emails.college  || 'Not found';
