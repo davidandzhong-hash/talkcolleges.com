@@ -8,8 +8,8 @@ export default async function handler(req, res) {
   const { email, group, entered } = req.body;
   if (!email || !group || !entered) return res.status(400).json({ error: 'Missing fields' });
 
-  const UPSTASH_REDIS_REST_URL   = process.env.UPSTASH_REDIS_REST_URL;
-  const UPSTASH_REDIS_REST_TOKEN = process.env.UPSTASH_REDIS_REST_TOKEN;
+const UPSTASH_REDIS_REST_URL   = process.env.KV_REST_API_URL;
+const UPSTASH_REDIS_REST_TOKEN = process.env.KV_REST_API_TOKEN;
 
   if (!UPSTASH_REDIS_REST_URL || !UPSTASH_REDIS_REST_TOKEN) {
     return res.status(500).json({ error: 'Server misconfiguration' });
