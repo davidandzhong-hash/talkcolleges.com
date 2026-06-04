@@ -182,6 +182,11 @@ footer a:hover{color:var(--gold);}
       <div class="verify-block">
         <div class="verify-block-label">Personal Email</div>
         <div class="verify-block-email" id="display-personal-email">—</div>
+<div id="personal-email-fallback" style="display:none;margin-bottom:0.75rem;">
+  <input type="email" id="personal-email-input" placeholder="Enter your personal email…"
+    style="width:100%;padding:0.6rem 0.9rem;border:1.5px solid var(--border);border-radius:var(--radius);font-family:'DM Sans',sans-serif;font-size:0.88rem;color:var(--navy);outline:none;"
+    oninput="emails.personal=this.value.trim();document.getElementById('display-personal-email').textContent=this.value.trim();"/>
+</div>
         <div class="code-inputs" id="personal-code-inputs">
           <input type="text" maxlength="1" inputmode="numeric" autocomplete="off" data-group="personal" data-idx="0"/>
           <input type="text" maxlength="1" inputmode="numeric" autocomplete="off" data-group="personal" data-idx="1"/>
@@ -203,6 +208,11 @@ footer a:hover{color:var(--gold);}
       <div class="verify-block">
         <div class="verify-block-label">College (.edu) Email</div>
         <div class="verify-block-email" id="display-college-email">—</div>
+<div id="college-email-fallback" style="display:none;margin-bottom:0.75rem;">
+  <input type="email" id="college-email-input" placeholder="Enter your .edu email…"
+    style="width:100%;padding:0.6rem 0.9rem;border:1.5px solid var(--border);border-radius:var(--radius);font-family:'DM Sans',sans-serif;font-size:0.88rem;color:var(--navy);outline:none;"
+    oninput="emails.college=this.value.trim();document.getElementById('display-college-email').textContent=this.value.trim();"/>
+</div>
         <div class="code-inputs" id="college-code-inputs">
           <input type="text" maxlength="1" inputmode="numeric" autocomplete="off" data-group="college" data-idx="0"/>
           <input type="text" maxlength="1" inputmode="numeric" autocomplete="off" data-group="college" data-idx="1"/>
@@ -258,7 +268,10 @@ emails.personal = params.get('personal') || saved?.['personal-email'] || '';
 emails.college  = params.get('college')  || saved?.['college-email']  || '';
 
   document.getElementById('display-personal-email').textContent = emails.personal || 'Not found';
-  document.getElementById('display-college-email').textContent  = emails.college  || 'Not found';
+document.getElementById('display-college-email').textContent  = emails.college  || 'Not found';
+
+if(!emails.personal) document.getElementById('personal-email-fallback').style.display = 'block';
+if(!emails.college)  document.getElementById('college-email-fallback').style.display  = 'block';
 
   wireInputs('personal');
   wireInputs('college');
