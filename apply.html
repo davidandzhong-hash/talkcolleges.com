@@ -3,7 +3,6 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<link rel="icon" type="image/png" href="TCFavicon.png" />
 <title>Become an Advisor — TalkColleges</title>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
@@ -379,19 +378,19 @@ footer a:hover{color:var(--gold);}
 <body>
 
 <nav>
-  <a href="https://talkcolleges.com" class="logo">
+  <a href="index.html" class="logo">
     <img src="TalkCollegesIconTransparent.png" style="height:50px;vertical-align:middle;margin-right:6px;" alt="Icon"/>
     Talk<span>Colleges</span>
   </a>
   <input type="checkbox" id="menu-checkbox">
   <label for="menu-checkbox" class="menu-toggle">&#9776;</label>
   <ul>
-   <li><a href="https://talkcolleges.com/ourprocess.html">Our Process</a></li>
-<li><a href="https://talkcolleges.com/#why-us">Why Us</a></li>
-<li><a href="https://talkcolleges.com/#advisors">Advisors</a></li>
-<li><a href="https://talkcolleges.com/#become-an-advisor">Become an Advisor</a></li>
-<li><a href="https://talkcolleges.com/book.html" class="nav-cta">Get started</a></li>
-<li><a href="apply.html" class="nav-cta">Join Us!</a></li>
+    <li><a href="ourprocess.html">Our Process</a></li>
+    <li><a href="index.html#why-us">Why Us</a></li>
+    <li><a href="index.html#advisors">Advisors</a></li>
+    <li><a href="index.html#become-an-advisor">Become an Advisor</a></li>
+    <li><a href="book.html" class="nav-cta">Get started</a></li>
+    <li><a href="advisor-apply.html" class="nav-cta">Join Us!</a></li>
   </ul>
 </nav>
 
@@ -528,7 +527,7 @@ footer a:hover{color:var(--gold);}
           <input type="radio" name="grad-class" value="other"/> <span class="radio-opt-label">Other</span>
         </label>
         <div class="write-in-wrap" id="grad-class-other-wrap">
-          <input type="text" id="grad-class-other" placeholder="Please explain"/>
+          <input type="text" id="grad-class-other" placeholder="e.g. Class of 2031"/>
         </div>
       </div>
       <div class="field-error" id="err-grad-class">Please select your graduating class.</div>
@@ -913,6 +912,46 @@ footer a:hover{color:var(--gold);}
       <div class="field-error" id="err-presentation-confidence">Please select an option.</div>
     </div>
 
+    <!-- HOW DID YOU HEAR ABOUT US -->
+    <div class="field">
+      <label>How did you hear about TalkColleges? <span class="req">*</span>
+        <span class="hint">Select all that apply.</span>
+      </label>
+      <div class="check-group" id="hear-about-group">
+  <label class="check-opt" onclick="toggleHearAbout('Instagram', this); event.preventDefault()">
+    <input type="checkbox" value="Instagram"/> <span class="radio-opt-label">Instagram</span>
+  </label>
+  <label class="check-opt" onclick="toggleHearAbout('TikTok', this); event.preventDefault()">
+    <input type="checkbox" value="TikTok"/> <span class="radio-opt-label">TikTok</span>
+  </label>
+  <label class="check-opt" onclick="toggleHearAbout('YouTube', this); event.preventDefault()">
+    <input type="checkbox" value="YouTube"/> <span class="radio-opt-label">YouTube</span>
+  </label>
+  <label class="check-opt" onclick="toggleHearAbout('Facebook', this); event.preventDefault()">
+    <input type="checkbox" value="Facebook"/> <span class="radio-opt-label">Facebook</span>
+  </label>
+  <label class="check-opt" onclick="toggleHearAbout('Reddit', this); event.preventDefault()">
+    <input type="checkbox" value="Reddit"/> <span class="radio-opt-label">Reddit</span>
+  </label>
+  <label class="check-opt" onclick="toggleHearAbout('Word of mouth / a friend', this); event.preventDefault()">
+    <input type="checkbox" value="Word of mouth / a friend"/> <span class="radio-opt-label">Word of mouth / a friend</span>
+  </label>
+  <label class="check-opt" onclick="toggleHearAbout('Google / web search', this); event.preventDefault()">
+    <input type="checkbox" value="Google / web search"/> <span class="radio-opt-label">Google / web search</span>
+  </label>
+  <label class="check-opt" onclick="toggleHearAbout('Email or newsletter', this); event.preventDefault()">
+    <input type="checkbox" value="Email or newsletter"/> <span class="radio-opt-label">Email or newsletter</span>
+  </label>
+  <label class="check-opt" onclick="toggleHearAbout('other-hear', this); event.preventDefault()">
+    <input type="checkbox" value="other-hear"/> <span class="radio-opt-label">Other</span>
+  </label>
+        <div class="write-in-wrap" id="hear-about-other-wrap">
+          <input type="text" id="hear-about-other" placeholder="Please describe…"/>
+        </div>
+      </div>
+      <div class="field-error" id="err-hear-about">Please select at least one option.</div>
+    </div>
+
     <div class="form-nav">
       <button class="btn btn-ghost" onclick="prevStep(5)">← Back</button>
       <button class="btn btn-primary" onclick="nextStep(5)">Continue →</button>
@@ -1002,14 +1041,14 @@ footer a:hover{color:var(--gold);}
 </div>
 
 <footer>
-  <a href="https://talkcolleges.com" class="logo">Talk<span>Colleges</span></a>
-<div>
-  <a href="https://talkcolleges.com/ourprocess.html">Our Process</a>
-  <a href="https://talkcolleges.com/#why-us">Why Us</a>
-  <a href="https://talkcolleges.com/#advisors">Advisors</a>
-  <a href="https://talkcolleges.com/#become-an-advisor">Become an Advisor</a>
-  <a href="https://talkcolleges.com/privacypolicy.html">Privacy Policy</a>
-  <a href="mailto:support@talkcolleges.com">Contact</a>
+  <a href="index.html" class="logo">Talk<span>Colleges</span></a>
+  <div>
+    <a href="ourprocess.html">Our Process</a>
+    <a href="index.html#why-us">Why Us</a>
+    <a href="index.html#advisors">Advisors</a>
+    <a href="index.html#become-an-advisor">Become an Advisor</a>
+    <a href="privacypolicy.html">Privacy Policy</a>
+    <a href="mailto:support@talkcolleges.com">Contact</a>
   </div>
   <span>© 2026 TalkColleges. All rights reserved.</span>
 </footer>
@@ -1020,7 +1059,27 @@ const SCHOOLS = ["Princeton University","Massachusetts Institute of Technology",
 let currentStep = 1;
 const totalSteps = 7;
 let selectedOtherSchools = [];
+let selectedHearAbout = [];
 
+function toggleHearAbout(val, el) {
+  const cb = el.querySelector('input[type=checkbox]');
+  const idx = selectedHearAbout.indexOf(val);
+  if (idx > -1) {
+    selectedHearAbout.splice(idx, 1);
+    el.classList.remove('selected');
+    if (cb) cb.checked = false;
+  } else {
+    selectedHearAbout.push(val);
+    el.classList.add('selected');
+    if (cb) cb.checked = true;
+  }
+  const otherWrap = document.getElementById('hear-about-other-wrap');
+  if (otherWrap) otherWrap.classList.toggle('visible', selectedHearAbout.includes('other-hear'));
+  clearErr('err-hear-about');
+  saveForm();
+}
+
+/* ── SCHOOL DROPDOWN (single select) ── */
 /* ── SCHOOL DROPDOWN (single select) ── */
 function buildSchoolDropdown(){
   const list = document.getElementById('school-list');
@@ -1160,6 +1219,7 @@ function showTestSection(type){
   document.getElementById('act-section').classList.toggle('visible', type === 'ACT');
 }
 
+
 /* ── SAT SCORE PREVIEW ── */
 document.addEventListener('change', e => {
   if(e.target.id === 'sat-hundreds' || e.target.id === 'sat-tens'){
@@ -1274,6 +1334,8 @@ function validateStep(step){
     const pc = document.querySelector('input[name="presentation-confidence"]:checked');
     if(!pc){ showErr('err-presentation-confidence'); ok=false; } else clearErr('err-presentation-confidence');
     if(pc?.value === 'presentation-other' && !document.getElementById('presentation-other').value.trim()){ showErr('err-presentation-confidence','Please describe your confidence level.'); markInputErr('presentation-other'); ok=false; }
+    if(selectedHearAbout.length === 0){ showErr('err-hear-about','Please select at least one option.'); ok=false; } else clearErr('err-hear-about');
+    if(selectedHearAbout.includes('other-hear') && !document.getElementById('hear-about-other').value.trim()){ showErr('err-hear-about','Please describe how you heard about us.'); markInputErr('hear-about-other'); ok=false; }
   }
 
   if(step === 6){
@@ -1394,6 +1456,8 @@ function buildReview(){
     ['Additional Notes (Stats)', document.getElementById('stats-extra').value.trim() || '—'],
     ['— Self-Presentation —', ''],
     ['Presentation Confidence', pres],
+   ['— One More Thing —', ''],
+    ['How did you hear about us?', selectedHearAbout.filter(v => v !== 'other-hear').join(', ') + (selectedHearAbout.includes('other-hear') ? (', ' + (document.getElementById('hear-about-other').value.trim() || '—')) : '') || '—'],
     ['— Policies —', ''],
     ['Agreed to Policy', document.getElementById('agree-policy').checked ? 'Yes' : 'No'],
     ['Agreed to Payment Policy', document.getElementById('agree-payment').checked ? 'Yes' : 'No'],
@@ -1413,9 +1477,11 @@ function buildReview(){
 
 /* ── SUBMIT ── */
 function submitForm(){
-  const personal = encodeURIComponent(document.getElementById('personal-email').value.trim());
-  const college  = encodeURIComponent(document.getElementById('college-email').value.trim());
-  window.location.href = 'verify.html?personal=' + personal + '&college=' + college;
+  localStorage.removeItem('talkcolleges_advisor_form');
+  document.querySelector('.form-wrap').style.display = 'none';
+  document.getElementById('verify-screen').style.display = 'block';
+  document.getElementById('verify-edu-display').textContent = document.getElementById('college-email').value.trim();
+  window.scrollTo({top:0,behavior:'smooth'});
 }
 
 function resendVerification(){
@@ -1466,6 +1532,8 @@ function saveForm(){
   data['school-value'] = document.getElementById('school-value').value;
   data['school-display'] = document.getElementById('school-display').value;
   data['other-schools'] = JSON.stringify(selectedOtherSchools);
+  data['hear-about'] = JSON.stringify(selectedHearAbout);
+  data['hear-about-other'] = document.getElementById('hear-about-other')?.value || '';
   data['current-step'] = currentStep;
   try { localStorage.setItem(FORM_KEY, JSON.stringify(data)); } catch(e) {}
 }
@@ -1518,6 +1586,16 @@ function restoreForm(){
         if(opt) opt.classList.add('selected');
       });
       renderOtherSchoolTags();
+    } catch(e){}
+  }
+
+  if(data['hear-about']){
+    try {
+      const items = JSON.parse(data['hear-about']);
+      items.forEach(val => {
+        const el = document.querySelector('#hear-about-group .check-opt input[value="'+val+'"]');
+        if(el) toggleHearAbout(val, el.closest('.check-opt'));
+      });
     } catch(e){}
   }
 
