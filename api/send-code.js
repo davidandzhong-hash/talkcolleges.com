@@ -42,7 +42,7 @@ export default async function handler(req, res) {
         'api-key': BREVO_API_KEY,
       },
       body: JSON.stringify({
-        sender: { name: 'TalkColleges', email: 'noreply@talkcolleges.com' },
+        sender: { name: 'TalkColleges', email: 'support@talkcolleges.com' },
         to: [{ email }],
         subject: 'Your TalkColleges Verification Code',
         htmlContent: `
