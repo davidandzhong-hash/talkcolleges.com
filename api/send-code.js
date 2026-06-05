@@ -47,7 +47,7 @@ const UPSTASH_REDIS_REST_TOKEN = process.env.KV_REST_API_TOKEN;
         subject: 'Your TalkColleges Verification Code',
         htmlContent: `
           <div style="font-family:'DM Sans',sans-serif;max-width:480px;margin:0 auto;padding:2rem;">
-            <h2 style="font-family:Georgia,serif;color:#4D107A;margin-bottom:0.5rem;">TalkColleges</h2>
+            <h2 style="font-family:Georgia,serif;color:#4D107A;margin-bottom:0.5rem;">Talk<span style="color:#D1B365;">Colleges</span></h2>
             <p style="color:#444;font-size:1rem;margin-bottom:1.5rem;">
               Here is your verification code to complete your advisor application:
             </p>
