@@ -38,6 +38,32 @@ const UPSTASH_REDIS_REST_TOKEN = process.env.KV_REST_API_TOKEN;
       headers: { Authorization: `Bearer ${UPSTASH_REDIS_REST_TOKEN}` },
     });
 
+ // Send confirmation email
+    const BREVO_API_KEY = process.env.BREVO_API_KEY;
+    if (BREVO_API_KEY) {
+      await fetch('https://api.brevo.com/v3/smtp/email', {
+        method: 'POST',
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json',
+          'api-key': BREVO_API_KEY,
+        },
+        body: JSON.stringify({
+          sender: { name: 'TalkColleges', email: 'support@talkcolleges.com' },
+          to: [{ email }],
+          subject: 'Your TalkColleges Advisor Application — Received!',
+          htmlContent: `
+            <div style="font-family:'DM Sans',sans-serif;max-width:520px;margin:0 auto;padding:2rem;">
+              <h2 style="font-family:Georgia,serif;color:#4D107A;">TalkColleges</h2>
+              <h3 style="font-family:Georgia,serif;color:#4D107A;">Welcome — your application is in! 🎉</h3>
+              <p style="color:#444;">Thank you for applying to become a TalkColleges advisor. We'll be in touch within <strong>2–3 business days</strong>.</p>
+              <p style="color:#7a6b8d;font-size:0.88rem;">Questions? Reply to this email or reach us at <a href="mailto:support@talkcolleges.com" style="color:#4D107A;">support@talkcolleges.com</a></p>
+            </div>
+          `,
+        }),
+      });
+    }
+
     return res.status(200).json({ success: true });
 
   } catch (err) {
