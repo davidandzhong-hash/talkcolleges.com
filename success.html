@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Application Received — TalkColleges</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,700&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+:root{
+  --navy:#4D107A;
+  --cream:#f9f5ff;
+  --gold:#D1B365;
+  --muted:#7a6b8d;
+  --white:#ffffff;
+  --border:#e2d5f0;
+  --success:#22a06b;
+  --radius:8px;
+}
+html{scroll-behavior:smooth;}
+body{
+  font-family:'DM Sans',sans-serif;
+  background:var(--cream);
+  color:var(--navy);
+  line-height:1.7;
+  min-height:100vh;
+  display:flex;
+  flex-direction:column;
+}
+#confetti-canvas{
+  position:fixed;top:0;left:0;width:100%;height:100%;
+  pointer-events:none;z-index:10;
+}
+@keyframes fadeUp{from{opacity:0;transform:translateY(20px);}to{opacity:1;transform:translateY(0);}}
+@keyframes scaleIn{from{opacity:0;transform:scale(0.5);}to{opacity:1;transform:scale(1);}}
+@keyframes checkDraw{from{stroke-dashoffset:100;}to{stroke-dashoffset:0;}}
+@keyframes pulse{0%,100%{box-shadow:0 0 0 0 rgba(34,160,107,0.3);}50%{box-shadow:0 0 0 16px rgba(34,160,107,0);}}
+@keyframes shimmer{0%{background-position:-200% center;}100%{background-position:200% center;}}
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:100;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:1.1rem 6%;
+  background:rgba(249,245,255,0.93);
+  backdrop-filter:blur(12px);
+  border-bottom:1px solid var(--border);
+}
+.logo{
+  font-family:'DM Serif Display',serif;
+  font-size:clamp(1.2rem,4vw,1.6rem);
+  color:var(--navy);text-decoration:none;
+  letter-spacing:-0.01em;
+  display:flex;align-items:center;
+}
+.logo span{color:var(--gold);}
+main{
+  flex:1;display:flex;align-items:center;justify-content:center;
+  padding:7rem 1.5rem 4rem;
+}
+.card{
+  background:var(--white);border:1px solid var(--border);
+  border-radius:20px;padding:3.5rem 2.5rem;
+  width:100%;max-width:520px;
+  text-align:center;
+  position:relative;overflow:hidden;
+}
+.card::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:4px;
+  background:linear-gradient(90deg,var(--navy),var(--gold),var(--navy));
+  background-size:200% auto;
+  animation:shimmer 3s linear infinite;
+}
+.check-wrap{
+  width:80px;height:80px;border-radius:50%;
+  background:rgba(34,160,107,0.1);
+  display:flex;align-items:center;justify-content:center;
+  margin:0 auto 2rem;
+  animation:scaleIn 0.5s cubic-bezier(0.175,0.885,0.32,1.275) 0.2s both, pulse 2s ease 0.7s 3;
+}
+.check-wrap svg{width:36px;height:36px;}
+.check-wrap svg path{
+  stroke:var(--success);stroke-width:3;stroke-linecap:round;stroke-linejoin:round;
+  fill:none;stroke-dasharray:100;stroke-dashoffset:100;
+  animation:checkDraw 0.4s ease 0.6s forwards;
+}
+h1{
+  font-family:'DM Serif Display',serif;
+  font-size:clamp(1.8rem,5vw,2.4rem);
+  letter-spacing:-0.02em;
+  margin-bottom:0.75rem;
+  animation:fadeUp 0.5s ease 0.4s both;
+}
+.subtitle{
+  font-size:0.95rem;color:var(--muted);font-weight:300;
+  line-height:1.7;margin-bottom:2rem;
+  animation:fadeUp 0.5s ease 0.55s both;
+}
+.subtitle strong{color:var(--navy);font-weight:500;}
+.info-box{
+  background:var(--cream);border:1px solid var(--border);
+  border-radius:var(--radius);padding:1.25rem 1.5rem;
+  margin-bottom:2rem;text-align:left;
+  animation:fadeUp 0.5s ease 0.7s both;
+}
+.info-box-row{
+  display:flex;align-items:flex-start;gap:0.75rem;
+  font-size:0.88rem;color:var(--muted);
+}
+.info-box-row+.info-box-row{margin-top:0.75rem;padding-top:0.75rem;border-top:1px solid var(--border);}
+.info-box-icon{font-size:1rem;margin-top:0.1rem;flex-shrink:0;}
+.info-box-text strong{display:block;color:var(--navy);font-weight:500;font-size:0.84rem;margin-bottom:0.1rem;}
+.btn-home{
+  display:inline-flex;align-items:center;gap:8px;
+  padding:0.85rem 2rem;background:var(--navy);color:var(--white);
+  border:none;border-radius:var(--radius);font-family:'DM Sans',sans-serif;
+  font-size:0.95rem;font-weight:500;cursor:pointer;text-decoration:none;
+  transition:background 0.2s,transform 0.15s;
+  animation:fadeUp 0.5s ease 0.85s both;
+}
+.btn-home:hover{background:#3a0c5c;transform:translateY(-1px);}
+footer{
+  background:#080f1c;color:rgba(255,255,255,0.45);
+  padding:2.2rem 6%;display:flex;align-items:center;
+  justify-content:space-between;flex-wrap:wrap;gap:1rem;font-size:0.82rem;
+}
+footer .logo{color:rgba(255,255,255,0.7);font-size:1.1rem;}
+footer .logo span{color:var(--gold);}
+footer a{color:rgba(255,255,255,0.45);text-decoration:none;margin-left:1.5rem;transition:color 0.2s;}
+footer a:hover{color:var(--gold);}
+@media(max-width:500px){
+  .card{padding:2.5rem 1.25rem;}
+}
+</style>
+</head>
+<body>
+
+<canvas id="confetti-canvas"></canvas>
+
+<nav>
+  <a href="https://talkcolleges.com" class="logo">
+    <img src="TalkCollegesIconTransparent.png" style="height:50px;vertical-align:middle;margin-right:6px;" alt="Icon"/>
+    Talk<span>Colleges</span>
+  </a>
+</nav>
+
+<main>
+  <div class="card">
+    <div class="check-wrap">
+      <svg viewBox="0 0 36 36"><path d="M7 18l7 7 15-14"/></svg>
+    </div>
+    <h1>Welcome to TalkColleges!</h1>
+    <p class="subtitle">
+      Your advisor application has been received.<br/>
+      A <strong>confirmation email</strong> has been sent to your personal email address.
+      We'll be in touch within a couple of days with further instructions.
+    </p>
+    <div class="info-box">
+      <div class="info-box-row">
+        <span class="info-box-icon">📬</span>
+        <div class="info-box-text">
+          <strong>Check your inbox</strong>
+          A confirmation email is on its way. If you don't see it, check your spam folder.
+        </div>
+      </div>
+      <div class="info-box-row">
+        <span class="info-box-icon">⏱️</span>
+        <div class="info-box-text">
+          <strong>What's next?</strong>
+          Our team will review your application and reach out within 2–3 business days.
+        </div>
+      </div>
+      <div class="info-box-row">
+        <span class="info-box-icon">✉️</span>
+        <div class="info-box-text">
+          <strong>Questions?</strong>
+          Email us at <a href="mailto:support@talkcolleges.com" style="color:var(--navy);font-weight:500;">support@talkcolleges.com</a>
+        </div>
+      </div>
+    </div>
+    <a href="https://talkcolleges.com" class="btn-home">← Back to TalkColleges</a>
+  </div>
+</main>
+
+<footer>
+  <a href="#" class="logo">Talk<span>Colleges</span></a>
+  <div>
+    <a href="ourprocess.html">Our Process</a>
+    <a href="#why-us">Why Us</a>
+    <a href="#advisors">Advisors</a>
+    <a href="#become-an-advisor">Become an Advisor</a>
+    <a href="privacypolicy.html">Privacy Policy</a>
+    <a href="mailto:support@talkcolleges.com">Contact</a>
+  </div>
+  <span>© 2026 TalkColleges. All rights reserved.</span>
+</footer>
+
+<script>
+(function(){
+  const canvas = document.getElementById('confetti-canvas');
+  const ctx = canvas.getContext('2d');
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+  window.addEventListener('resize', () => { canvas.width = window.innerWidth; canvas.height = window.innerHeight; });
+  const colors = ['#4D107A','#D1B365','#22a06b','#e2d5f0','#9b59b6','#f39c12'];
+  const pieces = Array.from({length: 120}, () => ({
+    x: Math.random() * canvas.width,
+    y: Math.random() * -canvas.height,
+    w: Math.random() * 10 + 5,
+    h: Math.random() * 5 + 3,
+    color: colors[Math.floor(Math.random() * colors.length)],
+    rot: Math.random() * Math.PI * 2,
+    rotSpeed: (Math.random() - 0.5) * 0.1,
+    vx: (Math.random() - 0.5) * 2,
+    vy: Math.random() * 3 + 2,
+    opacity: 1,
+  }));
+  let frame = 0;
+  function draw() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    pieces.forEach(p => {
+      p.x += p.vx; p.y += p.vy; p.rot += p.rotSpeed;
+      if (frame > 120) p.opacity = Math.max(0, p.opacity - 0.008);
+      ctx.save();
+      ctx.globalAlpha = p.opacity;
+      ctx.translate(p.x, p.y);
+      ctx.rotate(p.rot);
+      ctx.fillStyle = p.color;
+      ctx.fillRect(-p.w/2, -p.h/2, p.w, p.h);
+      ctx.restore();
+      if (p.y > canvas.height) { p.y = -20; p.x = Math.random() * canvas.width; }
+    });
+    frame++;
+    if (frame < 300) requestAnimationFrame(draw);
+    else ctx.clearRect(0, 0, canvas.width, canvas.height);
+  }
+  setTimeout(draw, 400);
+})();
+
+(function(){
+  const params = new URLSearchParams(window.location.search);
+  const personal = params.get('personal');
+  if (!personal) return;
+  fetch('/api/send-confirmation', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ email: personal }),
+  }).catch(err => console.error('Confirmation email error:', err));
+})();
+</script>
+</body>
+</html>
