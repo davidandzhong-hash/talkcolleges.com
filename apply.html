@@ -415,7 +415,7 @@ footer a:hover{color:var(--gold);}
   <div class="progress-steps" id="progress-steps">
     <div class="step-dot active" data-step="1" onclick="jumpToStep(1)">
       <div class="step-dot-circle">1</div>
-      <div class="step-dot-label">Identity</div>
+      <div class="step-dot-label">Contact Info</div>
     </div>
     <div class="step-line" id="line-1"></div>
     <div class="step-dot" data-step="2" onclick="jumpToStep(2)">
@@ -452,7 +452,7 @@ footer a:hover{color:var(--gold);}
 
 <div class="form-wrap">
 
-  <!-- STEP 1: IDENTITY -->
+  <!-- STEP 1: Contact Info -->
   <div class="form-section active" id="step-1">
     <div class="section-label">Step 1 of 7</div>
     <h2 class="section-heading">Let's start with you</h2>
@@ -1435,7 +1435,7 @@ function buildReview(){
   const pres = presRaw === 'presentation-other' ? document.getElementById('presentation-other').value.trim() : presRaw;
 
   const rows = [
-    ['— Identity —', ''],
+    ['— Contact Info —', ''],
     ['Display Name', document.getElementById('display-name').value.trim()],
     ['Personal Email', document.getElementById('personal-email').value.trim()],
     ['College Email', document.getElementById('college-email').value.trim()],
@@ -1448,7 +1448,7 @@ function buildReview(){
     ['Conditioned Acceptance', conditioned],
     ['Special Programs', special],
     ['Legacy Student', getRadioVal('legacy')],
-    ['Additional Notes (Acceptance)', document.getElementById('acceptance-extra').value.trim() || '—'],
+    ['Additional Notes', document.getElementById('acceptance-extra').value.trim() || '—'],
     ['— Other Schools —', ''],
     ['List Other Acceptances', otherAccepts],
     ['Other Schools', otherAccepts === 'Yes' ? otherSchoolsList : 'N/A'],
@@ -1463,14 +1463,8 @@ function buildReview(){
     ['IB Courses Taken', document.getElementById('ib-count').value || '—'],
     ['Sports', sports],
     ['QuestBridge', getRadioVal('questbridge')],
-    ['Additional Notes (Stats)', document.getElementById('stats-extra').value.trim() || '—'],
+    ['Additional Notes', document.getElementById('stats-extra').value.trim() || '—'],
     ['— Self-Presentation —', ''],
-    ['Presentation Confidence', pres],
-   ['— One More Thing —', ''],
-    ['How did you hear about us?', selectedHearAbout.filter(v => v !== 'other-hear').join(', ') + (selectedHearAbout.includes('other-hear') ? (', ' + (document.getElementById('hear-about-other').value.trim() || '—')) : '') || '—'],
-    ['— Policies —', ''],
-    ['Agreed to Policy', document.getElementById('agree-policy').checked ? 'Yes' : 'No'],
-    ['Agreed to Payment Policy', document.getElementById('agree-payment').checked ? 'Yes' : 'No'],
   ];
 
   const html = rows.map(([k,v],i) => {
