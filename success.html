@@ -151,10 +151,10 @@ footer a:hover{color:var(--gold);}
     </div>
     <h1>Welcome to TalkColleges!</h1>
     <p class="subtitle">
-      Your advisor application has been received.<br/>
-      A <strong>confirmation email</strong> has been sent to your <strong>personal email address</strong>.
-      We'll be in touch within a couple of days with further instructions.
-    </p>
+  Your advisor application has been received.<br/>
+  A <strong>confirmation email</strong> has been sent to <strong id="personal-email-display">your personal email address</strong>.
+  We'll be in touch within a couple of days with further instructions.
+</p>
     <div class="info-box">
       <div class="info-box-row">
         <span class="info-box-icon">📬</span>
@@ -241,6 +241,7 @@ footer a:hover{color:var(--gold);}
   const params = new URLSearchParams(window.location.search);
   const personal = params.get('personal');
   if (!personal) return;
+  document.getElementById('personal-email-display').textContent = personal;
   fetch('/api/send-confirmation', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
