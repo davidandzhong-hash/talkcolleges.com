@@ -1486,11 +1486,9 @@ function buildReview(){
 
 /* ── SUBMIT ── */
 function submitForm(){
-  localStorage.removeItem('talkcolleges_advisor_form');
-  document.querySelector('.form-wrap').style.display = 'none';
-  document.getElementById('verify-screen').style.display = 'block';
-  document.getElementById('verify-edu-display').textContent = document.getElementById('college-email').value.trim();
-  window.scrollTo({top:0,behavior:'smooth'});
+  const personal = encodeURIComponent(document.getElementById('personal-email').value.trim());
+  const college  = encodeURIComponent(document.getElementById('college-email').value.trim());
+  window.location.href = 'verify.html?personal=' + personal + '&college=' + college;
 }
 
 function resendVerification(){
