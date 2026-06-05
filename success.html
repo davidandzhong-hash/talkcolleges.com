@@ -243,11 +243,6 @@ footer a:hover{color:var(--gold);}
   const personal = params.get('personal');
   if (!personal) return;
   document.getElementById('personal-email-display').textContent = personal;
-  fetch('/api/send-confirmation', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ email: personal }),
-  }).catch(err => console.error('Confirmation email error:', err));
 })();
 </script>
 </body>
