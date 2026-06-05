@@ -418,9 +418,10 @@ async function verifyAndSubmit() {
 
   // ── Both correct ──────────────────────────────────────────────────────────
     // Submit to Google Sheets
+    // Submit to Google Sheets
     try {
       const formData = JSON.parse(localStorage.getItem(FORM_KEY)) || {};
-      await fetch('PASTE_YOUR_GOOGLE_APPS_SCRIPT_URL_HERE', {
+      await fetch('https://script.google.com/macros/s/AKfycbyruGPV8Dw6jCjtL2fWk8JadSCl7bx-GigXmVwEKqILmQUDcn_D8CsPAoDKuXJCeZOcqg/exec', {
         method: 'POST',
         mode: 'no-cors',
         headers: { 'Content-Type': 'application/json' },
