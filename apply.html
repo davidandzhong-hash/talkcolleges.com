@@ -1578,15 +1578,19 @@ function restoreForm(){
     document.getElementById('school-display').value = data['school-display'] || data['school-value'];
   }
 
-  if(data['other-schools']){
+if(data['other-schools']){
     try {
       const schools = JSON.parse(data['other-schools']);
       schools.forEach(s => {
         if(selectedOtherSchools.indexOf(s) === -1) selectedOtherSchools.push(s);
-        const opt = document.querySelector('#other-schools-list .dropdown-opt[data-value="' + s + '"]');
-        if(opt) opt.classList.add('selected');
       });
       renderOtherSchoolTags();
+      setTimeout(() => {
+        schools.forEach(s => {
+          const opt = document.querySelector('#other-schools-list .dropdown-opt[data-value="' + s + '"]');
+          if(opt) opt.classList.add('selected');
+        });
+      }, 0);
     } catch(e){}
   }
 
