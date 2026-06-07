@@ -1604,7 +1604,7 @@ if(data['other-schools']){
     } catch(e){}
   }
 
-  if(data['current-step'] && data['current-step'] > 1){
+if(data['current-step'] && data['current-step'] > 1){
     const n = parseInt(data['current-step']);
     document.getElementById('step-'+currentStep).classList.remove('active');
     document.querySelectorAll('.step-dot').forEach(d => {
@@ -1618,6 +1618,7 @@ if(data['other-schools']){
     }
     currentStep = n;
     document.getElementById('step-'+n).classList.add('active');
+    if(n === 7) setTimeout(() => buildReview(), 0);
   }
 }
 
