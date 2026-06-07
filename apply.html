@@ -1597,6 +1597,8 @@ if(data['other-schools']){
     } catch(e){}
   }
 
+isRestoring = true;
+
   if(data['hear-about']){
     try {
       const items = JSON.parse(data['hear-about']);
@@ -1607,8 +1609,24 @@ if(data['other-schools']){
     } catch(e){}
   }
 
-if(data['current-step'] && data['current-step'] > 1){
-    isRestoring = true;
+  if(data['current-step'] && data['current-step'] > 1){
+    const n = parseInt(data['current-step']);
+    document.getElementById('step-'+currentStep).classList.remove('active');
+    document.querySelectorAll('.step-dot').forEach(d => {
+      const s = parseInt(d.dataset.step);
+      d.classList.remove('active','done');
+      if(s < n) d.classList.add('done');
+      if(s === n) d.classList.add('active');
+    });
+    for(let i=1;i<totalSteps;i++){
+      document.getElementById('line-'+i).classList.toggle('done', i < n);
+    }
+    currentStep = n;
+    document.getElementById('step-'+n).classList.add('active');
+    if(n === 7) setTimeout(() => buildReview(), 0);
+  }
+
+  isRestoring = false;
     const n = parseInt(data['current-step']);
     document.getElementById('step-'+currentStep).classList.remove('active');
     document.querySelectorAll('.step-dot').forEach(d => {
