@@ -422,6 +422,21 @@ async function verifyAndSubmit() {
     // Submit to Google Sheets
     try {
       const formData = JSON.parse(localStorage.getItem(FORM_KEY)) || {};
+
+      const hearAbout = (() => {
+        try {
+          const items = JSON.parse(formData['hear-about'] || '[]');
+          const filtered = items.filter(v => v !== 'other-hear');
+          if (items.includes('other-hear') && formData['hear-about-other'])
+            filtered.push(formData['hear-about-other']);
+          return filtered.join(', ');
+        } catch(e) { return ''; }
+      })();
+
+      const otherSchools = (() => {
+        try { return JSON.parse(formData['other-schools'] || '[]').join(', '); } catch(e) { return ''; }
+      })();
+
       await fetch('https://script.google.com/macros/s/AKfycbyruGPV8Dw6jCjtL2fWk8JadSCl7bx-GigXmVwEKqILmQUDcn_D8CsPAoDKuXJCeZOcqg/exec', {
         method: 'POST',
         mode: 'no-cors',
@@ -431,25 +446,41 @@ async function verifyAndSubmit() {
           personalEmail:  emails.personal,
           collegeEmail:   emails.college,
           college:        formData['school-value'] || '',
-          gradClass:      formData['radio__grad-class'] || '',
+          gradClass:      formData['radio__grad-class'] === 'other'
+                            ? (formData['grad-class-other'] || '')
+                            : (formData['radio__grad-class'] || ''),
           collegeWithin:  formData['college-within'] || '',
           major:          formData['major'] || '',
-          actionPlan:     formData['radio__action-plan'] || '',
-          conditioned:    formData['radio__conditioned'] || '',
-          specialProgram: formData['radio__special-program'] || '',
+          actionPlan:     formData['radio__action-plan'] === 'other-plan'
+                            ? (formData['action-plan-other'] || '')
+                            : (formData['radio__action-plan'] || ''),
+          conditioned:    formData['radio__conditioned'] === 'other-conditioned'
+                            ? (formData['conditioned-other'] || '')
+                            : (formData['radio__conditioned'] || ''),
+          specialProgram: formData['radio__special-program'] === 'other-special'
+                            ? (formData['special-program-other'] || '')
+                            : (formData['radio__special-program'] || ''),
           legacy:         formData['radio__legacy'] || '',
           testType:       formData['radio__test-type'] || '',
-          testScore:      formData['sat-hundreds'] ? (formData['sat-hundreds'] + formData['sat-tens']) : (formData['act-score'] || 'Test Optional'),
+          testScore:      formData['radio__test-type'] === 'SAT'
+                            ? (formData['sat-hundreds'] + formData['sat-tens'])
+                            : formData['radio__test-type'] === 'ACT'
+                              ? (formData['act-score'] || '')
+                              : 'Test Optional',
           uwgpa:          formData['uwgpa'] || '',
           wgpa:           formData['wgpa'] || '',
           gpaScale:       formData['gpa-scale'] || '',
           apCount:        formData['ap-count'] || '',
           ibCount:        formData['ib-count'] || '',
-          sports:         formData['radio__sports'] || '',
+          sports:         formData['radio__sports'] === 'sports-other'
+                            ? (formData['sports-other'] || '')
+                            : (formData['radio__sports'] || ''),
           questbridge:    formData['radio__questbridge'] || '',
-          otherSchools:   formData['other-schools'] || '',
-          presentation:   formData['radio__presentation-confidence'] || '',
-          howHeard:       formData['hear-about'] || '',
+          otherSchools:   otherSchools,
+          presentation:   formData['radio__presentation-confidence'] === 'presentation-other'
+                            ? (formData['presentation-other'] || '')
+                            : (formData['radio__presentation-confidence'] || ''),
+          howHeard:       hearAbout,
         }),
       });
     } catch(e) { console.error('Sheet submission error:', e); }
