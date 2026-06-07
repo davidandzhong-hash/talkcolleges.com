@@ -1070,6 +1070,7 @@ let currentStep = 1;
 const totalSteps = 7;
 let selectedOtherSchools = [];
 let selectedHearAbout = [];
+let isRestoring = false;
 
 function toggleHearAbout(val, el) {
   const cb = el.querySelector('input[type=checkbox]');
@@ -1369,6 +1370,7 @@ function jumpToStep(n){
 }
 
 function goToStep(n){
+  if(isRestoring) return;
   document.getElementById('step-'+currentStep).classList.remove('active');
   document.querySelectorAll('.step-dot').forEach(d => {
     const s = parseInt(d.dataset.step);
@@ -1605,6 +1607,7 @@ if(data['other-schools']){
   }
 
 if(data['current-step'] && data['current-step'] > 1){
+    isRestoring = true;
     const n = parseInt(data['current-step']);
     document.getElementById('step-'+currentStep).classList.remove('active');
     document.querySelectorAll('.step-dot').forEach(d => {
@@ -1619,6 +1622,7 @@ if(data['current-step'] && data['current-step'] > 1){
     currentStep = n;
     document.getElementById('step-'+n).classList.add('active');
     if(n === 7) setTimeout(() => buildReview(), 0);
+    isRestoring = false;
   }
 }
 
