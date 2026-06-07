@@ -1549,6 +1549,8 @@ function restoreForm(){
   let data;
   try { data = JSON.parse(saved); } catch(e) { return; }
 
+  isRestoring = true;
+
   document.querySelectorAll('input[type=text], input[type=email], textarea').forEach(el => {
     if(el.id && data[el.id] !== undefined) el.value = data[el.id];
   });
@@ -1596,9 +1598,6 @@ if(data['other-schools']){
       }, 0);
     } catch(e){}
   }
-
-isRestoring = true;
-
   if(data['hear-about']){
     try {
       const items = JSON.parse(data['hear-about']);
