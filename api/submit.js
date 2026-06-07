@@ -5,7 +5,21 @@ export default async function handler(req, res) {
   const { personalEmail, collegeEmail, formData } = req.body;
   if (!personalEmail || !collegeEmail) return res.status(400).json({ error: 'Missing emails' });
 
-  // ── Send confirmation email to both addresses ─────────────────────────────
+  // ── Submit to Google Sheets ───────────────────────────────────────────────
+  const GOOGLE_SHEETS_URL = process.env.GOOGLE_SHEETS_URL;
+  if (GOOGLE_SHEETS_URL && formData) {
+    try {
+      await fetch(GOOGLE_SHEETS_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData),
+      });
+    } catch(e) {
+      console.error('Sheet submission error:', e);
+    }
+  }
+
+  // ── Send confirmation email ───────────────────────────────────────────────
   const BREVO_API_KEY = process.env.BREVO_API_KEY;
   if (BREVO_API_KEY) {
     try {
