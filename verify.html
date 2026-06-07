@@ -490,7 +490,16 @@ async function verifyAndSubmit() {
           howHeard:       hearAbout,
         }),
       });
-    } catch(e) { console.error('Sheet submission error:', e); }
+} catch(e) { console.error('Sheet submission error:', e); }
+
+    // Send confirmation email
+    try {
+      await fetch('/api/submit', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ personalEmail: emails.personal, collegeEmail: emails.college }),
+      });
+    } catch(e) { console.error('Submit error:', e); }
 
     // Show success then redirect
     document.getElementById('verify-state').style.display = 'none';
