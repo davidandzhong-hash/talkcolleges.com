@@ -1362,7 +1362,12 @@ function validateStep(step){
 
 /* ── STEP NAVIGATION ── */
 function nextStep(from){
-  if(!validateStep(from)) return;
+  if(!validateStep(from)){
+    const firstErr = Array.from(document.querySelectorAll('#step-'+from+' .field-error.show'))
+      .sort((a,b) => a.getBoundingClientRect().top - b.getBoundingClientRect().top)[0];
+    if(firstErr) firstErr.scrollIntoView({behavior:'smooth', block:'center'});
+    return;
+  }
   if(from === totalSteps) return;
   goToStep(from + 1);
 }
