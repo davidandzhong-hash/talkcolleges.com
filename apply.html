@@ -1127,6 +1127,9 @@ function selectSchool(val){
   document.getElementById('school-display').value = val;
   document.getElementById('school-value').value = val;
   document.getElementById('school-display').classList.remove('error');
+  document.querySelectorAll('#school-list .dropdown-opt').forEach(opt => {
+    opt.classList.toggle('selected', opt.dataset.value === val);
+  });
   closeAllDropdowns();
   saveForm();
 }
@@ -1578,9 +1581,8 @@ function restoreForm(){
   const t = document.getElementById('sat-tens').value;
   document.getElementById('sat-preview').textContent = (h && t) ? (h + t) : '—';
 
-  if(data['school-value']){
-    document.getElementById('school-value').value = data['school-value'];
-    document.getElementById('school-display').value = data['school-display'] || data['school-value'];
+if(data['school-value']){
+    selectSchool(data['school-value']);
   }
 
 if(data['other-schools']){
