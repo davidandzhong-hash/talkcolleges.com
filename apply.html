@@ -1517,6 +1517,7 @@ document.getElementById('college-email-confirm').addEventListener('input', () =>
 const FORM_KEY = 'talkcolleges_advisor_form';
 
 function saveForm(){
+  if(isRestoring) return;
   const data = {};
   document.querySelectorAll('input[type=text], input[type=email], textarea').forEach(el => {
     if(el.id) data[el.id] = el.value;
