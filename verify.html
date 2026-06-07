@@ -450,8 +450,6 @@ async function verifyAndSubmit() {
           otherSchools:   formData['other-schools'] || '',
           presentation:   formData['radio__presentation-confidence'] || '',
           howHeard:       formData['hear-about'] || '',
-          agreedPolicy:   formData['check__agree-policy'] ? 'Yes' : 'No',
-          agreedPayment:  formData['check__agree-payment'] ? 'Yes' : 'No',
         }),
       });
     } catch(e) { console.error('Sheet submission error:', e); }
