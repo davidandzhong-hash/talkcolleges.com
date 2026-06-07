@@ -105,7 +105,7 @@ main{
 .divider{height:1px;background:var(--border);margin:1.5rem 0;}
 .resend-row{
   display:flex;align-items:center;justify-content:space-between;
-  flex-wrap:wrap;gap:0.5rem;margin-top:1.2rem;
+  flex-wrap:wrap;gap:0.5rem;margin-top:1.5rem;
   font-size:0.84rem;color:var(--muted);
 }
 .resend-btn{
@@ -197,10 +197,6 @@ footer a:hover{color:var(--gold);}
           <input type="text" maxlength="1" inputmode="numeric" autocomplete="off" data-group="personal" data-idx="5"/>
         </div>
         <div class="field-error" id="err-personal-code">Please enter the 6-digit code.</div>
-        <div class="resend-row">
-          <span>Didn't get it? <button class="resend-btn" id="resend-personal-btn" onclick="resendCode('personal')" disabled>Resend code</button></span>
-          <span class="countdown" id="resend-personal-timer"></span>
-        </div>
       </div>
 
       <div class="divider"></div>
@@ -223,10 +219,12 @@ footer a:hover{color:var(--gold);}
           <input type="text" maxlength="1" inputmode="numeric" autocomplete="off" data-group="college" data-idx="5"/>
         </div>
         <div class="field-error" id="err-college-code">Please enter the 6-digit code.</div>
-        <div class="resend-row">
-          <span>Didn't get it? <button class="resend-btn" id="resend-college-btn" onclick="resendCode('college')" disabled>Resend code</button></span>
-          <span class="countdown" id="resend-college-timer"></span>
-        </div>
+      </div>
+
+      <!-- Single shared resend row -->
+      <div class="resend-row">
+        <span>Didn't get it? <button class="resend-btn" id="resend-btn" onclick="resendBoth()" disabled>Resend codes</button></span>
+        <span class="countdown" id="resend-timer"></span>
       </div>
 
       <button class="btn-submit" id="submit-btn" onclick="verifyAndSubmit()">
@@ -243,10 +241,11 @@ footer a:hover{color:var(--gold);}
 
   </div>
 </main>
+
 <script>
 const FORM_KEY = 'talkcolleges_advisor_form';
 const RESEND_COOLDOWN_SEC = 60;
-let timers = { personal: null, college: null };
+let resendTimer = null;
 let emails = { personal: '', college: '' };
 
 // ── INIT ──────────────────────────────────────────────────────────────────────
@@ -267,9 +266,10 @@ document.addEventListener('DOMContentLoaded', () => {
   wireInputs('personal');
   wireInputs('college');
 
-  // Only send codes if emails are available
   if (emails.personal) sendCode('personal');
   if (emails.college)  sendCode('college');
+
+  startCountdown();
 });
 
 // ── FETCH WITH TIMEOUT ────────────────────────────────────────────────────────
@@ -284,39 +284,42 @@ function fetchWithTimeout(url, options, ms = 10000) {
 async function sendCode(group) {
   const email = emails[group];
   if (!email) return;
-
   try {
     await fetch('/api/send-code', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ email, group }),
     });
-    startCountdown(group);
   } catch(err) {
     console.error(`Send error (${group}):`, err);
   }
 }
 
-// ── RESEND ────────────────────────────────────────────────────────────────────
-function resendCode(group) {
-  clearCodeInputs(group);
-  clearErr(`err-${group}-code`);
+// ── RESEND BOTH ───────────────────────────────────────────────────────────────
+function resendBoth() {
+  clearCodeInputs('personal');
+  clearCodeInputs('college');
+  clearErr('err-personal-code');
+  clearErr('err-college-code');
   document.getElementById('global-error').classList.remove('show');
-  sendCode(group);
+  if (emails.personal) sendCode('personal');
+  if (emails.college)  sendCode('college');
+  startCountdown();
+  document.querySelector('[data-group="personal"]').focus();
 }
 
-// ── COUNTDOWN ─────────────────────────────────────────────────────────────────
-function startCountdown(group) {
-  const btn   = document.getElementById(`resend-${group}-btn`);
-  const timer = document.getElementById(`resend-${group}-timer`);
+// ── COUNTDOWN (shared) ────────────────────────────────────────────────────────
+function startCountdown() {
+  const btn   = document.getElementById('resend-btn');
+  const timer = document.getElementById('resend-timer');
   btn.disabled = true;
   let secs = RESEND_COOLDOWN_SEC;
   timer.textContent = `${secs}s`;
-  if (timers[group]) clearInterval(timers[group]);
-  timers[group] = setInterval(() => {
+  if (resendTimer) clearInterval(resendTimer);
+  resendTimer = setInterval(() => {
     secs--;
     if (secs <= 0) {
-      clearInterval(timers[group]);
+      clearInterval(resendTimer);
       btn.disabled = false;
       timer.textContent = '';
     } else {
@@ -489,7 +492,7 @@ async function verifyAndSubmit() {
       });
     } catch(e) { console.error('Sheet submission error:', e); }
 
-    // Show success then redirect, clear localStorage on redirect
+    // Show success then redirect
     document.getElementById('verify-state').style.display = 'none';
     document.getElementById('success-state').style.display = 'block';
     setTimeout(() => {
