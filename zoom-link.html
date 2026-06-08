@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>How to Get Your Zoom Link — TalkColleges</title>
+  <link rel="icon" type="image/png" href="TCFavicon.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --navy:   #4D107A;
+      --cream:  #f9f5ff;
+      --gold:   #D1B365;
+      --muted:  #7a6b8d;
+      --white:  #ffffff;
+      --border: #e2d5f0;
+      --soft:   #f2ecfc;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--cream);
+      color: var(--navy);
+      line-height: 1.7;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 1.1rem 6%;
+      background: rgba(249,245,255,0.93);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+    .logo {
+      font-family: 'DM Serif Display', serif;
+      font-size: clamp(1.2rem, 4vw, 1.6rem);
+      color: var(--navy); text-decoration: none;
+      letter-spacing: -0.01em;
+      display: flex; align-items: center;
+    }
+    .logo span { color: var(--gold); }
+    nav ul { list-style: none; display: flex; gap: 1.5rem; align-items: center; }
+    nav ul a {
+      text-decoration: none; color: var(--navy);
+      font-size: 0.88rem; font-weight: 400;
+      transition: color 0.2s;
+    }
+    nav ul a:hover { color: var(--gold); }
+    .nav-cta {
+      background: var(--navy) !important; color: var(--white) !important;
+      padding: 0.5rem 1.2rem !important; border-radius: 4px;
+      font-weight: 500 !important; transition: background 0.2s !important;
+    }
+    .nav-cta:hover { background: var(--gold) !important; }
+    .menu-toggle { display: none; font-size: 1.8rem; cursor: pointer; color: var(--navy); }
+    #menu-checkbox { display: none; }
+
+    /* ── HERO ── */
+    .hero {
+      padding: 9rem 6% 4rem;
+      max-width: 780px;
+      margin: 0 auto;
+      width: 100%;
+    }
+    .hero-eyebrow {
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 1rem;
+    }
+    .hero h1 {
+      font-family: 'DM Serif Display', serif;
+      font-size: clamp(2rem, 5vw, 3rem);
+      letter-spacing: -0.02em;
+      line-height: 1.2;
+      margin-bottom: 1.2rem;
+    }
+    .hero-meta {
+      font-size: 0.83rem;
+      color: var(--muted);
+      font-weight: 300;
+      display: flex;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+    }
+    .hero-meta span { display: flex; align-items: center; gap: 0.35rem; }
+
+    /* ── ARTICLE ── */
+    .article-wrap {
+      max-width: 780px;
+      margin: 0 auto;
+      padding: 0 6% 6rem;
+      width: 100%;
+    }
+
+    .article-wrap p {
+      font-size: 1rem;
+      color: #3a2e50;
+      font-weight: 300;
+      line-height: 1.85;
+      margin-bottom: 1.4rem;
+    }
+
+    .article-wrap h2 {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.5rem;
+      letter-spacing: -0.01em;
+      margin: 2.8rem 0 0.9rem;
+      color: var(--navy);
+    }
+
+    .article-wrap h3 {
+      font-size: 1rem;
+      font-weight: 700;
+      margin: 2rem 0 0.5rem;
+      color: var(--navy);
+    }
+
+    /* Step cards */
+    .steps { display: flex; flex-direction: column; gap: 1rem; margin: 1.8rem 0; }
+    .step {
+      display: flex; gap: 1.2rem; align-items: flex-start;
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1.2rem 1.4rem;
+    }
+    .step-num {
+      min-width: 36px; height: 36px;
+      background: var(--navy); color: var(--white);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 0.85rem; font-weight: 700;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+    .step-body { flex: 1; }
+    .step-body strong {
+      display: block;
+      font-weight: 600;
+      font-size: 0.97rem;
+      margin-bottom: 0.3rem;
+      color: var(--navy);
+    }
+    .step-body p {
+      font-size: 0.9rem;
+      color: var(--muted);
+      margin-bottom: 0;
+      line-height: 1.6;
+    }
+
+    /* Callout */
+    .callout {
+      background: var(--soft);
+      border-left: 4px solid var(--gold);
+      border-radius: 0 8px 8px 0;
+      padding: 1.2rem 1.5rem;
+      margin: 2rem 0;
+      font-size: 0.92rem;
+      color: var(--navy);
+      font-weight: 400;
+      line-height: 1.7;
+    }
+    .callout strong { font-weight: 700; }
+
+    /* Inline link */
+    .article-wrap a {
+      color: var(--navy);
+      font-weight: 500;
+      text-decoration: underline;
+      text-underline-offset: 3px;
+      transition: color 0.2s;
+    }
+    .article-wrap a:hover { color: var(--gold); }
+
+    /* CTA block */
+    .cta-block {
+      background: var(--navy);
+      border-radius: 16px;
+      padding: 2.5rem 2rem;
+      text-align: center;
+      margin-top: 3.5rem;
+    }
+    .cta-block h2 {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.7rem;
+      color: var(--white);
+      margin-bottom: 0.7rem;
+    }
+    .cta-block p {
+      color: rgba(255,255,255,0.65);
+      font-size: 0.92rem;
+      font-weight: 300;
+      margin-bottom: 1.5rem;
+    }
+    .btn-gold {
+      display: inline-block;
+      background: var(--gold); color: var(--white);
+      padding: 0.85rem 2rem;
+      border-radius: 4px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.93rem;
+      transition: opacity 0.2s;
+    }
+    .btn-gold:hover { opacity: 0.85; color: var(--white); }
+
+    /* ── FOOTER ── */
+    footer {
+      background: #080f1c; color: rgba(255,255,255,0.45);
+      padding: 2.2rem 6%;
+      display: flex; align-items: center; justify-content: space-between;
+      flex-wrap: wrap; gap: 1rem; font-size: 0.82rem;
+    }
+    footer .logo { color: rgba(255,255,255,0.7); font-size: 1.1rem; }
+    footer .logo span { color: var(--gold); }
+    footer a { color: rgba(255,255,255,0.45); text-decoration: none; margin-left: 1.5rem; transition: color 0.2s; }
+    footer a:hover { color: var(--gold); }
+
+    @media (max-width: 900px) {
+      .menu-toggle { display: block; }
+      nav ul {
+        display: none; flex-direction: column;
+        position: absolute; top: 100%; left: 0; right: 0;
+        background: #f9f5ff; padding: 2rem; gap: 1.5rem;
+        border-bottom: 1px solid var(--border);
+        box-shadow: 0 10px 30px rgba(77,16,122,0.15);
+      }
+      #menu-checkbox:checked ~ ul { display: flex; }
+    }
+
+    @media (max-width: 600px) {
+      .hero { padding: 8rem 5% 3rem; }
+      .article-wrap { padding: 0 5% 4rem; }
+      .cta-block { padding: 2rem 1.4rem; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="index.html" class="logo">
+    <img src="TalkCollegesIconTransparent.png" style="height:50px;vertical-align:middle;margin-right:6px;" alt="Icon" />
+    Talk<span>Colleges</span>
+  </a>
+  <input type="checkbox" id="menu-checkbox" />
+  <label for="menu-checkbox" class="menu-toggle">&#9776;</label>
+  <ul>
+    <li><a href="ourprocess.html">Our Process</a></li>
+    <li><a href="index.html#why-us">Why Us</a></li>
+    <li><a href="book.html">Advisors</a></li>
+    <li><a href="index.html#become-an-advisor">Become an Advisor</a></li>
+    <li><a href="book.html" class="nav-cta">Get started</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-eyebrow">TalkColleges Guide</div>
+  <h1>How to Get Your Personal Zoom Link</h1>
+  <div class="hero-meta">
+    <span>📅 June 2026</span>
+    <span>⏱ 3 min read</span>
+    <span>👤 TalkColleges Team</span>
+  </div>
+</div>
+
+<!-- ARTICLE -->
+<div class="article-wrap">
+
+  <p>When you sign up as a TalkColleges advisor, we ask for your personal Zoom link so that students can join your sessions directly. If you've never used Zoom before — or just aren't sure where to find your link — this guide walks you through it in under five minutes.</p>
+
+  <h2>What is a Personal Zoom Link?</h2>
+  <p>Zoom gives every account a <strong>Personal Meeting Room</strong> — a permanent virtual space with a fixed link that never changes. Think of it like a permanent address for your video calls. When a student books a session with you, we'll send them this link in their confirmation email so they can join at the scheduled time.</p>
+
+  <div class="callout">
+    <strong>Free account is fine.</strong> You don't need a paid Zoom plan to use TalkColleges. A free Zoom account gives you everything you need — just be aware that free accounts limit group calls to 40 minutes, but one-on-one sessions have no time limit.
+  </div>
+
+  <h2>Step 1 — Create a Free Zoom Account</h2>
+  <p>If you don't already have Zoom, go to <a href="https://zoom.us/signup" target="_blank">zoom.us/signup</a> and create a free account using your email address. It takes about two minutes.</p>
+
+  <h2>Step 2 — Find Your Personal Meeting Link</h2>
+  <p>Once you have an account, here's how to find your personal link:</p>
+
+  <div class="steps">
+    <div class="step">
+      <div class="step-num">1</div>
+      <div class="step-body">
+        <strong>Go to zoom.us and sign in</strong>
+        <p>Head to <a href="https://zoom.us" target="_blank">zoom.us</a> in your browser and click <em>Sign In</em> in the top right corner.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">2</div>
+      <div class="step-body">
+        <strong>Open your Profile</strong>
+        <p>In the left sidebar, click <em>Profile</em>. This is where all your account settings live.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">3</div>
+      <div class="step-body">
+        <strong>Scroll down to "Personal Meeting ID"</strong>
+        <p>You'll see a section labeled <em>Personal Meeting ID</em> with a number and a link next to it — something like <code>https://zoom.us/j/1234567890</code>.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">4</div>
+      <div class="step-body">
+        <strong>Copy the link</strong>
+        <p>Click <em>Copy the invitation</em> or just copy the URL directly. That's your personal Zoom link — paste it into the TalkColleges advisor form.</p>
+      </div>
+    </div>
+  </div>
+
+  <h2>Using the Zoom Desktop App Instead?</h2>
+  <p>If you prefer the app, open Zoom, click the <strong>Home</strong> tab, then click <strong>New Meeting</strong> and look for the <em>Copy Invitation</em> button. Your personal meeting link will be in the copied text.</p>
+
+  <div class="callout">
+    <strong>Tip:</strong> Make sure your Personal Meeting Room has a waiting room enabled so you can admit students at the right time. Go to <em>Settings → In Meeting (Advanced)</em> and toggle on <em>Waiting Room</em>.
+  </div>
+
+  <h2>What Happens Next?</h2>
+  <p>Once you submit your Zoom link to TalkColleges, we store it securely on your advisor profile. When a student books a session with you and completes payment, we automatically send them your Zoom link via email — you don't have to do anything extra.</p>
+
+  <p>On the day of the session, just open your Zoom app, start your Personal Meeting Room, and your student will join from the waiting room. Simple as that.</p>
+
+  <div class="callout">
+    <strong>Having trouble?</strong> If you run into any issues finding your link or setting up Zoom, email us at <a href="mailto:support@talkcolleges.com">support@talkcolleges.com</a> and we'll help you get set up.
+  </div>
+
+  <div class="cta-block">
+    <h2>Ready to start advising?</h2>
+    <p>Join TalkColleges and help students navigate their college journey.</p>
+    <a href="https://apply.talkcolleges.com/apply.html" class="btn-gold" target="_blank">Apply to become an advisor</a>
+  </div>
+
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <a href="index.html" class="logo">Talk<span>Colleges</span></a>
+  <div>
+    <a href="ourprocess.html">Our Process</a>
+    <a href="index.html#why-us">Why Us</a>
+    <a href="book.html">Advisors</a>
+    <a href="index.html#become-an-advisor">Become an Advisor</a>
+    <a href="privacypolicy.html">Privacy Policy</a>
+    <a href="mailto:support@talkcolleges.com">Contact</a>
+  </div>
+  <span>© 2026 TalkColleges. All rights reserved.</span>
+</footer>
+
+</body>
+</html>
