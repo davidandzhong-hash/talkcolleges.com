@@ -490,6 +490,9 @@ async function verifyAndSubmit() {
                               ? (formData['presentation-other'] || '')
                               : (formData['radio__presentation-confidence'] || ''),
             howHeard:       hearAbout,
+            referralCode:   formData['radio__referral'] === 'has-code'
+                              ? (formData['referral-code'] || '')
+                              : '',
           },
         }),
       });
