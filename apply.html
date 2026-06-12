@@ -963,45 +963,19 @@ footer a:hover{color:var(--gold);}
     </div>
 
     <div class="field">
-      <label>Referral Code
-        <span class="req">*</span>
-      </label>
+      <label>Referral Code <span class="req">*</span></label>
       <div class="radio-group">
-        <label class="radio-opt"
-          onclick="selectRadio('referral',
-          'has-code');
-          toggleReferralCode(true)">
-          <input type="radio"
-            name="referral"
-            value="has-code"/>
-          <span class="radio-opt-label">
-            I have a referral code
-          </span>
+        <label class="radio-opt" onclick="selectRadio('referral','has-code'); toggleReferralCode(true)">
+          <input type="radio" name="referral" value="has-code"/> <span class="radio-opt-label">I have a referral code</span>
         </label>
-        <label class="radio-opt"
-          onclick="selectRadio('referral',
-          'no-code');
-          toggleReferralCode(false)">
-          <input type="radio"
-            name="referral"
-            value="no-code"/>
-          <span class="radio-opt-label">
-            I do not have a referral code
-          </span>
-        </label>
-        <div class="write-in-wrap"
-          id="referral-code-wrap">
-          <input type="text"
-            id="referral-code"
-            placeholder="Enter your
-            referral code…"
-            autocomplete="off"/>
+        <div class="write-in-wrap" id="referral-code-wrap">
+          <input type="text" id="referral-code" placeholder="Enter your referral code…" autocomplete="off"/>
         </div>
+        <label class="radio-opt" onclick="selectRadio('referral','no-code'); toggleReferralCode(false)">
+          <input type="radio" name="referral" value="no-code"/> <span class="radio-opt-label">I do not have a referral code</span>
+        </label>
       </div>
-      <div class="field-error"
-        id="err-referral">
-        Please select an option.
-      </div>
+      <div class="field-error" id="err-referral">Please select an option.</div>
     </div>
 
     <div class="form-nav">
