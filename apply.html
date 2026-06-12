@@ -1283,11 +1283,6 @@ function showOtherAccepts(show){
 function showTestSection(type){
   document.getElementById('sat-section').classList.toggle('visible', type === 'SAT');
   document.getElementById('act-section').classList.toggle('visible', type === 'ACT');
-}
-
-function showTestSection(type){
-  document.getElementById('sat-section').classList.toggle('visible', type === 'SAT');
-  document.getElementById('act-section').classList.toggle('visible', type === 'ACT');
 }
 
 
@@ -1403,32 +1398,30 @@ function validateStep(step){
 
   if(step === 5){
     const pc = document.querySelector(
-      'input[name="presentation-confidence"]
-      :checked');
+      'input[name="presentation-confidence"]:checked');
     if(!pc){ showErr(
       'err-presentation-confidence');
       ok=false;
     } else clearErr(
       'err-presentation-confidence');
-    if(pc?.value==='presentation-other'
+    if(pc?.value === 'presentation-other'
       && !document.getElementById(
       'presentation-other').value.trim()){
       showErr('err-presentation-confidence',
-      'Please describe your confidence.');
+      'Please describe your confidence level.');
       markInputErr('presentation-other');
       ok=false;
     }
-    if(selectedHearAbout.length===0){
+    if(selectedHearAbout.length === 0){
       showErr('err-hear-about',
       'Please select at least one option.');
       ok=false;
     } else clearErr('err-hear-about');
-    if(selectedHearAbout.includes(
-      'other-hear') && !document
-      .getElementById('hear-about-other')
-      .value.trim()){
+    if(selectedHearAbout.includes('other-hear')
+      && !document.getElementById(
+      'hear-about-other').value.trim()){
       showErr('err-hear-about',
-      'Please describe how you heard.');
+      'Please describe how you heard about us.');
       markInputErr('hear-about-other');
       ok=false;
     }
@@ -1438,7 +1431,7 @@ function validateStep(step){
       'Please select an option.');
       ok=false;
     } else clearErr('err-referral');
-    if(getRadioVal('referral')==='has-code'
+    if(getRadioVal('referral') === 'has-code'
       && !document.getElementById(
       'referral-code').value.trim()){
       showErr('err-referral',
@@ -1446,8 +1439,8 @@ function validateStep(step){
       markInputErr('referral-code');
       ok=false;
     }
-
   }
+
 
   if(step === 6){
     if(!document.getElementById('agree-policy').checked){ showErr('err-agree-policy'); ok=false; } else clearErr('err-agree-policy');
