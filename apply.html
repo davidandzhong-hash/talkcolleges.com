@@ -962,11 +962,55 @@ footer a:hover{color:var(--gold);}
       <div class="field-error" id="err-hear-about">Please select at least one option.</div>
     </div>
 
-    <div class="form-nav">
-      <button class="btn btn-ghost" onclick="prevStep(5)">← Back</button>
-      <button class="btn btn-primary" onclick="nextStep(5)">Continue →</button>
+    <div class="field">
+      <label>Referral Code
+        <span class="req">*</span>
+      </label>
+      <div class="radio-group">
+        <label class="radio-opt"
+          onclick="selectRadio('referral',
+          'has-code');
+          toggleReferralCode(true)">
+          <input type="radio"
+            name="referral"
+            value="has-code"/>
+          <span class="radio-opt-label">
+            I have a referral code
+          </span>
+        </label>
+        <label class="radio-opt"
+          onclick="selectRadio('referral',
+          'no-code');
+          toggleReferralCode(false)">
+          <input type="radio"
+            name="referral"
+            value="no-code"/>
+          <span class="radio-opt-label">
+            I do not have a referral code
+          </span>
+        </label>
+        <div class="write-in-wrap"
+          id="referral-code-wrap">
+          <input type="text"
+            id="referral-code"
+            placeholder="Enter your
+            referral code…"
+            autocomplete="off"/>
+        </div>
+      </div>
+      <div class="field-error"
+        id="err-referral">
+        Please select an option.
+      </div>
     </div>
-  </div>
+
+    <div class="form-nav">
+      <button class="btn btn-ghost"
+        onclick="prevStep(5)">← Back</button>
+      <button class="btn btn-primary"
+        onclick="nextStep(5)">Continue →</button>
+    </div>
+  </div> <!-- end step-5 -->
 
   <!-- STEP 6: POLICIES -->
   <div class="form-section" id="step-6">
@@ -1227,6 +1271,19 @@ function selectRadio(name, value){
 function showOtherAccepts(show){
   document.getElementById('other-accepts-section').classList.toggle('visible', show);
 }
+  function toggleReferralCode(show) {
+  const wrap = document.getElementById('referral-code-wrap');
+  if (wrap) wrap.classList.toggle('visible', show);
+  if (!show) {
+    const inp = document.getElementById('referral-code');
+    if (inp) inp.value = '';
+  }
+}
+
+function showTestSection(type){
+  document.getElementById('sat-section').classList.toggle('visible', type === 'SAT');
+  document.getElementById('act-section').classList.toggle('visible', type === 'ACT');
+}
 
 function showTestSection(type){
   document.getElementById('sat-section').classList.toggle('visible', type === 'SAT');
@@ -1345,11 +1402,51 @@ function validateStep(step){
   }
 
   if(step === 5){
-    const pc = document.querySelector('input[name="presentation-confidence"]:checked');
-    if(!pc){ showErr('err-presentation-confidence'); ok=false; } else clearErr('err-presentation-confidence');
-    if(pc?.value === 'presentation-other' && !document.getElementById('presentation-other').value.trim()){ showErr('err-presentation-confidence','Please describe your confidence level.'); markInputErr('presentation-other'); ok=false; }
-    if(selectedHearAbout.length === 0){ showErr('err-hear-about','Please select at least one option.'); ok=false; } else clearErr('err-hear-about');
-    if(selectedHearAbout.includes('other-hear') && !document.getElementById('hear-about-other').value.trim()){ showErr('err-hear-about','Please describe how you heard about us.'); markInputErr('hear-about-other'); ok=false; }
+    const pc = document.querySelector(
+      'input[name="presentation-confidence"]
+      :checked');
+    if(!pc){ showErr(
+      'err-presentation-confidence');
+      ok=false;
+    } else clearErr(
+      'err-presentation-confidence');
+    if(pc?.value==='presentation-other'
+      && !document.getElementById(
+      'presentation-other').value.trim()){
+      showErr('err-presentation-confidence',
+      'Please describe your confidence.');
+      markInputErr('presentation-other');
+      ok=false;
+    }
+    if(selectedHearAbout.length===0){
+      showErr('err-hear-about',
+      'Please select at least one option.');
+      ok=false;
+    } else clearErr('err-hear-about');
+    if(selectedHearAbout.includes(
+      'other-hear') && !document
+      .getElementById('hear-about-other')
+      .value.trim()){
+      showErr('err-hear-about',
+      'Please describe how you heard.');
+      markInputErr('hear-about-other');
+      ok=false;
+    }
+    if(!document.querySelector(
+      'input[name="referral"]:checked')){
+      showErr('err-referral',
+      'Please select an option.');
+      ok=false;
+    } else clearErr('err-referral');
+    if(getRadioVal('referral')==='has-code'
+      && !document.getElementById(
+      'referral-code').value.trim()){
+      showErr('err-referral',
+      'Please enter your referral code.');
+      markInputErr('referral-code');
+      ok=false;
+    }
+
   }
 
   if(step === 6){
