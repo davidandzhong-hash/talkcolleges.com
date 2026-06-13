@@ -445,57 +445,50 @@ async function verifyAndSubmit() {
       })();
 
       await fetch('/api/submit', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          personalEmail: emails.personal,
-          collegeEmail:  emails.college,
-          formData: {
-            displayName:    formData['display-name'] || '',
-            personalEmail:  emails.personal,
-            collegeEmail:   emails.college,
-            college:        formData['school-value'] || '',
-            gradClass:      formData['radio__grad-class'] === 'other'
-                              ? (formData['grad-class-other'] || '')
-                              : (formData['radio__grad-class'] || ''),
-            collegeWithin:  formData['college-within'] || '',
-            major:          formData['major'] || '',
-            actionPlan:     formData['radio__action-plan'] === 'other-plan'
-                              ? (formData['action-plan-other'] || '')
-                              : (formData['radio__action-plan'] || ''),
-            conditioned:    formData['radio__conditioned'] === 'other-conditioned'
-                              ? (formData['conditioned-other'] || '')
-                              : (formData['radio__conditioned'] || ''),
-            specialProgram: formData['radio__special-program'] === 'other-special'
-                              ? (formData['special-program-other'] || '')
-                              : (formData['radio__special-program'] || ''),
-            legacy:         formData['radio__legacy'] || '',
-            testType:       formData['radio__test-type'] || '',
-            testScore:      formData['radio__test-type'] === 'SAT'
-                              ? (formData['sat-hundreds'] + formData['sat-tens'])
-                              : formData['radio__test-type'] === 'ACT'
-                                ? (formData['act-score'] || '')
-                                : 'Test Optional',
-            uwgpa:          formData['uwgpa'] || '',
-            wgpa:           formData['wgpa'] || '',
-            gpaScale:       formData['gpa-scale'] || '',
-            apCount:        formData['ap-count'] || '',
-            ibCount:        formData['ib-count'] || '',
-            sports:         formData['radio__sports'] === 'sports-other'
-                              ? (formData['sports-other'] || '')
-                              : (formData['radio__sports'] || ''),
-            questbridge:    formData['radio__questbridge'] || '',
-            otherSchools:   otherSchools,
-            presentation:   formData['radio__presentation-confidence'] === 'presentation-other'
-                              ? (formData['presentation-other'] || '')
-                              : (formData['radio__presentation-confidence'] || ''),
-            howHeard:       hearAbout,
-            referralCode:   formData['radio__referral'] === 'has-code'
-                              ? (formData['referral-code'] || '')
-                              : '',
-          },
-        }),
-      });
+  method: 'POST',
+  headers: { 'Content-Type': 'application/json' },
+  body: JSON.stringify({
+    personalEmail: emails.personal,
+    collegeEmail:  emails.college,
+    formData: {
+      displayName:    formData['display-name'] || '',
+      personalEmail:  emails.personal,
+      collegeEmail:   emails.college,
+      college:        formData['school-value'] || '',
+      gradClass:      formData['radio__grad-class'] === 'other'
+                        ? (formData['grad-class-other'] || '')
+                        : (formData['radio__grad-class'] || ''),
+      collegeWithin:  formData['college-within'] || '',
+      major:          formData['major'] || '',
+      actionPlan:     formData['radio__action-plan'] === 'other-plan'
+                        ? (formData['action-plan-other'] || '')
+                        : (formData['radio__action-plan'] || ''),
+      conditioned:    formData['radio__conditioned'] === 'other-conditioned'
+                        ? (formData['conditioned-other'] || '')
+                        : (formData['radio__conditioned'] || ''),
+      specialProgram: formData['radio__special-program'] === 'other-special'
+                        ? (formData['special-program-other'] || '')
+                        : (formData['radio__special-program'] || ''),
+      legacy:         formData['radio__legacy'] || '',
+      acceptanceNotes: formData['acceptance-extra'] || '',
+      otherAccepts:   formData['radio__other-accepts'] || '',
+      otherSchools:   otherSchools,
+      altAcceptNotes: formData['alt-accept-extra'] || '',
+      sports:         formData['radio__sports'] === 'sports-other'
+                        ? (formData['sports-other'] || '')
+                        : (formData['radio__sports'] || ''),
+      questbridge:    formData['radio__questbridge'] || '',
+      statsNotes:     formData['stats-extra'] || '',
+      presentation:   formData['radio__presentation-confidence'] === 'presentation-other'
+                        ? (formData['presentation-other'] || '')
+                        : (formData['radio__presentation-confidence'] || ''),
+      howHeard:       hearAbout,
+      referralCode:   formData['radio__referral'] === 'has-code'
+                        ? (formData['referral-code'] || '')
+                        : '',
+    },
+  }),
+});
     } catch(e) { console.error('Submit error:', e); }
 
     // Show success then redirect
